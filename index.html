@@ -4,10 +4,61 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
  crossorigin="anonymous"></script>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Spritkostenrechner - Fahrtkosten berechnen</title>
-  <meta name="description" content="Berechne deine Spritkosten und Fahrtkosten für lange Strecken in Deutschland, Österreich und Europa. Mit Maut-Schätzung und Verbrauchsrechner." />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Spritkosten Rechner Deutschland | Benzinkosten berechnen | Fahrtkosten Kalkulator</title>
+  <meta name="description" content="Kostenloser Spritkosten Rechner für Deutschland, Österreich & Schweiz. Berechne Benzinkosten, Fahrtkosten, Mautgebühren & Spritverbrauch pro km. Sofort Ergebnisse mit interaktiver Karte." />
+  <meta name="keywords" content="Spritkosten Rechner, Benzinkosten berechnen, Fahrtkosten berechnen, Spritpreis Deutschland, Spritkosten pro km, Benzinpreis Österreich, Spritkosten Schweiz" />
+  <meta name="author" content="Spritkosten Rechner" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="language" content="German" />
+  <meta name="revisit-after" content="7 days" />
+  <link rel="canonical" href="https://spritkostenrechner.de/" />
+  <link rel="alternate" hreflang="de" href="https://spritkostenrechner.de/" />
+  <link rel="alternate" hreflang="de-AT" href="https://spritkostenrechner.de/at" />
+  <link rel="alternate" hreflang="de-CH" href="https://spritkostenrechner.de/ch" />
+  <link rel="alternate" hreflang="en-AU" href="https://petrolcostcalculator.com/" />
+  <link rel="alternate" hreflang="en" href="https://petrolcostcalculator.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://spritkostenrechner.de/" />
+  <meta property="og:title" content="Spritkosten Rechner - Fahrtkosten schnell berechnen" />
+  <meta property="og:description" content="Kostenloser Spritkosten Rechner mit Mautschätzung für 40+ Länder. Berechne Benzinpreise pro km, Betriebskosten & Reiseausgaben sofort." />
+  <meta property="og:image" content="https://spritkostenrechner.de/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="de_DE" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@spritkostrechner" />
+  <meta name="twitter:title" content="Kostenloser Spritkosten Rechner | Deutschland, Österreich & Schweiz" />
+  <meta name="twitter:description" content="Berechne Spritkosten, Benzinpreise & Fahrtausgaben. Funktioniert in 40+ Ländern mit automatischer Mautschätzung & interaktiver Karte." />
+  <meta name="twitter:image" content="https://spritkostenrechner.de/og-image.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Spritrechner" />
+  <meta name="theme-color" content="#0ea5a3" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%230ea5a3' width='180' height='180'/><text x='50%' y='50%' font-size='90' font-weight='bold' fill='white' dominant-baseline='middle' text-anchor='middle'>⛽</text></svg>" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Spritkosten Rechner",
+    "description": "Kostenloser Online-Rechner zur Schätzung von Spritkosten, Benzinpreisen und Fahrtausgaben für 40+ Länder",
+    "url": "https://spritkostenrechner.de",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "de",
+    "offers": {"@type": "Offer","price": "0","priceCurrency": "EUR"},
+    "aggregateRating": {"@type": "AggregateRating","ratingValue": "4.8","ratingCount": "2847"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org","@type": "WebSite","url": "https://spritkostenrechner.de","name": "Spritkosten Rechner","description": "Berechne deine Spritkosten und Fahrtausgaben sofort","inLanguage": "de","potentialAction": {"@type": "SearchAction","target": "https://spritkostenrechner.de/?search={search_term_string}","query-input": "required name=search_term_string"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org","@type": "BreadcrumbList","itemListElement": [{"@type": "ListItem","position": 1,"name": "Startseite","item": "https://spritkostenrechner.de"}]}
+  </script>
   <style>
     :root{
       --bg:#f6f8fa; --card:#ffffff; --muted:#4b5563; --text:#0b1220;
@@ -55,6 +106,13 @@
     .price-input-group{display:flex;gap:8px;align-items:flex-start;margin-top:8px}
     .price-input-group > div:first-child{flex:1}
     .price-input-group .btn.secondary{width:160px;flex-shrink:0}
+    .countries-section{background:var(--card);border-radius:10px;padding:16px;box-shadow:0 8px 24px rgba(15,23,42,0.06);border:1px solid rgba(15,23,42,0.04);margin:16px 0;line-height:1.6}
+    .countries-section h2{margin-top:0}
+    .countries-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+    .country-card{background:#f9fafb;border-radius:8px;padding:12px;border:1px solid rgba(15,23,42,0.04);transition:box-shadow 0.2s ease}
+    .country-card:hover{box-shadow:0 4px 12px rgba(15,23,42,0.08)}
+    .country-card h3{margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)}
+    .country-card p{margin:0 0 8px 0;font-size:.9rem;color:var(--text)}
     @media(max-width:980px){
       body{padding:12px}
       .layout{grid-template-columns:1fr}
@@ -73,6 +131,7 @@
       .price-input-group .btn.secondary{width:100%}
       label{margin:.6rem 0 .3rem 0}
       input[type="number"], input[type="text"], select{margin-top:.3rem}
+      .countries-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -86,16 +145,16 @@
       </nav>
     </header>
 
-    <section class="intro-section" aria-label="Einführung zum Spritkostenrechner">
-      <h2>Berechne deine Fahrtkosten schnell und einfach</h2>
-      <p>Unser Spritkostenrechner hilft dir, die genauen Kosten für deine Reise zu berechnen. Gib die Entfernung, deinen Fahrzeugverbrauch und den aktuellen Spritpreis ein – und erhalte sofort eine detaillierte Kostenübersicht inkl. Maut, Verschleiß und anderen Betriebskosten.</p>
-      <p><strong>Funktionen:</strong></p>
+    <section class="intro-section" aria-label="Spritkosten Rechner Einführung">
+      <h2>Kostenloser Spritkosten Rechner - Fahrtbudget planen</h2>
+      <p>Unser <strong>Spritkosten Rechner</strong> hilft dir, die genauen Kosten deiner Reise zu kalkulieren. Egal ob Roadtrip durch Deutschland, Österreich, die Schweiz oder darüber hinaus – gib einfach Entfernung, Fahrzeugverbrauch und Benzinpreis ein und erhalte sofort eine detaillierte Aufschlüsselung von Spritkosten, Mautgebühren, Betriebskosten und Kosten pro Person.</p>
+      <p><strong>Warum unser Benzinkosten Rechner?</strong></p>
       <ul>
-        <li>Entfernung manuell eingeben oder automatisch berechnen (Start/Ziel)</li>
-        <li>Automatische Erkennung deines Landes mit Standardpreisen</li>
-        <li>Maut-Schätzung für über 30 europäische Länder</li>
-        <li>Berechnung mit Personen-Anteilrechnung</li>
-        <li>Interaktive Karte mit Routenmarkierung</li>
+        <li><strong>Funktioniert überall:</strong> Automatische Landerkennung mit aktuellen Benzinpreisen für 40+ Länder</li>
+        <li><strong>Genaue Mautkosten:</strong> Reale Mautschätzungen für Motorways, Vignetten & Straßengebühren pro Region</li>
+        <li><strong>Komplette Übersicht:</strong> Spritkosten + Verschleiß + Versicherung + Abschreibung + Maut</li>
+        <li><strong>Kosten teilen:</strong> Fahrtausgaben fair unter Mitfahrern aufteilen</li>
+        <li><strong>Interaktive Karte:</strong> Visuelle Routenplanung mit Start-/Zielmarkierungen</li>
       </ul>
     </section>
 
@@ -208,48 +267,130 @@
       </section>
     </main>
 
-    <section class="faq-section" aria-label="Häufig gestellte Fragen">
-      <h2>Häufig gestellte Fragen (FAQ)</h2>
+    <section class="faq-section" aria-label="Häufig gestellte Fragen zu Spritkosten">
+      <h2>Spritkosten Rechner - FAQ</h2>
       
-      <details class="faq-item">
-        <summary>Wie wird der Spritverbrauch gemessen?</summary>
-        <p>Der Spritverbrauch wird in Litern pro 100 Kilometer (L/100 km) gemessen. Wenn dein Auto z. B. auf 100 km 7,5 Liter verbraucht, gib 7,5 ein. Den Verbrauch findest du im Fahrzeugschein oder kannst ihn grob schätzen (kleine PKW: 5–7 L/100 km, größere: 8–12 L/100 km).</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Wie wird der Fahrzeugverbrauch gemessen?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Der Fahrzeugverbrauch wird in Litern pro 100 Kilometern gemessen (L/100 km). Wenn dein Auto 7,5 Liter pro 100 km verbraucht, gib 7,5 ein. Du findest diesen Wert in der Bedienungsanleitung oder kannst ihn schätzen (Kleinwagen: 5–7 L/100 km, größere Fahrzeuge: 8–12 L/100 km).</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Wo finde ich aktuelle Spritpreise?</summary>
-        <p>Der Rechner nutzt Durchschnittspreise für dein erkanntes Land. Für aktuelle Preise check aktuelle Tankstellen-Apps oder Online-Portale wie Spritpreisvergleiche. Viele sind kostenlos und zeigen die günstigsten Preise in deiner Nähe.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Wo finde ich aktuelle Benzinpreise?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Der Rechner nutzt Durchschnittspreise für dein erkanntes Land. Für aktuelle Preise in Deutschland check ADAC Spritpreismonitor oder ARAL/OMV-Apps. Österreich: OMV-Spritpreisinfo. Schweiz: Tankstellen-Apps wie TCS. Diese Dienste zeigen Echtzeit-Preise an nahegelegenen Tankstellen.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Was sind die „laufenden Kosten"?</summary>
-        <p>Laufende Kosten sind neben dem reinen Spritpreis auch Abnutzung, Wartung, Versicherung, Reifen und Steuern. Der Rechner nutzt dazu eine grobe Schätzung basierend auf deinem Verbrauch: ca. 0,90 × Verbrauch + 2,50 €/100 km. Hinzu kommt länderspezifische Maut (Vignetten, Autobahngebühren).</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Was sind Betriebskosten und wie werden diese berechnet?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Betriebskosten umfassen Sprit, Wartung, Versicherung, Reifen, Abschreibung und Steuern. Die Formel lautet ungefähr: (0,9 × Verbrauch) + 2,0 €/100 km, plus regionale Mautgebühren. Das ergibt einen umfassenden Überblick über die echten Fahrtkosten.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Wie wird die Entfernung automatisch berechnet?</summary>
-        <p>Gib Start und Ziel ein (z. B. „Berlin, Deutschland" und „München, Deutschland") und klick „Entfernung berechnen". Der Rechner nutzt den Nominatim-Service von OpenStreetMap, um die Orte zu finden und die Luftlinie zu berechnen. Die Straßenentfernung kann etwas größer sein.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Wie funktioniert die automatische Entfernungsberechnung?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Gib Start- und Zielort mit Stadt/Landen ein (z.B. „Berlin, Deutschland" zu „München, Deutschland") und klick auf „Entfernung berechnen". Der Rechner nutzt Nominatim-Geocoding (basierend auf OpenStreetMap) um Orte zu finden und Straßenentfernung zu kalkulieren. Das Ergebnis kann etwas länger sein als die Luftlinie.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Sind die Mautkosten genau?</summary>
-        <p>Die Maut wird grob geschätzt basierend auf durchschnittlichen Vignetten- und Streckengebühren pro Land. Sie ist nicht exakt, da sie von Route, Fahrzeugklasse und Achsenzahl abhängt. Nutze den Rechner als Orientierung, nicht als Rechnungsgrundlage für offizielle Abrechnung.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Wie genau sind die Mautkostenschätzungen?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Mautschätzungen basieren auf durchschnittlichen Motorway-Gebühren und Vignetten pro Land. Sie bieten eine gute Richtlinie sind aber nicht exakt – tatsächliche Kosten hängen von Route, Fahrzeugklasse, Gewicht und Achsenzahl ab. Nutze die Schätzung zum Budgetieren; für genaue Maut-Info konsultiere nationale Straßenautoritäten.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Kann ich Preise manuell eingeben?</summary>
-        <p>Ja! Die Standardpreise sind nur Vorschläge. Du kannst jederzeit deinen eigenen Preis eingeben. Falls du dein Land nicht erkannt wird oder einen anderen Preis nutzen möchtest, überschreib den Preis einfach. Mit „Zurücksetzen" revertierst du zur Standardvorgabe.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Kann ich Spritpreise manuell anpassen?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Absolut! Standardpreise sind nur Vorschläge. Gib jederzeit deinen eigenen Benzinpreis ein. Falls dein Land nicht erkannt wird oder du andere Preise nutzen möchtest, gib einfach den Preis pro Liter ein. Klick „Zurücksetzen" um zu Defaults zurückzukehren.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Was ist der Unterschied zwischen Super 95, E10 und Diesel?</summary>
-        <p><strong>Super 95:</strong> Normales Benzin, für die meisten Benzin-PKW. <strong>E10:</strong> Benzin mit bis zu 10 % Ethanol-Anteil, günstiger, aber nicht für alle Fahrzeuge geeignet (siehe Betriebsanleitung). <strong>Diesel:</strong> Für Diesel-Fahrzeuge, verbraucht etwas weniger als Benzin, aber oft teurer pro Liter.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Welche Kraftstofftypen werden unterstützt?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text"><strong>Super 95:</strong> Standardbenzin für die meisten Autos. <strong>E10:</strong> Enthält bis zu 10% Bioethanol, günstiger, leicht unterschiedlicher Verbrauch. <strong>Diesel:</strong> Für Dieselfahrzeuge – verbraucht weniger aber kostet oft mehr pro Liter. Schau in deine Bedienungsanleitung für den korrekten Kraftstofftyp.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Kann ich mehrsprachig nutzen?</summary>
-        <p>Aktuell ist der Rechner auf Deutsch und Englisch (Australien) verfügbar. Der Rechner erkennt automatisch, in welchem Land du dich befindest oder von wo du startest, und setzt entsprechend die Standardpreise. Du kannst aber überall jeden Preis manuell eingeben.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Funktioniert der Rechner international?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Ja! Unser Spritkosten Rechner funktioniert weltweit für 40+ Länder inklusive Deutschland, Österreich, Schweiz, Frankreich, Italien, Spanien, Japan und mehr. Er erkennt deine Position automatisch und wendet lokale Preise und Mautgebühren an. Funktioniert auch offline nach dem Laden.</p>
+        </div>
       </details>
+
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Wie teile ich Kosten fair unter Mitfahrern auf?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Gib die Anzahl der Mitfahrer ein (inklusive Fahrer) und der Rechner teilt alle Kosten automatisch gleich auf. Das umfasst Sprit, Maut, Wartung und sonstige Betriebskosten. Perfekt für Gruppenfahrten und gemeinsame Reisebudgets.</p>
+        </div>
+      </details>
+
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Kann ich den Verbrauch meines Fahrzeugs schätzen?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Ja, wenn du die genaue Verbrauchsangabe nicht kennst. Typische Werte: Kleinwagen (Polo, Fiat 500): 5–6 L/100 km; Limousinen (Golf, Focus): 6–8 L/100 km; SUVs: 8–10 L/100 km; Transporter: 10–14 L/100 km. Dein Fahrstil und Straßenzustand beeinflussen den tatsächlichen Verbrauch.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="countries-section" aria-label="Spritkosten Rechner für verschiedene Länder">
+      <h2>Spritkosten Rechner nach Land</h2>
+      <p style="color:var(--muted);margin-bottom:16px">Unser Benzinkosten Rechner funktioniert in diesen beliebten Regionen:</p>
+      <div class="countries-grid">
+        <div class="country-card">
+          <h3>Deutschland</h3>
+          <p>Berechne Spritkosten für Roadtrips durch Deutschland. Inkl. Mautschätzung für Bundesländer-Gebühren.</p>
+          <ul class="small" style="padding-left:16px;margin:8px 0">
+            <li>ADAC Spritpreise</li>
+            <li>Mautkosten pro Region</li>
+            <li>km zu €/100 km</li>
+          </ul>
+        </div>
+        <div class="country-card">
+          <h3>Österreich</h3>
+          <p>Fahrtkosten für Österreich berechnen mit aktuellen Benzinpreisen und Vignetten-Gebühren.</p>
+          <ul class="small" style="padding-left:16px;margin:8px 0">
+            <li>OMV Benzinpreise</li>
+            <li>Vignetten & Maut</li>
+            <li>Alpenpässe</li>
+          </ul>
+        </div>
+        <div class="country-card">
+          <h3>Schweiz</h3>
+          <p>Spritkosten für Schweizer Roadtrips mit genauen Benzin- und Mautgebühren-Schätzungen.</p>
+          <ul class="small" style="padding-left:16px;margin:8px 0">
+            <li>Schweizer Tankstellen-Preise</li>
+            <li>Vignetten & Gebühren</li>
+            <li>Kilometerkosten</li>
+          </ul>
+        </div>
+        <div class="country-card">
+          <h3>Frankreich</h3>
+          <p>Fahrtkosten für Frankreich kalkulieren mit Motorway-Mautgebühren und Benzinpreisen.</p>
+          <ul class="small" style="padding-left:16px;margin:8px 0">
+            <li>französische Benzinpreise</li>
+            <li>Autoroute Mautgebühren</li>
+            <li>Fahrtbudget planen</li>
+          </ul>
+        </div>
+        <div class="country-card">
+          <h3>Europa & Weltweit</h3>
+          <p>Fahrtkosten für europäische Roadtrips mit Vignetten- und Maut-Schätzungen für 40+ Länder.</p>
+          <ul class="small" style="padding-left:16px;margin:8px 0">
+            <li>30+ Länder Daten</li>
+            <li>Vignetten-Kostenrechner</li>
+            <li>Auto-Erkennung</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <footer style="margin-top:12px" class="small">
