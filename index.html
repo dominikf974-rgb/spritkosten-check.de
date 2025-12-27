@@ -107,7 +107,7 @@ crossorigin="anonymous"></script>
             <div class="price-table" aria-hidden="false">
               <div class="price-card">
                 <div class="small">Ø Super 95</div>
-                <strong id="avg-u91">— €</strong>
+                <strong id="avg-super">— €</strong>
               </div>
               <div class="price-card">
                 <div class="small">Ø E10</div>
@@ -127,6 +127,11 @@ crossorigin="anonymous"></script>
               <button id="reset-sprit" class="btn secondary large">Zurücksetzen</button>
             </div>
 
+            <section class="ad-slot" aria-label="Anzeige" style="margin:16px auto">
+              <ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            </section>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
             <div class="resultbox" aria-live="polite">
               <div class="result-row"><div class="result-key">Spritkosten</div><div class="result-val" id="cost-fuel">0,00 €</div></div>
               <div class="result-row"><div class="result-key">Laufende Kosten inkl. Maut (geschätzt)</div><div class="result-val" id="cost-running">0,00 €</div></div>
@@ -138,11 +143,6 @@ crossorigin="anonymous"></script>
               <div style="margin-top:8px;color:var(--muted);font-size:.85rem">
                 Laufende Kosten enthalten: Verschleiß, Wartung, Versicherung, Reifen, Abschreibung, Steuern und länderspezifische Maut‑Schätzung (Vignetten, Streckengebühren).
               </div>
-
-              <section class="ad-slot" style="margin:20px auto">
-                <ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true"></ins>
-              </section>
-              <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
           </div>
 
@@ -171,12 +171,12 @@ crossorigin="anonymous"></script>
       </section>
     </main>
 
-    <section class="ad-slot" style="margin:24px auto 12px">
+    <section class="ad-slot" aria-label="Anzeige" style="margin:24px auto 12px">
       <ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true"></ins>
     </section>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-    <footer style="margin-top:12px" class="small">Local: Internet required for maps/geocoding. Fuel price proxy: http://localhost:3000</footer>
+    <footer style="margin-top:12px" class="small">Lokal: Internet für Karten/Geocoding erforderlich. Proxy für Tankpreise: http://localhost:3000</footer>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -218,17 +218,16 @@ crossorigin="anonymous"></script>
 
       const avgE10El = document.getElementById('avg-e10');
       const avgDieselEl = document.getElementById('avg-diesel');
-      const avgSuper95El = document.getElementById('avg-super95');
+      const avgSuperEl = document.getElementById('avg-super');
       const btnUpdatePrices = document.getElementById('btn-update-prices');
       const tollInfoEl = document.getElementById('toll-info');
 
       // Fallback prices
       let fuelPrices = { super95:1.80, e10:1.72, diesel:1.85 };
       function renderAvgPrices(){
-        avgSuper95El.textContent = fmt(fuelPrices.super95) + ' €';
+        avgSuperEl.textContent = fmt(fuelPrices.super95) + ' €';
         avgE10El.textContent = fmt(fuelPrices.e10) + ' €';
         avgDieselEl.textContent = fmt(fuelPrices.diesel) + ' €';
-        avgDieselEl.textContent = fmt(fuelPrices.diesel) + ' $';
       }
       renderAvgPrices();
 
