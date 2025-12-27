@@ -181,7 +181,7 @@ crossorigin="anonymous"></script>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function initApp() {
       const MAPBOX_API_KEY = '';
       const PRICES_API_URL = '';
 
@@ -239,7 +239,7 @@ crossorigin="anonymous"></script>
 
       async function fetchAverageFuelPrices(){
         btnUpdatePrices.disabled = true;
-        btnUpdatePrices.textContent = 'Updating…';
+        btnUpdatePrices.textContent = 'Lädt…';
         try{
           const center = map.getCenter();
           let url = PRICES_API_URL || `http://localhost:3000/prices?lat=${center.lat}&lng=${center.lng}&rad=100`;
@@ -256,9 +256,10 @@ crossorigin="anonymous"></script>
           }
         }catch(e){
           console.warn('Price fetch failed, using fallback.', e);
+          alert('Proxy http://localhost:3000 nicht erreichbar.\nStarten Sie: node server/server.js');
         } finally {
           btnUpdatePrices.disabled = false;
-          btnUpdatePrices.textContent = 'Update';
+          btnUpdatePrices.textContent = 'Aktualisieren';
         }
       }
       btnUpdatePrices.addEventListener('click', fetchAverageFuelPrices);
@@ -460,8 +461,13 @@ crossorigin="anonymous"></script>
           erg.textContent = (typeof res === 'number') ? fmt(res) : res;
         })
       );
-    });
-  </script>
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
   
   <footer style="margin-top:20px; text-align:center; font-size:14px; opacity:0.8;">
   <a href="/impressum.html">Impressum</a> ·
