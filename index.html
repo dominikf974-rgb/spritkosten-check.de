@@ -36,8 +36,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Spritrechner" />
   <meta name="theme-color" content="#0ea5a3" />
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%230ea5a3' width='180' height='180'/><text x='50%' y='50%' font-size='90' font-weight='bold' fill='white' dominant-baseline='middle' text-anchor='middle'>⛽</text></svg>" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script type="application/ld+json">
   {
@@ -69,10 +71,14 @@
     html,body{height:100%;width:100%;overflow-x:hidden}
     body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       background:linear-gradient(180deg,var(--bg) 0%, #e9eef5 100%);color:var(--text);
-      padding:16px;display:flex;align-items:flex-start;justify-content:center;min-height:100vh;}
-    .wrap{width:100%;max-width:var(--max-width);margin:0 auto;padding:0 8px}
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;flex-wrap:wrap}
-    h1{margin:0;font-size:1.25rem}
+      padding:0;display:flex;flex-direction:column;min-height:100vh;}
+    header{position:sticky;top:0;z-index:1000;background:white;box-shadow:0 2px 8px rgba(15,23,42,0.08);
+      padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .logo-title{display:flex;align-items:center;gap:12px}
+    .logo-title img{height:48px;width:auto}
+    .brand-text h1{margin:0;font-size:1.3rem;line-height:1.2;color:var(--text)}
+    .brand-text .subtitle{font-size:0.75rem;color:var(--muted);margin:0}
+    .wrap{width:100%;max-width:var(--max-width);margin:0 auto;padding:20px 16px}
     h2{font-size:1.1rem;margin:16px 0 12px 0}
     .tabs button{background:transparent;border:1px solid transparent;color:var(--muted);
       padding:.6rem 1rem;border-radius:.6rem;margin-left:.5rem;cursor:pointer;font-weight:700;
@@ -120,8 +126,12 @@
       .spinner button{width:38px;height:38px}
     }
     @media(max-width:720px){
-      h1{font-size:1.1rem}
-      .tabs button{margin-left:0.25rem;padding:.55rem .85rem}
+      header{padding:10px 12px;flex-direction:column;align-items:flex-start}
+      .logo-title img{height:40px}
+      .brand-text h1{font-size:1.1rem}
+      .brand-text .subtitle{font-size:0.7rem}
+      .tabs{width:100%;display:flex;justify-content:flex-start}
+      .tabs button{margin-left:0;padding:.55rem .85rem;font-size:0.85rem}
       .big-action{flex-direction:column}
       .btn{width:100%}
       .km-row{flex-wrap:wrap}
@@ -136,14 +146,21 @@
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo-title">
+      <img src="/logo.png" alt="Spritkostenrechner Logo" />
+      <div class="brand-text">
+        <h1>Spritkostenrechner</h1>
+        <p class="subtitle">Spritkosten-Check.de</p>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-target="sprit" aria-selected="true">Spritkosten</button>
+      <button role="tab" data-target="calc">Taschenrechner</button>
+    </nav>
+  </header>
+
   <div class="wrap">
-    <header>
-      <h1>Spritkostenrechner</h1>
-      <nav class="tabs" role="tablist">
-        <button role="tab" data-target="sprit" aria-selected="true">Spritkosten</button>
-        <button role="tab" data-target="calc">Taschenrechner</button>
-      </nav>
-    </header>
 
     <section class="intro-section" aria-label="Spritkosten Rechner Einführung">
       <h2>Kostenloser Spritkosten Rechner - Fahrtbudget planen</h2>
@@ -397,7 +414,6 @@
       Internet für Karten/Geocoding erforderlich. Preise können optional über einen eigenen HTTPS-Endpoint geladen werden.
       <span style="font-size:0.75rem;color:var(--muted);opacity:0.65;margin-left:10px">|
         <a href="faq.html" style="color:inherit;text-decoration:none;margin:0 6px">FAQ</a>
-        <a href="terms.html" style="color:inherit;text-decoration:none;margin:0 6px">AGB</a>
         <a href="contact.html" style="color:inherit;text-decoration:none;margin:0 6px">Kontakt</a>
         <a href="impressum.html" style="color:inherit;text-decoration:none;margin:0 6px">Impressum</a>
         <a href="datenschutz.html" style="color:inherit;text-decoration:none;margin:0 6px">Datenschutz</a>
