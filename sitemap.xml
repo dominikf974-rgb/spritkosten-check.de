@@ -32,5 +32,11 @@
   </url>
 
 <url><loc>https://spritkosten-check.de/fahrtkosten-rechner.html</loc></url>
-  
+
+<url>
+  <loc>https://spritkosten-check.de/ratgeber.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
 </urlset>
