@@ -220,26 +220,64 @@
             </div>
 
             <!-- ✅ CO2 unter Maut -->
-            <div class="thinbox" aria-label="CO2 Bilanz" style="margin-top:10px">
-              <div class="title">🌱 CO₂-Bilanz deiner Fahrt</div>
-              <div class="line"><div>Kraftstoff</div><div class="mono" id="co2-fuel">—</div></div>
-              <div class="line"><div>CO₂ gesamt</div><div class="mono" id="co2-total">—</div></div>
-              <div class="line"><div>CO₂ pro Person</div><div class="mono" id="co2-per-person">—</div></div>
-              <div class="small" style="margin-top:8px">
-                Näherung über Liter × CO₂-Faktor (Benzin/Diesel).
-              </div>
-            </div>
+          <div class="thinbox" aria-label="CO2 Bilanz">
+  <div class="title">🌱 CO₂-Bilanz deiner Fahrt</div>
+
+  <div class="small" style="line-height:1.7">
+    Die folgende CO₂-Bilanz ist eine <b>überschlägige Einordnung</b> deiner Fahrt auf Basis deiner Eingaben
+    (Strecke, Verbrauch, Kraftstoffart). Sie dient zur Orientierung bei Reiseplanung, Kostenaufteilung und
+    einem groben Klima-Vergleich. Die Werte stellen <b>keine amtliche Messung</b> dar und können je nach
+    Fahrzeug, Fahrstil, Verkehr, Temperatur, Beladung, Reifendruck, Streckenprofil sowie technischen
+    Eigenschaften des Fahrzeugs abweichen.
+    <br><br>
+    Berechnet wird vereinfacht: <b>Kraftstoffmenge (Liter)</b> × <b>Emissionsfaktor</b>.
+    Der Emissionsfaktor ist ein typischer Durchschnittswert. Die Darstellung erfolgt in <b>kg CO₂</b>,
+    weil das für die meisten Nutzer am verständlichsten ist (nicht in Gramm).
+    <br><br>
+    Tipp: Wenn ihr gemeinsam fahrt, sinkt die Belastung <b>pro Person</b> deutlich.
+  </div>
+
+  <div style="margin-top:10px">
+    <div class="line"><div>Kraftstoff</div><div class="mono" id="co2-fuel">—</div></div>
+    <div class="line"><div>Kraftstoffmenge (aus Verbrauch)</div><div class="mono" id="co2-liters">—</div></div>
+    <div class="line"><div>CO₂ gesamt</div><div class="mono" id="co2-total">—</div></div>
+    <div class="line"><div>CO₂ pro Person</div><div class="mono" id="co2-per-person">—</div></div>
+  </div>
+
+  <div class="small" style="margin-top:10px;line-height:1.7">
+    <b>Hinweis:</b> Je nach Definition können in CO₂-Bilanzen auch Vorketten (Förderung/Transport/Verarbeitung)
+    berücksichtigt werden. Diese Seite zeigt eine verständliche Näherung, damit du schnell vergleichen kannst.
+  </div>
+</div>
+
 
             <!-- ✅ Vergleich unter CO2 -->
-            <div class="thinbox" aria-label="Vergleich Verkehrsmittel" style="margin-top:10px">
-              <div class="title">🚆✈️ Vergleich: Auto vs. Bahn/Flug (Richtwerte)</div>
-              <div class="line"><div>Auto (Ø)</div><div class="mono" id="cmp-car">—</div></div>
-              <div class="line"><div>Bahn (Fernverkehr)</div><div class="mono" id="cmp-rail">—</div></div>
-              <div class="line"><div>Flug (Inland)</div><div class="mono" id="cmp-flight">—</div></div>
-              <div class="small" style="margin-top:8px">
-                Richtwerte auf Basis g CO₂e / Person-km (Deutschland, Bezugsjahr 2024).
-              </div>
-            </div>
+          <div class="thinbox" aria-label="Vergleich Verkehrsmittel">
+          <div class="title">🚗🚆✈️ Vergleich: Auto vs. Bahn vs. Flug (Richtwerte)</div>
+
+          <div class="small" style="line-height:1.7">
+    Dieser Vergleich dient der groben Einordnung. Grundlage sind <b>Durchschnittswerte pro Personenkilometer</b> (g CO₂e / Person-km),
+    die anschließend auf deine Strecke hochgerechnet werden. Dadurch entstehen <b>Richtwerte</b> – keine exakten, individuellen Zahlen.
+    <br><br>
+    Wichtig: Beim Auto hängt der Wert extrem davon ab, wie viele Personen im Auto sitzen. Beim Flug kann der tatsächliche Klimafußabdruck
+    je nach Strecke, Auslastung, Flugzeugtyp und zusätzlichen Effekten in großer Höhe stärker schwanken. Deshalb zeigen wir hier nur eine
+    verständliche „Daumenregel“.
+    <br><br>
+    Damit du den Unterschied leicht checkst, zeigen wir alles in <b>kg</b>.
+  </div>
+
+  <div style="margin-top:10px">
+    <div class="line"><div>Auto (statistischer Ø)</div><div class="mono" id="cmp-car">—</div></div>
+    <div class="line"><div>Bahn (Fernverkehr Ø)</div><div class="mono" id="cmp-rail">—</div></div>
+    <div class="line"><div>Flug (Kurzstrecke Ø)</div><div class="mono" id="cmp-flight">—</div></div>
+  </div>
+
+  <div class="small" style="margin-top:10px;line-height:1.7">
+    <b>Hinweis:</b> Dein CO₂-Wert oben basiert auf deinem Verbrauch (Liter). Der Vergleich hier basiert auf Durchschnittswerten.
+    Beide können voneinander abweichen – das ist normal.
+  </div>
+</div>
+
 
           </div>
         </div>
@@ -809,3 +847,4 @@
   <script src="/assets/js/loader.js"></script>
 </body>
 </html>
+
