@@ -59,6 +59,7 @@
       --accent-2:#4f46e5;
       --button-h:48px;
       --maxw:1400px;
+      --gapR:10px; /* einheitlicher Abstand rechte Spalte */
     }
 
     html{
@@ -258,12 +259,12 @@
     .intro-section ul{margin:8px 0;padding-left:20px}
     .intro-section li{margin:6px 0}
 
-    /* Layout */
+    /* Layout: wichtig für bündig unten */
     .layout{
       display:grid;
       grid-template-columns:minmax(0,420px) minmax(0,1fr);
       gap:16px;
-      align-items:start;
+      align-items:stretch; /* <- macht beide Spalten gleich hoch */
       width:100%;
     }
 
@@ -395,25 +396,30 @@
     .pill input{margin:0}
     .country-badge{margin-top:8px; min-height:18px; font-size:.85rem; color:var(--muted);}
 
+    /* Rechte Spalte bündig */
     .map-col{
       display:flex;
       flex-direction:column;
-      gap:10px;
-      height:100%;
+      gap:var(--gapR);
+      height:100%; /* <- wichtig */
+      min-height:0;
     }
 
-    /* Map */
+    /* Map: füllt Resthöhe auf Desktop, damit unten bündig */
     #map{
       width:100%;
-      height:520px;
-      min-height:320px;
       border-radius:10px;
       border:1px solid rgba(15,23,42,0.10);
       background:#fff;
     }
-
-    /* Mobile adjustments */
-    @media(max-width:980px){
+    @media (min-width: 981px){
+      #map{
+        flex:1;              /* <- Map wächst bis unten bündig */
+        height:auto !important;
+        min-height:380px;    /* nicht zu klein */
+      }
+    }
+    @media (max-width:980px){
       .layout{grid-template-columns:1fr}
       #map{height:260px !important;}
       .spinner button{width:38px;height:38px}
@@ -426,7 +432,6 @@
       .header-inner{padding:10px 12px;}
       .site-title{max-width:180px;}
     }
-
     @media(max-width:720px){
       .site-title{max-width:140px;}
       .big-action{flex-direction:column}
@@ -439,6 +444,36 @@
     }
 
     .ad-block{ margin:0; }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    @media(max-width:980px){
+      .two-col{grid-template-columns:1fr}
+    }
+
+    .faq-item{margin:10px 0}
+    .faq-item summary{
+      cursor:pointer;font-weight:800;color:var(--accent-2);
+      padding:10px;border-radius:8px;background:rgba(79,70,229,0.06)
+    }
+    .faq-item summary:hover{background:rgba(79,70,229,0.12)}
+    .faq-item p{margin:10px 0 0 0;line-height:1.6}
+
+    .countries-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;margin-top:12px
+    }
+    .country-card{
+      background:#f9fafb;border-radius:8px;padding:12px;border:1px solid rgba(15,23,42,0.06);
+      transition:box-shadow .2s ease
+    }
+    .country-card:hover{box-shadow:0 4px 12px rgba(15,23,42,0.10)}
+    .country-card h3{margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)}
+    .country-card p{margin:0 0 8px 0;font-size:.9rem}
 
     footer, footer *{ color:#000 !important; opacity:1 !important; }
     footer{ padding:18px 0 30px 0; }
@@ -465,7 +500,7 @@
         <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en" title="English">EN</a>
       </nav>
 
-      <!-- Mobile Actions: Hamburger + EN -->
+      <!-- Mobile Actions: EN + Hamburger -->
       <div class="header-actions">
         <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en" title="English">EN</a>
         <button class="hamburger" id="hamburger" aria-label="Menü öffnen" aria-expanded="false">
@@ -483,9 +518,6 @@
         <a href="/ratgeber.html">Ratgeber</a>
         <a href="/contact.html">Kontakt</a>
         <a href="/impressum.html">Impressum</a>
-      </div>
-      <div class="small" style="margin-top:10px;opacity:.85">
-        Hinweis: Auf Handy ist das Menü oben rechts. EN bleibt immer sichtbar.
       </div>
     </div>
   </header>
@@ -594,7 +626,6 @@
                   placeholder="z. B. 1,89" aria-label="Spritpreis pro Liter" />
                 <span id="price-info" class="hint"></span>
               </div>
-
               <button id="btn-reset-price" class="btn secondary reset-price-btn">
                 Auf Standard zurücksetzen
               </button>
@@ -637,11 +668,12 @@
             </div>
           </div>
 
-          <!-- RIGHT -->
+          <!-- RIGHT (gleichmäßige Abstände + getrennte Boxen) -->
           <div class="map-col">
-            <h2 style="margin:0 0 8px 0;font-size:1rem">Karte & Strecke</h2>
+            <h2 style="margin:0 0 2px 0;font-size:1rem">Karte & Strecke</h2>
 
             <div id="map"></div>
+
             <div id="toll-info" class="small" style="color:var(--muted)"></div>
 
             <div class="thinbox" aria-label="Maut und Vignetten Details" style="padding:16px 12px">
@@ -671,7 +703,7 @@
         </div>
       </section>
 
-      <!-- Rechner -->
+      <!-- Taschenrechner -->
       <section id="calc" class="card" aria-hidden="true" style="display:none">
         <h2>Rechner</h2>
         <label for="num1">Zahl 1</label>
@@ -688,11 +720,125 @@
 
         <p style="margin-top:12px" class="small">Ergebnis: <strong id="result">–</strong></p>
       </section>
+
     </main>
+
+    <!-- ✅ Unterer Block 1: Erklärung -->
+    <section class="card" aria-label="Berechnung erklärt">
+      <h2>So berechnest du Spritkosten & Kosten pro Person</h2>
+      <p class="small" style="margin-top:0">
+        Für schnelle Überschläge reichen Strecke (km), Verbrauch (L/100 km) und Spritpreis (€/L).
+        Der Rechner zeigt dir zusätzlich Durchschnittskosten pro 100 km und die Aufteilung pro Person.
+      </p>
+
+      <div class="two-col">
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Kurzformeln</h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.7">
+            <li><strong>Liter</strong> = km × Verbrauch ÷ 100</li>
+            <li><strong>Spritkosten</strong> = Liter × Preis</li>
+            <li><strong>pro Person</strong> = Gesamtkosten ÷ Personen</li>
+          </ul>
+        </div>
+
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Hinweise</h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.7">
+            <li>Maut/Vignette sind Schätzwerte.</li>
+            <li>„Laufende Kosten“ sind eine einfache Näherung.</li>
+            <li>Für genaue Werte: echten Verbrauch + aktuellen Preis nutzen.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ Unterer Block 2: Tipps -->
+    <section class="card" aria-label="Tipps Sprit sparen">
+      <h2>Tipps: Sprit sparen & Reisekosten reduzieren</h2>
+      <p class="small" style="margin-top:0">
+        Kleine Änderungen senken die Kosten schnell: richtiger Reifendruck, gleichmäßige Geschwindigkeit
+        und realistische Verbrauchswerte. Wenn ihr zusammen fahrt, teilt die Kosten fair pro Person.
+      </p>
+      <ul style="margin:0;padding-left:18px;line-height:1.7">
+        <li><strong>Ruhig fahren:</strong> weniger stark beschleunigen und bremsen.</li>
+        <li><strong>Reifendruck prüfen:</strong> zu niedriger Druck erhöht den Verbrauch.</li>
+        <li><strong>Gewicht reduzieren:</strong> unnötige Ladung raus, Dachbox nur wenn nötig.</li>
+        <li><strong>Kosten teilen:</strong> „Personen“ nutzen für fairen Betrag pro Kopf.</li>
+      </ul>
+
+      <div style="margin-top:18px;display:flex;justify-content:center">
+        <a class="btn large" href="/ratgeber.html" style="max-width:320px">Zum Ratgeber</a>
+      </div>
+    </section>
+
+    <!-- ✅ Unterer Block 3: FAQ Kurz -->
+    <section class="card faq-section" aria-label="FAQ">
+      <h2>Kurze FAQ</h2>
+
+      <details class="faq-item">
+        <summary>Wie berechne ich Spritkosten pro 100 km?</summary>
+        <p>Der Rechner zeigt dir „€/100 km“ automatisch an. Grundlage ist: Gesamtkosten ÷ Strecke × 100.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
+        <p>Du kannst beides. Gib einfach die Kilometer ein, die du wirklich fährst (einfach oder hin & zurück).</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Wie genau sind Maut/Vignetten?</summary>
+        <p>Nur grob nach Ländern. Reale Kosten hängen von Route, Fahrzeugklasse und lokalen Regeln ab.</p>
+      </details>
+
+      <div style="margin-top:14px;display:flex;justify-content:center">
+        <a class="btn large" href="/faq.html" style="max-width:360px">Mehr FAQ ansehen</a>
+      </div>
+    </section>
+
+    <!-- ✅ Unterer Block 4: Länder -->
+    <section class="card countries-section" aria-label="Spritkosten-Rechner nach Land">
+      <h2>Spritkosten-Rechner nach Land</h2>
+      <p class="small" style="margin:0 0 10px 0">Funktioniert weltweit mit Länder-Erkennung. Beliebte Regionen:</p>
+
+      <div class="countries-grid">
+        <div class="country-card">
+          <h3>Deutschland</h3>
+          <p>Plane Fahrtkosten, Spritkosten, laufende Kosten und teile fair pro Person.</p>
+        </div>
+        <div class="country-card">
+          <h3>Österreich</h3>
+          <p>Ideal für Autobahn & Alpenstrecken – inkl. grober Maut/Vignetten-Schätzung.</p>
+        </div>
+        <div class="country-card">
+          <h3>Schweiz</h3>
+          <p>Perfekt für Alpenpässe und Autobahnen – inkl. Vignetten-Schätzung.</p>
+        </div>
+        <div class="country-card">
+          <h3>Europa</h3>
+          <p>Für grenzüberschreitende Fahrten mit schneller Maut-/Kosten-Näherung.</p>
+        </div>
+        <div class="country-card">
+          <h3>Weltweit</h3>
+          <p>Für Roadtrips und Urlaubsreisen in nahezu allen Ländern & Regionen.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad: Bottom -->
+    <div class="ad-block">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="3048839661"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <!-- Footer -->
     <footer class="small">
       Kostenloser Spritkosten-Rechner für Deutschland, Europa und weltweit.
+      Ideal für Pendler, Roadtrips, Urlaubsfahrten und faire Kostenaufteilung pro Person.
       <span style="opacity:.75;margin-left:10px">|</span>
       <a href="/faq.html">FAQ</a> <span style="opacity:.75">|</span>
       <a href="/impressum.html">Impressum</a> <span style="opacity:.75">|</span>
@@ -708,6 +854,7 @@
         <a href="https://petrolcostcalculator.com/" hreflang="en" lang="en">PetrolCostCalculator.com</a>
       </div>
     </footer>
+
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -729,7 +876,6 @@
       }
       burger.addEventListener('click', toggleMenu);
 
-      // Close menu when clicking outside
       document.addEventListener('click', (e) => {
         if(!mobileMenu.classList.contains('open')) return;
         const within = mobileMenu.contains(e.target) || burger.contains(e.target);
@@ -757,11 +903,7 @@
         if (target === 'fuel') setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 80);
       }
 
-      tabButtons.forEach(btn => {
-        btn.addEventListener('click', () => showTab(btn.dataset.target));
-      });
-
-      // Mobile menu tab buttons
+      tabButtons.forEach(btn => btn.addEventListener('click', () => showTab(btn.dataset.target)));
       document.getElementById('m-fuel').addEventListener('click', () => { showTab('fuel'); closeMenu(); });
       document.getElementById('m-calc').addEventListener('click', () => { showTab('calc'); closeMenu(); });
 
@@ -833,13 +975,11 @@
         const el = document.querySelector('input[name="priceMode"]:checked');
         return el ? el.value : 'avg';
       }
-
       function getCountryName(cc){
         if(!cc) return '—';
         const e = countryPrices && countryPrices[cc];
         return (e && e.name) ? e.name : cc;
       }
-
       function pricesForCountryStatic(cc){
         const code = (cc || '').toUpperCase();
         const entry = countryPrices && countryPrices[code];
@@ -848,7 +988,6 @@
         }
         return { ...fallbackPrices, name: code || 'Fallback' };
       }
-
       function mixPrices(a, b){
         return {
           unleaded91: (a.unleaded91 + b.unleaded91) / 2,
@@ -967,6 +1106,7 @@
         clearRoute();
         routeLayer = L.geoJSON(r.geometry, { style: { weight: 5, opacity: 0.9 } }).addTo(map);
         map.fitBounds(routeLayer.getBounds(), { padding:[60,60] });
+
         return distKm;
       }
 
@@ -1183,40 +1323,7 @@
         cmpFlightEl.textContent = fmt(cmpFlightKg).replace('.', ',') + ' kg';
       });
 
-      document.getElementById('reset-fuel').addEventListener('click', () => {
-        kmEl.value = '';
-        consumptionEl.value = '7.5';
-        priceEl.value = '';
-        passengersEl.value = 1;
-
-        litersEl.textContent='0,00 L';
-        costFuelEl.textContent='€0,00';
-        costRunningEl.textContent='€0,00';
-        costTotalEl.textContent='€0,00';
-        costPersonEl.textContent='€0,00';
-        avg100El.textContent='€0,00 /100km';
-        runningEstEl.textContent='—';
-
-        userEditedPrice = false;
-        fuelPrices = { ...fallbackPrices };
-        renderAvgPrices();
-
-        lastTollTotal = 0;
-        lastVignetteTotal = 0;
-        renderTollBreakdown();
-
-        clearMarkers(); clearRoute();
-        map.setView([51.1657, 10.4515],5);
-        setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 80);
-
-        co2TotalEl.textContent = '—';
-        co2PerPersonEl.textContent = '—';
-        cmpCarEl.textContent = '—';
-        cmpRailEl.textContent = '—';
-        cmpFlightEl.textContent = '—';
-      });
-
-      // Taschenrechner
+      // Rechner
       const num1 = document.getElementById('num1');
       const num2 = document.getElementById('num2');
       const result = document.getElementById('result');
