@@ -1,32 +1,17 @@
-async function inject(url, hostId) {
-  const host = document.getElementById(hostId);
-  if (!host) return;
-  const res = await fetch(url, { cache: "no-cache" });
-  if (!res.ok) return;
-  host.innerHTML = await res.text();
-}
+(async function(){
+  async function loadInto(id, url){
+    const el = document.getElementById(id);
+    if(!el) return;
+    const res = await fetch(url, { cache: "no-store" });
+    el.innerHTML = await res.text();
+  }
 
-function markActiveNav() {
-  const active = document.body.getAttribute("data-page") || "home";
-  document.querySelectorAll(".navbtn[data-page]").forEach(a => {
-    a.classList.toggle("active", a.dataset.page === active);
+  await loadInto("site-header", "/assets/partials/header.html");
+  await loadInto("site-footer", "/assets/partials/footer.html");
+
+  const page = document.body.getAttribute("data-page") || "home";
+  document.querySelectorAll('.tablink[data-page]').forEach(a => {
+    if(a.getAttribute("data-page") === page) a.setAttribute("aria-current","page");
+    else a.removeAttribute("aria-current");
   });
-}
-
-function setupMobileMenu() {
-  const btn = document.querySelector(".menu-toggle");
-  const nav = document.querySelector(".tabs");
-  if (!btn || !nav) return;
-
-  btn.addEventListener("click", () => {
-    const open = nav.classList.toggle("open");
-    btn.setAttribute("aria-expanded", String(open));
-  });
-}
-
-document.addEventListener("DOMContentLoaded", async () => {
-  await inject("/assets/partials/header.html", "site-header");
-  await inject("/assets/partials/footer.html", "site-footer");
-  markActiveNav();
-  setupMobileMenu();
-});
+})();
