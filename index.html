@@ -6,10 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <title>Spritkosten-Rechner – Benzin, Diesel & Reisekosten berechnen</title>
-  <meta name="description" content="Kostenloser Spritkosten-Rechner für Fahrten & Roadtrips. Berechne Spritkosten, Gesamtkosten, CO₂-Bilanz sowie Maut-/Vignetten-Schätzung mit Karte und Distanzberechnung weltweit." />
+  <meta name="description" content="Kostenloser Spritkosten-Rechner für Fahrten & Roadtrips. Berechne Spritkosten, Gesamtkosten und Maut-/Vignetten-Schätzung mit Karte und Distanzberechnung weltweit." />
   <meta name="robots" content="index, follow" />
 
-  <!-- ✅ DE ↔ EN Connection (SEO) -->
   <link rel="canonical" href="https://spritkosten-check.de/" />
   <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/" />
   <link rel="alternate" hreflang="en" href="https://petrolcostcalculator.com/" />
@@ -25,7 +24,7 @@
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  <!-- Header Font -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
@@ -40,7 +39,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Spritkosten-Rechner",
-    "description": "Kostenloser Online-Rechner für Spritkosten, Kraftstoffpreise, CO2-Bilanz, Maut/Vignetten und Reisekosten",
+    "description": "Kostenloser Online-Rechner für Spritkosten, Kraftstoffpreise, Maut/Vignette und Reisekosten",
     "url": "https://spritkosten-check.de",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Web",
@@ -48,484 +47,13 @@
   }
   </script>
 
-  <style>
-    *{box-sizing:border-box;}
-
-    :root{
-      --bg1:#0f172a;
-      --bg2:#e9eef5;
-      --card:#ffffff;
-      --muted:#4b5563;
-      --text:#0b1220;
-      --accent:#0ea5a3;
-      --accent-2:#4f46e5;
-      --button-h:48px;
-      --maxw:1400px;
-    }
-
-    html{
-      min-height:100%;
-      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
-      background-repeat:no-repeat;
-      background-attachment:fixed;
-    }
-    body{
-      margin:0;
-      width:100%;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      color:var(--text);
-      min-height:100vh;
-      background:transparent;
-      position:relative;
-    }
-
-    /* Header */
-    .site-header{
-      position: sticky;
-      top:0;
-      z-index: 2147483647;
-      width:100%;
-      background:#fff;
-      border-bottom:1px solid rgba(15,23,42,0.06);
-    }
-    .header-inner{
-      width:100%;
-      max-width:none;
-      margin:0;
-      padding:10px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      position: relative;
-      z-index: 2147483647;
-    }
-
-    .logo-title{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      text-decoration:none;
-      color:inherit;
-      flex:1 1 auto;
-      min-width:0;
-    }
-    .logo-title:hover{opacity:.88;}
-    .logo-title img{ height:54px; width:auto; display:block; }
-    .site-title{
-      font-family:'Poppins', Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      font-weight:700;
-      font-size:18px;
-      white-space:nowrap;
-      letter-spacing:.2px;
-      max-width:560px;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .tabs{
-      display:flex;
-      gap:8px;
-      margin-left:auto;
-      flex:0 0 auto;
-      align-items:center;
-      flex-wrap:wrap;
-      position: relative;
-      z-index: 2147483647;
-    }
-    /* ✅ Alle Buttons im Header gleich (wie vorher) */
-    .tabs button,
-    .tabs a.tabbtn{
-      background:transparent;
-      border:1px solid transparent;
-      color:var(--muted);
-      padding:.6rem 1rem;
-      border-radius:.6rem;
-      cursor:pointer;
-      font-weight:800;
-      font-size:.95rem;
-      height:var(--button-h);
-      white-space:nowrap;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .tabs button:hover,
-    .tabs a.tabbtn:hover{ opacity:.9; }
-
-    .tabs button[aria-selected="true"]{
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:#fff;
-    }
-    /* Optional: wenn du einen Link als "aktiv" markieren willst, gib ihm class="tabbtn active" */
-    .tabs a.tabbtn.active{
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:#fff;
-    }
-
-    .lang-link{
-      font-weight:800;
-      text-decoration:none;
-      color:var(--accent-2);
-      border:1px solid rgba(79,70,229,0.15);
-      background:#eef2ff;
-      padding:.55rem .8rem;
-      border-radius:.6rem;
-      height:var(--button-h);
-      display:inline-flex;
-      align-items:center;
-      position: relative;
-      z-index: 2147483647;
-    }
-
-    /* Container */
-    .page-container{
-      width:100%;
-      max-width: min(var(--maxw), 94vw);
-      margin:0 auto;
-      padding: 24px 12px 0 12px;
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-    }
-    @media (min-width: 992px){
-      .page-container{
-        padding-left:24px;
-        padding-right:24px;
-        padding-top:24px;
-      }
-    }
-
-    h2{font-size:1.1rem;margin:16px 0 12px 0}
-
-    .card{
-      background:var(--card);
-      border-radius:16px;
-      padding:16px;
-      box-shadow:0 12px 30px rgba(0,0,0,.08);
-      border:1px solid rgba(15,23,42,0.05);
-      width:100%;
-      overflow:hidden;
-    }
-
-    .intro-section{ line-height:1.65; }
-    .intro-section p{margin:0 0 12px 0;}
-    .intro-section ul{margin:8px 0;padding-left:20px}
-    .intro-section li{margin:6px 0}
-
-    .layout{
-      display:grid;
-      grid-template-columns:minmax(0,420px) minmax(0,1fr);
-      gap:16px;
-      align-items:stretch;
-      width:100%;
-    }
-
-    label{
-      display:block;
-      margin:.5rem 0 .25rem 0;
-      font-size:.9rem;
-      color:var(--muted);
-      font-weight:600;
-    }
-    input[type="number"], input[type="text"], select{
-      width:100%;
-      padding:.6rem .75rem;
-      border-radius:8px;
-      border:1px solid rgba(15,23,42,0.10);
-      background:transparent;
-      color:var(--text);
-      outline:none;
-      font-size:1rem;
-      margin-top:.25rem;
-    }
-
-    .km-row{display:flex;gap:8px;align-items:center;flex-wrap:nowrap}
-    .km-row .km-input{flex:1;min-width:0}
-
-    .spinner{display:flex;flex-direction:column;gap:6px}
-    .spinner button{
-      width:44px;height:44px;border-radius:8px;border:none;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:#fff;font-weight:900;font-size:18px;cursor:pointer;
-      display:inline-flex;align-items:center;justify-content:center
-    }
-
-    .big-action{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-    .btn{
-      flex:1;
-      height:var(--button-h);
-      border-radius:10px;
-      border:none;
-      cursor:pointer;
-      font-weight:800;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:#fff;
-      font-size:1rem;
-      min-width:140px;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:0 14px;
-    }
-    .btn.secondary{
-      background:#eef2ff;
-      color:var(--accent-2);
-      border:1px solid rgba(79,70,229,0.12)
-    }
-    .btn.large{font-size:1.05rem;padding:0 14px;height:54px}
-
-    .small{font-size:.9rem;color:var(--muted)}
-    .hint{font-size:.85rem;color:var(--accent);margin-top:4px;min-height:18px;display:block}
-    .hint.error{color:#e53e3e}
-    .error{color:#e53e3e}
-
-    .price-input-group{
-      display:grid;
-      grid-template-columns: 1fr auto;
-      gap:10px;
-      align-items:end;
-      margin-top:8px;
-    }
-    .reset-price-btn{
-      height:44px;
-      padding:0 14px;
-      white-space:nowrap;
-    }
-
-    .price-table{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
-    .price-card{
-      flex:1;min-width:140px;padding:8px;border-radius:8px;background:#fafafa;
-      border:1px solid rgba(15,23,42,0.05);text-align:center
-    }
-    .price-card strong{display:block;font-size:1.05rem;color:var(--accent-2);margin-top:6px}
-
-    .resultbox{
-      margin-top:12px;
-      padding:12px;
-      border-radius:8px;
-      background:linear-gradient(180deg,#ffffff,#fbfdff);
-      border:1px solid rgba(15,23,42,0.06)
-    }
-    .result-row{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:6px 0;border-bottom:1px dashed rgba(15,23,42,0.10);gap:8px
-    }
-    .result-row:last-child{border-bottom:0}
-    .result-key{color:var(--muted);font-size:.95rem}
-    .result-val{font-weight:900;color:var(--accent-2)}
-
-    /* ✅ Maut/Vignette-Block: etwas größer & länger nach unten */
-    .thinbox{
-      margin-top:10px;
-      padding:14px 14px;          /* größer */
-      border-radius:12px;         /* minimal runder */
-      background:#ffffff;
-      border:1px solid rgba(15,23,42,0.10);
-    }
-    .thinbox .title{
-      font-weight:900;
-      color:var(--accent-2);
-      margin-bottom:8px;
-      font-size:1rem;             /* größer */
-    }
-    .thinbox .line{
-      display:flex;justify-content:space-between;gap:10px;
-      padding:7px 0;              /* mehr Höhe */
-      border-bottom:1px dashed rgba(15,23,42,0.12);
-      font-size:.95rem;           /* größer */
-    }
-    .thinbox .line:last-child{border-bottom:0}
-    .thinbox .small{
-      font-size:.9rem;
-      line-height:1.55;
-    }
-    #toll-breakdown{
-      min-height:56px;            /* sorgt für „bisschen länger“ */
-    }
-
-    .mono{font-variant-numeric:tabular-nums;}
-
-    .price-mode{
-      margin-top:10px;
-      padding:10px;
-      border:1px solid rgba(15,23,42,0.08);
-      border-radius:10px;
-      background:#fbfdff;
-      display:none;
-    }
-    .price-mode .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 10px;border:1px solid rgba(15,23,42,0.10);
-      border-radius:999px;background:#fff; cursor:pointer;
-      user-select:none;
-    }
-    .pill input{margin:0}
-
-    .country-badge{margin-top:8px; min-height:18px; font-size:.85rem; color:var(--muted);}
-
-    /* ✅ Map etwas kleiner */
-    #map{
-      width:100%;
-      height:520px;
-      min-height:320px;
-      border-radius:10px;
-      border:1px solid rgba(15,23,42,0.10);
-      background:#fff;
-    }
-    @media(max-width:980px){
-      #map{height:260px !important;}
-    }
-
-    .ad-block{ margin:0; }
-
-    .two-col{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-
-    @media(max-width:980px){
-      .layout{grid-template-columns:1fr}
-      .spinner button{width:38px;height:38px}
-      .two-col{grid-template-columns:1fr}
-    }
-    @media(max-width:720px){
-      .header-inner{padding:10px 12px}
-      .site-title{max-width:160px;}
-      .tabs button,.tabs a.tabbtn{padding:.5rem .7rem;height:42px;font-size:.9rem}
-      .lang-link{height:42px;padding:.5rem .7rem}
-      .big-action{flex-direction:column}
-      .btn{width:100%}
-      .price-input-group{ grid-template-columns: 1fr; }
-      .reset-price-btn{ width:100%; }
-    }
-    @media(max-width:420px){
-      .site-title{display:none;}
-    }
-
-    footer, footer *{ color:#000 !important; opacity:1 !important; }
-    footer{ padding:18px 0 30px 0; }
-    footer a{ text-decoration:none; }
-    footer a:hover{ text-decoration:underline; }
-
-    /* Rechte Spalte als Flex; CO2 wird nach unten gedrückt */
-    .map-col{
-      display:flex;
-      flex-direction:column;
-      height:100%;
-    }
-    .push-bottom{ flex:1; min-height:8px; }
-
-    /* CO2 & Vergleich */
-    .co2box{
-      margin-top:10px;
-      padding:12px;
-      border-radius:12px;
-      background:linear-gradient(180deg,#ffffff,#fbfdff);
-      border:1px solid rgba(15,23,42,0.08);
-    }
-    .co2box .title{
-      font-weight:900;
-      color:var(--accent-2);
-      margin-bottom:8px;
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
-    .co2box .grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-    .co2-kpi{
-      padding:10px;
-      border-radius:10px;
-      background:#fff;
-      border:1px solid rgba(15,23,42,0.06);
-    }
-    .co2-kpi .k{ color:var(--muted); font-size:.9rem; }
-    .co2-kpi .v{ font-weight:900; color:var(--accent-2); font-size:1.05rem; margin-top:4px; }
-    .co2-note{
-      margin-top:10px;
-      font-size:.85rem;
-      color:var(--muted);
-      line-height:1.55;
-    }
-    .compare{
-      margin-top:12px;
-      padding:10px;
-      border-radius:10px;
-      background:#eef2ff;
-      border:1px solid rgba(79,70,229,0.12);
-    }
-    .compare h3{
-      margin:0 0 8px 0;
-      font-size:1rem;
-      color:var(--accent-2);
-    }
-    .compare .row{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      padding:6px 0;
-      border-bottom:1px dashed rgba(15,23,42,0.12);
-    }
-    .compare .row:last-child{ border-bottom:0; }
-    .compare .lbl{ color:var(--muted); font-size:.9rem; }
-    .compare .val{ font-weight:900; color:var(--accent-2); }
-    @media(max-width:720px){
-      .co2box .grid{ grid-template-columns:1fr; }
-    }
-
-    /* FAQ / Countries */
-    .faq-item{margin:10px 0}
-    .faq-item summary{
-      cursor:pointer;font-weight:800;color:var(--accent-2);
-      padding:10px;border-radius:8px;background:rgba(79,70,229,0.06)
-    }
-    .faq-item summary:hover{background:rgba(79,70,229,0.12)}
-    .faq-item p{margin:10px 0 0 0;line-height:1.6}
-
-    .countries-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:12px;margin-top:12px
-    }
-    .country-card{
-      background:#f9fafb;border-radius:8px;padding:12px;border:1px solid rgba(15,23,42,0.06);
-      transition:box-shadow .2s ease
-    }
-    .country-card:hover{box-shadow:0 4px 12px rgba(15,23,42,0.10)}
-    .country-card h3{margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)}
-    .country-card p{margin:0 0 8px 0;font-size:.9rem}
-  </style>
+  <!-- ✅ dein ausgelagerter Style -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
 </head>
 
-<body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="/" class="logo-title">
-        <img src="/logo.png" alt="Spritkosten-Check Logo">
-        <span class="site-title">Spritkosten-Rechner – Benzin & Reisekosten berechnen</span>
-      </a>
-
-      <!-- ✅ Buttons oben: alle gleich (EN bleibt separat wie vorher) -->
-      <nav class="tabs" role="tablist" aria-label="Hauptnavigation">
-        <button role="tab" data-target="fuel" aria-selected="true">Spritkosten-Rechner</button>
-        <button role="tab" data-target="calc" aria-selected="false">Taschenrechner</button>
-
-        <a class="tabbtn" href="/guenstig-tanken.html">Günstig tanken</a>
-        <a class="tabbtn" href="/ratgeber.html">Ratgeber</a>
-        <a class="tabbtn" href="/faq.html">FAQ</a>
-
-        <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en" title="English">EN</a>
-      </nav>
-    </div>
-  </header>
+<body data-page="home">
+  <!-- ✅ Header überall gleich -->
+  <div id="site-header"></div>
 
   <div class="page-container">
 
@@ -545,15 +73,12 @@
       <h2>Kostenloser Spritkosten-Rechner – Plane deine Fahrtkosten</h2>
       <p>
         Unser <strong>Spritkosten-Rechner</strong> hilft dir, die Gesamtkosten deiner Fahrt zu schätzen.
-        Gib Strecke, Verbrauch und Spritpreis ein – du erhältst eine Aufschlüsselung aus Spritkosten, laufenden Kosten
-        und einer Maut-/Vignetten-Schätzung. Zusätzlich bekommst du eine grobe <strong>CO₂-Bilanz</strong> und einen Vergleich
-        von <strong>Auto vs. Bahn/Flug</strong>.
+        Gib Strecke, Verbrauch und Spritpreis ein – du erhältst eine Aufschlüsselung aus Spritkosten, laufenden Kosten und einer Maut-/Vignetten-Schätzung.
       </p>
       <ul>
         <li><strong>Weltweit:</strong> Orte (Städte/Dörfer) per OpenStreetMap</li>
         <li><strong>Strecke:</strong> echte Straßenroute (OSRM) + Karte</li>
         <li><strong>Maut/Vignette:</strong> schnelle Schätzung nach Ländern</li>
-        <li><strong>CO₂:</strong> Schätzung für Fahrt + pro Person</li>
         <li><strong>Kosten teilen:</strong> pro Person berechnen</li>
       </ul>
     </section>
@@ -573,7 +98,6 @@
         </div>
 
         <div class="layout">
-          <!-- Linke Spalte -->
           <div>
             <h2 style="margin:0 0 8px 0;font-size:1rem">Eingaben</h2>
 
@@ -590,6 +114,7 @@
             <div style="margin-top:12px">
               <label for="place-from">Oder: Start (Ort, Land)</label>
               <input id="place-from" type="text" placeholder="z. B. Moskau, Russland" aria-label="Startort" />
+
               <label for="place-to" style="margin-top:10px">Ziel (Ort, Land)</label>
               <input id="place-to" type="text" placeholder="z. B. Sankt Petersburg, Russland" aria-label="Zielort" />
 
@@ -611,7 +136,8 @@
                 </div>
               </div>
 
-              <!-- ✅ Entfernt: "Orte via Nominatim..." -->
+              <!-- ✅ Satz entfernt wie gewünscht -->
+              <!-- <div class="small">Orte via Nominatim ...</div> -->
             </div>
 
             <label for="fuel-type" style="margin-top:12px">Kraftstoff</label>
@@ -673,17 +199,6 @@
                 Laufende Kosten enthalten: Wartung, Reifen, Wertverlust, Versicherung + Maut/Vignette-Schätzung.
               </div>
             </div>
-          </div>
-
-          <!-- Rechte Spalte -->
-          <div class="map-col">
-            <h2 style="margin:0 0 8px 0;font-size:1rem">Karte & Strecke</h2>
-            <div id="map"></div>
-
-            <div style="margin-top:8px" class="small">
-              Klicke „Strecke berechnen“, um Start/Ziel zu finden. Die Strecke ist eine echte Straßenroute (OSRM).
-            </div>
-            <div id="toll-info" class="small" style="margin-top:6px;color:var(--muted)"></div>
 
             <!-- Maut/Vignette -->
             <div class="thinbox" aria-label="Maut und Vignetten Details">
@@ -691,81 +206,28 @@
               <div class="line"><div>Gesamt Maut</div><div class="mono" id="toll-total">—</div></div>
               <div class="line"><div>Gesamt Vignetten</div><div class="mono" id="vignette-total">—</div></div>
               <div class="line"><div>Summe Maut + Vignette</div><div class="mono" id="toll-vignette-sum">—</div></div>
-              <div style="margin-top:10px" class="small" id="toll-breakdown"></div>
+              <div style="margin-top:8px" class="small" id="toll-breakdown"></div>
             </div>
+          </div>
 
-            <!-- Spacer drückt CO2 nach unten -->
-            <div class="push-bottom" aria-hidden="true"></div>
-
-            <!-- CO2 -->
-            <div class="co2box" aria-label="CO2 Bilanz und Vergleich">
-              <div class="title">🌱 CO₂-Bilanz deiner Fahrt</div>
-
-              <div class="grid">
-                <div class="co2-kpi">
-                  <div class="k">Kraftstoff gesamt</div>
-                  <div class="v" id="co2-liters">—</div>
-                </div>
-                <div class="co2-kpi">
-                  <div class="k">CO₂ gesamt (Schätzung)</div>
-                  <div class="v" id="co2-total">—</div>
-                </div>
-                <div class="co2-kpi">
-                  <div class="k">CO₂ pro Person</div>
-                  <div class="v" id="co2-per-person">—</div>
-                </div>
-                <div class="co2-kpi">
-                  <div class="k">CO₂ pro 100 km</div>
-                  <div class="v" id="co2-per-100">—</div>
-                </div>
-              </div>
-
-              <div class="compare" aria-label="Vergleich Auto vs Bahn Flug">
-                <h3>Vergleich: Auto vs. Bahn/Flug (grobe Schätzung)</h3>
-                <div class="row"><div class="lbl">Auto (deine Eingaben)</div><div class="val" id="cmp-car">—</div></div>
-                <div class="row"><div class="lbl">Bahn (typisch)</div><div class="val" id="cmp-rail">—</div></div>
-                <div class="row"><div class="lbl">Flug (typisch)</div><div class="val" id="cmp-flight">—</div></div>
-                <div class="co2-note">
-                  Hinweis: Vergleichswerte sind Durchschnittswerte pro Person-km und dienen nur als Orientierung.
-                </div>
-              </div>
-
-              <div class="co2-note">
-                CO₂-Werte sind Schätzungen und hängen u. a. von Fahrzeug, Fahrstil, Beladung und Streckenprofil ab.
-              </div>
+          <div class="map-col">
+            <h2 style="margin:0 0 8px 0;font-size:1rem">Karte & Strecke</h2>
+            <div id="map"></div>
+            <div style="margin-top:8px" class="small">
+              Klicke „Strecke berechnen“, um Start/Ziel zu finden. Die Strecke ist eine echte Straßenroute (OSRM).
             </div>
-
+            <div id="toll-info" class="small" style="margin-top:6px;color:var(--muted)"></div>
           </div>
         </div>
       </section>
-
-      <!-- Taschenrechner Tab -->
-      <section id="calc" class="card" aria-hidden="true" style="display:none">
-        <h2>Taschenrechner</h2>
-        <label for="num1">Zahl 1</label>
-        <input id="num1" type="number" inputmode="decimal" placeholder="Zahl 1" />
-        <label for="num2">Zahl 2</label>
-        <input id="num2" type="number" inputmode="decimal" placeholder="Zahl 2" />
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;max-width:240px">
-          <button data-op="+" class="btn" style="height:44px;font-size:1.1rem">+</button>
-          <button data-op="-" class="btn" style="height:44px;font-size:1.1rem">−</button>
-          <button data-op="*" class="btn" style="height:44px;font-size:1.1rem">×</button>
-          <button data-op="/" class="btn" style="height:44px;font-size:1.1rem">÷</button>
-        </div>
-
-        <p style="margin-top:12px" class="small">Ergebnis: <strong id="result">–</strong></p>
-      </section>
     </main>
-
-    <!-- ✅ Unterer Teil wieder vollständig drin -->
 
     <!-- SEO Block -->
     <section class="card" aria-label="Berechnung erklärt">
       <h2>So berechnest du Spritkosten & Kosten pro Person</h2>
       <p class="small" style="margin-top:0">
         Für schnelle Überschläge reichen Strecke (km), Verbrauch (L/100 km) und Spritpreis (€/L).
-        Der Rechner zeigt dir zusätzlich Durchschnittskosten pro 100 km, die Aufteilung pro Person sowie eine grobe CO₂-Schätzung.
+        Der Rechner zeigt dir zusätzlich Durchschnittskosten pro 100 km und die Aufteilung pro Person.
       </p>
       <div class="two-col">
         <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
@@ -774,7 +236,6 @@
             <li><strong>Liter</strong> = km × Verbrauch ÷ 100</li>
             <li><strong>Spritkosten</strong> = Liter × Preis</li>
             <li><strong>pro Person</strong> = Gesamtkosten ÷ Personen</li>
-            <li><strong>CO₂</strong> ≈ Liter × Emissionsfaktor</li>
           </ul>
         </div>
         <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
@@ -783,7 +244,6 @@
             <li>Maut/Vignette sind Schätzwerte.</li>
             <li>„Laufende Kosten“ sind eine einfache Näherung.</li>
             <li>Für genaue Werte: echten Verbrauch + aktuellen Preis nutzen.</li>
-            <li>CO₂ und Vergleichswerte sind Näherungen und dienen zur Orientierung.</li>
           </ul>
         </div>
       </div>
@@ -802,7 +262,6 @@
         <li><strong>Gewicht reduzieren:</strong> unnötige Ladung raus, Dachbox nur wenn nötig.</li>
         <li><strong>Kosten teilen:</strong> „Personen“ nutzen für fairen Betrag pro Kopf.</li>
       </ul>
-
       <div style="margin-top:18px;display:flex;justify-content:center">
         <a class="btn large" href="/ratgeber.html" style="max-width:320px">Zum Ratgeber</a>
       </div>
@@ -832,11 +291,6 @@
         <p>Nur grob nach Ländern. Reale Kosten hängen von Route, Fahrzeugklasse und lokalen Regeln ab.</p>
       </details>
 
-      <details class="faq-item">
-        <summary>Wie wird die CO₂-Bilanz berechnet?</summary>
-        <p>Grob über „Liter × Emissionsfaktor“. Werte sind Näherungen und können je nach Kraftstoff und Fahrzeug abweichen.</p>
-      </details>
-
       <div style="margin-top:14px;display:flex;justify-content:center">
         <a class="btn large" href="/faq.html" style="max-width:360px">Mehr FAQ ansehen</a>
       </div>
@@ -850,38 +304,23 @@
       <div class="countries-grid">
         <div class="country-card">
           <h3>Deutschland</h3>
-          <p>
-            Plane deine Fahrtkosten in Deutschland schnell und zuverlässig.
-            Berechne Spritkosten, Maut, laufende Kosten und den fairen Preis pro Person für Autobahn-, Stadt- und Urlaubsfahrten.
-          </p>
+          <p>Plane deine Fahrtkosten in Deutschland schnell und zuverlässig. Berechne Spritkosten, Maut, laufende Kosten und den fairen Preis pro Person.</p>
         </div>
         <div class="country-card">
           <h3>Österreich</h3>
-          <p>
-            Ideal für Alpen-, Autobahn- und Urlaubsfahrten.
-            Der Rechner berücksichtigt typische Verbrauchswerte sowie eine Maut- und Vignetten-Schätzung.
-          </p>
+          <p>Ideal für Alpen-, Autobahn- und Urlaubsfahrten. Der Rechner berücksichtigt typische Verbrauchswerte sowie eine Maut- und Vignetten-Schätzung.</p>
         </div>
         <div class="country-card">
           <h3>Schweiz</h3>
-          <p>
-            Perfekt für Strecken durch Städte, Alpenpässe und Autobahnen.
-            Berechne Spritkosten, Gesamtkosten und Kosten pro Person inklusive Vignetten-Schätzung.
-          </p>
+          <p>Perfekt für Strecken durch Städte, Alpenpässe und Autobahnen. Berechne Spritkosten, Gesamtkosten und Kosten pro Person inklusive Vignetten-Schätzung.</p>
         </div>
         <div class="country-card">
           <h3>Europa</h3>
-          <p>
-            Berechne deine Reisekosten für ganz Europa.
-            Der Rechner eignet sich für grenzüberschreitende Fahrten mit grober Maut- und Verbrauchsschätzung.
-          </p>
+          <p>Berechne deine Reisekosten für ganz Europa. Geeignet für grenzüberschreitende Fahrten mit grober Maut- und Verbrauchsschätzung.</p>
         </div>
         <div class="country-card">
           <h3>Weltweit</h3>
-          <p>
-            Nutze den Spritkosten-Rechner weltweit für nahezu alle Länder, Städte und Regionen.
-            Ideal für Roadtrips, Urlaubsreisen und internationale Fahrten mit fairer Kostenaufteilung.
-          </p>
+          <p>Nutze den Rechner weltweit für nahezu alle Länder, Städte und Regionen. Ideal für Roadtrips, Urlaubsreisen und internationale Fahrten.</p>
         </div>
       </div>
     </section>
@@ -897,26 +336,8 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- Footer -->
-    <footer class="small">
-      Kostenloser Spritkosten-Rechner für Deutschland, Europa und weltweit.
-      Ideal für Pendler, Roadtrips, Urlaubsfahrten und faire Kostenaufteilung pro Person.
-      <span style="opacity:.75;margin-left:10px">|</span>
-      <a href="/faq.html">FAQ</a> <span style="opacity:.75">|</span>
-      <a href="/impressum.html">Impressum</a> <span style="opacity:.75">|</span>
-      <a href="/datenschutz.html">Datenschutz</a> <span style="opacity:.75">|</span>
-      <a href="/ratgeber.html">Ratgeber</a> <span style="opacity:.75">|</span>
-      <a href="/contact.html">Kontakt</a>
-
-      <div style="text-align:center;opacity:.8;margin-top:14px">
-        Deutsch:
-        <a href="https://spritkosten-check.de/" hreflang="de" lang="de">Spritkosten-Check.de</a>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        Englisch:
-        <a href="https://petrolcostcalculator.com/" hreflang="en" lang="en">PetrolCostCalculator.com</a>
-      </div>
-    </footer>
-
+    <!-- ✅ Footer überall gleich -->
+    <div id="site-footer"></div>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -931,25 +352,6 @@
       const fmt = n => (Number.isFinite(n) ? Number.parseFloat(n.toFixed(2)).toFixed(2) : '0.00');
       const fmtMoney = n => CURRENCY_SYMBOL + fmt(n).replace('.', ',');
       const fmtL = n => fmt(n).replace('.', ',');
-      const fmtKg = n => (Number.isFinite(n) ? (Math.round(n * 10) / 10).toFixed(1).replace('.', ',') : '—') + ' kg';
-
-      // Tabs (Spritkosten / Taschenrechner)
-      const tabButtons = document.querySelectorAll('.tabs [role="tab"]');
-      tabButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          tabButtons.forEach(b => b.setAttribute('aria-selected','false'));
-          btn.setAttribute('aria-selected','true');
-          const target = btn.dataset.target;
-
-          document.querySelectorAll('main > section').forEach(s => {
-            const isActive = (s.id === target);
-            s.style.display = isActive ? '' : 'none';
-            s.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-          });
-
-          if (target === 'fuel') setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 80);
-        });
-      });
 
       function fetchWithTimeout(url, ms=12000){
         const controller = new AbortController();
@@ -989,31 +391,6 @@
       const vignetteTotalEl = document.getElementById('vignette-total');
       const tollVignetteSumEl = document.getElementById('toll-vignette-sum');
       const tollBreakdownEl = document.getElementById('toll-breakdown');
-
-      // CO2 DOM
-      const co2LitersEl = document.getElementById('co2-liters');
-      const co2TotalEl = document.getElementById('co2-total');
-      const co2PerPersonEl = document.getElementById('co2-per-person');
-      const co2Per100El = document.getElementById('co2-per-100');
-      const cmpCarEl = document.getElementById('cmp-car');
-      const cmpRailEl = document.getElementById('cmp-rail');
-      const cmpFlightEl = document.getElementById('cmp-flight');
-
-      // Emissionsfaktoren (grobe Näherung)
-      const CO2_PER_LITER = { unleaded91: 2.31, unleaded95: 2.31, diesel: 2.65 };
-      // Vergleichswerte (g CO2 pro Person-km, grob)
-      const COMPARE_G_PER_PKM = { rail: 41, flight: 255 };
-
-      function resetCO2UI(){
-        co2LitersEl.textContent = '—';
-        co2TotalEl.textContent = '—';
-        co2PerPersonEl.textContent = '—';
-        co2Per100El.textContent = '—';
-        cmpCarEl.textContent = '—';
-        cmpRailEl.textContent = '—';
-        cmpFlightEl.textContent = '—';
-      }
-      resetCO2UI();
 
       // Preise aus externer Datei
       const countryPrices = window.COUNTRY_FUEL_PRICES_EUR || null;
@@ -1069,10 +446,6 @@
       }
 
       async function applyDetectedPrices(){
-        if(!countryPrices){
-          badgeEl.innerHTML = '<span class="error">Preisdatei nicht geladen: prices/country-prices.js</span>';
-        }
-
         const isCross = (startCC && destCC && startCC !== destCC);
         const mode = isCross ? getMode() : 'start';
 
@@ -1164,7 +537,6 @@
         return j?.address?.country_code ? String(j.address.country_code).toUpperCase() : null;
       }
 
-      // OSRM Routing
       async function getRouteOSRM(lat1, lon1, lat2, lon2){
         const url =
           `https://router.project-osrm.org/route/v1/driving/` +
@@ -1186,16 +558,21 @@
         return distKm;
       }
 
-      // Maut (€/100 km) – grobe Länderwerte
       const tollPer100km = {
         DE:0, AT:6, CH:4, FR:10, IT:9, ES:10, NL:0, BE:0,
         PL:6, CZ:4, SK:4, HU:5, SI:5, HR:5, RO:3, BG:3,
         US:3, CA:2, GB:0, AU:5, RU:1
       };
 
-      // Vignetten (Fixbetrag) – grobe Näherung
       const vignetteFlat = {
-        AT: 11.50, CH: 40.00, CZ: 12.00, SK: 12.00, HU: 16.00, SI: 16.00, RO: 3.50, BG: 7.50
+        AT: 11.50,
+        CH: 40.00,
+        CZ: 12.00,
+        SK: 12.00,
+        HU: 16.00,
+        SI: 16.00,
+        RO: 3.50,
+        BG: 7.50
       };
 
       function estimateTollForCountry(cc, km){
@@ -1218,8 +595,8 @@
         }
 
         const isCross = (startCC && destCC && startCC !== destCC);
-        const parts = [];
 
+        const parts = [];
         if(!isCross){
           parts.push({ cc: startCC, km: routeKm });
         } else {
@@ -1259,28 +636,6 @@
           `<br><span class="small">Hinweis: Länder-Split ist eine schnelle Schätzung (bei Länderwechsel 50/50).</span>`;
       }
 
-      function updateCO2AndCompare({ km, liters, passengers, fuelKey }){
-        if(!Number.isFinite(km) || km <= 0 || !Number.isFinite(liters) || liters < 0) return;
-
-        const factor = CO2_PER_LITER[fuelKey] ?? 2.31;
-        const co2Total = liters * factor; // kg
-        const co2PerPerson = co2Total / Math.max(1, passengers);
-        const co2Per100 = (co2Total / km) * 100;
-
-        co2LitersEl.textContent = fmtL(liters) + ' L';
-        co2TotalEl.textContent = fmtKg(co2Total);
-        co2PerPersonEl.textContent = fmtKg(co2PerPerson);
-        co2Per100El.textContent = fmtKg(co2Per100);
-
-        const railPerPerson = (km * COMPARE_G_PER_PKM.rail) / 1000;     // kg
-        const flightPerPerson = (km * COMPARE_G_PER_PKM.flight) / 1000; // kg
-
-        cmpCarEl.textContent = fmtKg(co2PerPerson) + ' / Person';
-        cmpRailEl.textContent = fmtKg(railPerPerson) + ' / Person';
-        cmpFlightEl.textContent = fmtKg(flightPerPerson) + ' / Person';
-      }
-
-      // Events
       document.getElementById('btn-geocode').addEventListener('click', async () => {
         const from = placeFromEl.value.trim();
         const to = placeToEl.value.trim();
@@ -1309,8 +664,7 @@
           const destName  = getCountryName(destCC);
 
           badgeEl.innerHTML =
-            `Erkannt: <b>Start</b> ${startName} (${startCC||'—'}), <b>Ziel</b> ${destName} (${destCC||'—'})` +
-            (!countryPrices ? `<br><span class="error">⚠ Preisdatei fehlt: prices/country-prices.js</span>` : '');
+            `Erkannt: <b>Start</b> ${startName} (${startCC||'—'}), <b>Ziel</b> ${destName} (${destCC||'—'})`;
 
           if(startCC && destCC && startCC !== destCC) priceModeWrap.style.display = 'block';
           else priceModeWrap.style.display = 'none';
@@ -1354,11 +708,16 @@
         tollInfoEl.classList.remove('error');
 
         renderTollBreakdown();
+
         setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 80);
       });
 
-      document.getElementById('km-inc').addEventListener('click', ()=>{ const cur = parse(kmEl.value)||0; kmEl.value = Math.round((cur+1)*10)/10; });
-      document.getElementById('km-dec').addEventListener('click', ()=>{ const cur = parse(kmEl.value)||0; kmEl.value = Math.max(0, Math.round((cur-1)*10)/10); });
+      document.getElementById('km-inc').addEventListener('click', ()=>{
+        const cur = parse(kmEl.value)||0; kmEl.value = Math.round((cur+1)*10)/10;
+      });
+      document.getElementById('km-dec').addEventListener('click', ()=>{
+        const cur = parse(kmEl.value)||0; kmEl.value = Math.max(0, Math.round((cur-1)*10)/10);
+      });
 
       function estimateRunningPer100(consumptionL100){
         if(!Number.isFinite(consumptionL100) || consumptionL100 <= 0) return 12.0;
@@ -1403,8 +762,6 @@
         costPersonEl.textContent = fmtMoney(perPerson);
         avg100El.textContent = fmtMoney(avgPer100) + ' /100km';
         runningEstEl.textContent = fmtMoney(runningPer100Total) + ' /100km';
-
-        updateCO2AndCompare({ km, liters, passengers, fuelKey: fuelTypeEl.value });
       });
 
       document.getElementById('reset-fuel').addEventListener('click', () => {
@@ -1433,32 +790,14 @@
         clearRoute();
         map.setView([51.1657, 10.4515],5);
         setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 80);
-
-        resetCO2UI();
       });
-
-      // Taschenrechner
-      const num1 = document.getElementById('num1');
-      const num2 = document.getElementById('num2');
-      const result = document.getElementById('result');
-      document.querySelectorAll('[data-op]').forEach(btn =>
-        btn.addEventListener('click', () => {
-          const a = parse(num1.value), b = parse(num2.value);
-          if(Number.isNaN(a) || Number.isNaN(b)){ result.textContent = '–'; return; }
-          let res;
-          switch(btn.dataset.op){
-            case '+': res = a + b; break;
-            case '-': res = a - b; break;
-            case '*': res = a * b; break;
-            case '/': res = (b === 0 ? '∞' : a / b); break;
-          }
-          result.textContent = (typeof res === 'number') ? fmt(res).replace('.', ',') : res;
-        })
-      );
 
       renderTollBreakdown();
       setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 120);
     });
   </script>
+
+  <!-- ✅ loader zum Einladen von Header/Footer -->
+  <script src="/assets/js/loader.js"></script>
 </body>
 </html>
