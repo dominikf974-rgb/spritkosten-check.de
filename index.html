@@ -70,6 +70,15 @@
       background:transparent;
     }
 
+    /* ====== SUPER WICHTIG (Fix Mobile „verzogen“) ====== */
+    body.menu-open{
+      position:fixed;
+      width:100%;
+      left:0;
+      right:0;
+      overflow:hidden;
+    }
+
     /* Header */
     .site-header{
       position: sticky;
@@ -427,7 +436,7 @@
       }
     }
 
-    /* Hamburger aggressiver: früher aktiv, damit Mobile Browser wirklich greift */
+    /* Hamburger früher aktiv -> Mobile Browser safe */
     @media(max-width:1200px){
       .tabs{display:none;}
       .header-actions{display:flex;}
@@ -579,7 +588,7 @@
 
   <div class="page-container">
 
-    <!-- Ads (werden erst nach Consent geladen) -->
+    <!-- Ad: Top (erst nach Consent geladen) -->
     <div class="ad-block">
       <ins class="adsbygoogle"
         style="display:block"
@@ -608,6 +617,7 @@
     <main aria-label="Hauptinhalt">
       <section id="fuel" class="card">
 
+        <!-- Ad: Middle -->
         <div class="ad-block">
           <ins class="adsbygoogle"
             style="display:block"
@@ -783,7 +793,7 @@
       </div>
     </section>
 
-    <!-- Tips Block (war bei dir vorher da -> wieder drin) -->
+    <!-- Tips -->
     <section class="card" aria-label="Tipps Sprit sparen">
       <h2>Tipps: Sprit sparen & Reisekosten reduzieren</h2>
       <p class="small" style="margin-top:0">
@@ -802,7 +812,7 @@
       </div>
     </section>
 
-    <!-- FAQ Block (war bei dir vorher da -> wieder drin) -->
+    <!-- FAQ -->
     <section class="card faq-section" aria-label="FAQ">
       <h2>Kurze FAQ</h2>
 
@@ -826,7 +836,7 @@
       </div>
     </section>
 
-    <!-- Countries Block (war bei dir vorher da -> wieder drin) -->
+    <!-- Countries -->
     <section class="card countries-section" aria-label="Spritkosten-Rechner nach Land">
       <h2>Spritkosten-Rechner nach Land</h2>
       <p class="small" style="margin:0 0 10px 0">Funktioniert weltweit mit Länder-Erkennung. Beliebte Regionen:</p>
@@ -896,34 +906,50 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // === Active nav automatic (damit es NICHT "ständig anders" ist) ===
-      const path = (location.pathname || "/").toLowerCase();
-      function setActive(linkEl){
-        document.querySelectorAll('.tabs a.navbtn, .mobile-menu a').forEach(a => a.classList.remove('active'));
-        if(linkEl) linkEl.classList.add('active');
-      }
-      const navMap = [
-        { match: p => p === "/" || p === "/index.html", href: "/" },
-        { match: p => p.includes("taschenrechner"), href: "/taschenrechner.html" },
-        { match: p => p.includes("ratgeber"), href: "/ratgeber.html" },
-        { match: p => p.includes("faq"), href: "/faq.html" }
-      ];
-      const cur = navMap.find(x => x.match(path)) || navMap[0];
-      const desktopLink = document.querySelector(`.tabs a[href="${cur.href}"]`);
-      const mobileLink  = document.querySelector(`.mobile-menu a[href="${cur.href}"]`);
-      setActive(desktopLink); setActive(mobileLink);
+      // ===== Proxy Base (DEIN WORKER) =====
+      const API_BASE = "https://soft-pine-874.dominikf974.workers.dev";
 
-      // ===== Mobile Hamburger (fix: kein "verzogen" nach Auswahl) =====
+      // ===== Active Nav automatisch =====
+      const path = (location.pathname || "/").toLowerCase();
+      function clearActive(){
+        document.querySelectorAll('.tabs a.navbtn, .mobile-menu a').forEach(a => a.classList.remove('active'));
+      }
+      function activate(href){
+        const d = document.querySelector(`.tabs a[href="${href}"]`);
+        const m = document.querySelector(`.mobile-menu a[href="${href}"]`);
+        if (d) d.classList.add('active');
+        if (m) m.classList.add('active');
+      }
+      clearActive();
+      if (path === "/" || path.endsWith("/index.html")) activate("/");
+      else if (path.includes("taschenrechner")) activate("/taschenrechner.html");
+      else if (path.includes("ratgeber")) activate("/ratgeber.html");
+      else if (path.includes("faq")) activate("/faq.html");
+      else activate("/");
+
+      // ===== Mobile Hamburger (Fix: kein „verzogen“) =====
       const burger = document.getElementById('hamburger');
       const mobileMenu = document.getElementById('mobile-menu');
+      let scrollYBeforeMenu = 0;
 
       function openMenu(){
+        scrollYBeforeMenu = window.scrollY || 0;
+        document.body.classList.add('menu-open');
+        document.body.style.top = `-${scrollYBeforeMenu}px`;
+
         mobileMenu.classList.add('open');
         burger.setAttribute('aria-expanded','true');
+        setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 80);
       }
       function closeMenu(){
         mobileMenu.classList.remove('open');
         burger.setAttribute('aria-expanded','false');
+
+        document.body.classList.remove('menu-open');
+        const top = document.body.style.top;
+        document.body.style.top = '';
+        window.scrollTo(0, top ? Math.abs(parseInt(top,10)) : scrollYBeforeMenu);
+
         setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 220);
       }
       function toggleMenu(){
@@ -935,7 +961,7 @@
       document.addEventListener('click', () => { if(mobileMenu.classList.contains('open')) closeMenu(); });
       document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
 
-      // extrem wichtig: schließt IMMER beim Link-Klick (verhindert "Zwischenzustand")
+      // beim Link-Klick immer sauber schließen (damit nix verschoben bleibt)
       mobileMenu.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', () => closeMenu(), { passive:true });
       });
@@ -978,7 +1004,7 @@
       btnAccept.addEventListener('click', () => { setConsent("1"); hideBanner(); loadGoogleAdsOnce(); });
       btnReject.addEventListener('click', () => { setConsent("0"); hideBanner(); });
 
-      // ===== Original Rechner-Logik (wie bei dir) =====
+      // ===== Utils =====
       const CURRENCY_SYMBOL = '€';
       const parse = v => (v === '' || v == null) ? NaN : Number(String(v).replace(',', '.'));
       const fmt = n => (Number.isFinite(n) ? Number.parseFloat(n.toFixed(2)).toFixed(2) : '0.00');
@@ -1156,8 +1182,9 @@
         return m;
       }
 
+      // Proxy calls
       async function geocode(q){
-        const url = '/api/geocode?q=' + encodeURIComponent(q);
+        const url = API_BASE + '/api/geocode?q=' + encodeURIComponent(q);
         const res = await fetchWithTimeout(url, 12000);
         if(!res.ok) throw new Error('Geocoding fehlgeschlagen');
         const data = await res.json();
@@ -1166,7 +1193,7 @@
       }
 
       async function reverseCountryCode(lat, lon){
-        const url = `/api/reverse?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
+        const url = API_BASE + `/api/reverse?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
         const res = await fetchWithTimeout(url, 12000);
         if(!res.ok) return null;
         const j = await res.json();
@@ -1175,7 +1202,7 @@
 
       async function getRouteOSRM(lat1, lon1, lat2, lon2){
         const url =
-          `/api/route?lat1=${encodeURIComponent(lat1)}&lon1=${encodeURIComponent(lon1)}` +
+          API_BASE + `/api/route?lat1=${encodeURIComponent(lat1)}&lon1=${encodeURIComponent(lon1)}` +
           `&lat2=${encodeURIComponent(lat2)}&lon2=${encodeURIComponent(lon2)}`;
 
         const res = await fetchWithTimeout(url, 15000);
