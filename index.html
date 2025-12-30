@@ -129,10 +129,12 @@
       margin-left:auto;
       flex:0 0 auto;
       align-items:center;
+      flex-wrap:wrap;
       position: relative;
       z-index: 2147483647;
     }
-    .tabs button{
+    .tabs button,
+    .tabs a.navbtn{
       background:transparent;
       border:1px solid transparent;
       color:var(--muted);
@@ -143,10 +145,20 @@
       font-size:.95rem;
       height:var(--button-h);
       white-space:nowrap;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
     }
     .tabs button[aria-selected="true"]{
       background:linear-gradient(90deg,var(--accent),var(--accent-2));
       color:#fff;
+    }
+    .tabs a.navbtn:hover{opacity:.9;}
+    .tabs a.navbtn.secondary{
+      background:#eef2ff;
+      color:var(--accent-2);
+      border:1px solid rgba(79,70,229,0.12);
     }
 
     .lang-link{
@@ -182,7 +194,6 @@
       }
     }
 
-    h1{margin:0;font-size:1.25rem}
     h2{font-size:1.1rem;margin:16px 0 12px 0}
 
     .card{
@@ -344,10 +355,10 @@
 
     .country-badge{margin-top:8px; min-height:18px; font-size:.85rem; color:var(--muted);}
 
-    /* ✅ MAP: etwas kleiner (Desktop) */
+    /* ✅ Map etwas kleiner */
     #map{
       width:100%;
-      height:560px;
+      height:520px;
       min-height:320px;
       border-radius:10px;
       border:1px solid rgba(15,23,42,0.10);
@@ -356,27 +367,6 @@
     @media(max-width:980px){
       #map{height:260px !important;}
     }
-
-    .faq-item{margin:10px 0}
-    .faq-item summary{
-      cursor:pointer;font-weight:800;color:var(--accent-2);
-      padding:10px;border-radius:8px;background:rgba(79,70,229,0.06)
-    }
-    .faq-item summary:hover{background:rgba(79,70,229,0.12)}
-    .faq-item p{margin:10px 0 0 0;line-height:1.6}
-
-    .countries-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:12px;margin-top:12px
-    }
-    .country-card{
-      background:#f9fafb;border-radius:8px;padding:12px;border:1px solid rgba(15,23,42,0.06);
-      transition:box-shadow .2s ease
-    }
-    .country-card:hover{box-shadow:0 4px 12px rgba(15,23,42,0.10)}
-    .country-card h3{margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)}
-    .country-card p{margin:0 0 8px 0;font-size:.9rem}
 
     .ad-block{ margin:0; }
 
@@ -394,7 +384,7 @@
     @media(max-width:720px){
       .header-inner{padding:10px 12px}
       .site-title{max-width:160px;}
-      .tabs button{padding:.5rem .7rem;height:42px;font-size:.9rem}
+      .tabs button,.tabs a.navbtn{padding:.5rem .7rem;height:42px;font-size:.9rem}
       .lang-link{height:42px;padding:.5rem .7rem}
       .big-action{flex-direction:column}
       .btn{width:100%}
@@ -410,13 +400,15 @@
     footer a{ text-decoration:none; }
     footer a:hover{ text-decoration:underline; }
 
+    /* ✅ Rechte Spalte als Flex; CO2 wird nach unten gedrückt (bündiger Abschluss zum linken Block, wenn Platz da ist) */
     .map-col{
       display:flex;
       flex-direction:column;
       height:100%;
     }
+    .push-bottom{ flex:1; min-height:8px; }
 
-    /* ✅ CO2 & Vergleich – passend zum Design */
+    /* ✅ CO2 & Vergleich */
     .co2box{
       margin-top:10px;
       padding:12px;
@@ -487,9 +479,15 @@
         <span class="site-title">Spritkosten-Rechner – Benzin & Reisekosten berechnen</span>
       </a>
 
+      <!-- ✅ Oben gut sichtbar: Rechner + Ratgeber/FAQ + Taschenrechner -->
       <nav class="tabs" role="tablist" aria-label="Hauptnavigation">
-        <button role="tab" data-target="fuel" aria-selected="true">Spritkosten</button>
-        <button role="tab" data-target="calc" aria-selected="false">Rechner</button>
+        <button role="tab" data-target="fuel" aria-selected="true">Spritkosten-Rechner</button>
+        <button role="tab" data-target="calc" aria-selected="false">Taschenrechner</button>
+
+        <a class="navbtn secondary" href="/guenstig-tanken.html">Günstig tanken</a>
+        <a class="navbtn secondary" href="/ratgeber.html">Ratgeber</a>
+        <a class="navbtn secondary" href="/faq.html">FAQ</a>
+
         <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en" title="English">EN</a>
       </nav>
     </div>
@@ -541,7 +539,7 @@
         </div>
 
         <div class="layout">
-          <!-- ✅ Linke Spalte: nur Eingaben + Ergebnis -->
+          <!-- ✅ Linke Spalte: Eingaben + Ergebnisse -->
           <div>
             <h2 style="margin:0 0 8px 0;font-size:1rem">Eingaben</h2>
 
@@ -578,8 +576,7 @@
                   <label class="pill"><input type="radio" name="priceMode" value="dest"> Zielland</label>
                 </div>
               </div>
-
-              <!-- ✅ Satz entfernt: "Orte via Nominatim..." -->
+              <!-- ✅ Satz "Orte via ..." ist entfernt -->
             </div>
 
             <label for="fuel-type" style="margin-top:12px">Kraftstoff</label>
@@ -643,7 +640,7 @@
             </div>
           </div>
 
-          <!-- ✅ Rechte Spalte: Map + darunter Maut/Vignette + CO2/Vergleich -->
+          <!-- ✅ Rechte Spalte: Map + Maut/Vignette; CO2 wird nach unten geschoben -->
           <div class="map-col">
             <h2 style="margin:0 0 8px 0;font-size:1rem">Karte & Strecke</h2>
             <div id="map"></div>
@@ -653,7 +650,7 @@
             </div>
             <div id="toll-info" class="small" style="margin-top:6px;color:var(--muted)"></div>
 
-            <!-- ✅ Dünner Block: Maut/Vignette Details (unter Map) -->
+            <!-- ✅ Maut/Vignette bleibt so wie es ist -->
             <div class="thinbox" aria-label="Maut und Vignetten Details">
               <div class="title">Maut & Vignette – Details</div>
               <div class="line"><div>Gesamt Maut</div><div class="mono" id="toll-total">—</div></div>
@@ -662,7 +659,10 @@
               <div style="margin-top:8px" class="small" id="toll-breakdown"></div>
             </div>
 
-            <!-- ✅ CO₂-Bilanz & Vergleich (unter Map) -->
+            <!-- ✅ Spacer: drückt CO2 nach unten, damit es bündiger mit linkem Block endet (wenn Platz vorhanden) -->
+            <div class="push-bottom" aria-hidden="true"></div>
+
+            <!-- ✅ CO₂-Bilanz & Vergleich -->
             <div class="co2box" aria-label="CO2 Bilanz und Vergleich">
               <div class="title">🌱 CO₂-Bilanz deiner Fahrt</div>
 
@@ -690,21 +690,23 @@
                 <div class="row"><div class="lbl">Auto (deine Eingaben)</div><div class="val" id="cmp-car">—</div></div>
                 <div class="row"><div class="lbl">Bahn (typisch)</div><div class="val" id="cmp-rail">—</div></div>
                 <div class="row"><div class="lbl">Flug (typisch)</div><div class="val" id="cmp-flight">—</div></div>
-                <div class="co2-note" id="cmp-note">
+                <div class="co2-note">
                   Hinweis: Vergleichswerte sind Durchschnittswerte pro Person-km und dienen nur als Orientierung.
                 </div>
               </div>
 
-              <div class="co2-note" id="co2-note">
+              <div class="co2-note">
                 CO₂-Werte sind Schätzungen und hängen u. a. von Fahrzeug, Fahrstil, Beladung und Streckenprofil ab.
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
+      <!-- Taschenrechner Tab -->
       <section id="calc" class="card" aria-hidden="true" style="display:none">
-        <h2>Rechner</h2>
+        <h2>Taschenrechner</h2>
         <label for="num1">Zahl 1</label>
         <input id="num1" type="number" inputmode="decimal" placeholder="Zahl 1" />
         <label for="num2">Zahl 2</label>
@@ -720,143 +722,6 @@
         <p style="margin-top:12px" class="small">Ergebnis: <strong id="result">–</strong></p>
       </section>
     </main>
-
-    <!-- SEO Block -->
-    <section class="card" aria-label="Berechnung erklärt">
-      <h2>So berechnest du Spritkosten & Kosten pro Person</h2>
-      <p class="small" style="margin-top:0">
-        Für schnelle Überschläge reichen Strecke (km), Verbrauch (L/100 km) und Spritpreis (€/L).
-        Der Rechner zeigt dir zusätzlich Durchschnittskosten pro 100 km, die Aufteilung pro Person sowie eine grobe CO₂-Schätzung.
-      </p>
-      <div class="two-col">
-        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
-          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Kurzformeln</h3>
-          <ul style="margin:0;padding-left:18px;line-height:1.7">
-            <li><strong>Liter</strong> = km × Verbrauch ÷ 100</li>
-            <li><strong>Spritkosten</strong> = Liter × Preis</li>
-            <li><strong>pro Person</strong> = Gesamtkosten ÷ Personen</li>
-            <li><strong>CO₂</strong> ≈ Liter × Emissionsfaktor</li>
-          </ul>
-        </div>
-        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
-          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Hinweise</h3>
-          <ul style="margin:0;padding-left:18px;line-height:1.7">
-            <li>Maut/Vignette sind Schätzwerte.</li>
-            <li>„Laufende Kosten“ sind eine einfache Näherung.</li>
-            <li>Für genaue Werte: echten Verbrauch + aktuellen Preis nutzen.</li>
-            <li>CO₂ und Vergleichswerte sind Näherungen und dienen zur Orientierung.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tips Block -->
-    <section class="card" aria-label="Tipps Sprit sparen">
-      <h2>Tipps: Sprit sparen & Reisekosten reduzieren</h2>
-      <p class="small" style="margin-top:0">
-        Kleine Änderungen senken die Kosten schnell: richtiger Reifendruck, gleichmäßige Geschwindigkeit
-        und realistische Verbrauchswerte. Wenn ihr zusammen fahrt, teilt die Kosten fair pro Person.
-      </p>
-      <ul style="margin:0;padding-left:18px;line-height:1.7">
-        <li><strong>Ruhig fahren:</strong> weniger stark beschleunigen und bremsen.</li>
-        <li><strong>Reifendruck prüfen:</strong> zu niedriger Druck erhöht den Verbrauch.</li>
-        <li><strong>Gewicht reduzieren:</strong> unnötige Ladung raus, Dachbox nur wenn nötig.</li>
-        <li><strong>Kosten teilen:</strong> „Personen“ nutzen für fairen Betrag pro Kopf.</li>
-      </ul>
-
-      <div style="margin-top:18px;display:flex;justify-content:center">
-        <a class="btn large" href="/ratgeber.html" style="max-width:320px">Zum Ratgeber</a>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="card faq-section" aria-label="FAQ">
-      <h2>Kurze FAQ</h2>
-
-      <details class="faq-item">
-        <summary>Wie berechne ich Spritkosten pro 100 km?</summary>
-        <p>Der Rechner zeigt dir „€/100 km“ automatisch an. Grundlage ist: Gesamtkosten ÷ Strecke × 100.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
-        <p>Du kannst beides. Gib einfach die Kilometer ein, die du wirklich fährst (einfach oder hin & zurück).</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Was ist in „laufenden Kosten“ enthalten?</summary>
-        <p>Eine grobe Schätzung (z. B. Wartung, Verschleiß, Reifen, Wertverlust) plus Maut/Vignette-Schätzung.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wie genau sind Maut/Vignetten?</summary>
-        <p>Nur grob nach Ländern. Reale Kosten hängen von Route, Fahrzeugklasse und lokalen Regeln ab.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wie wird die CO₂-Bilanz berechnet?</summary>
-        <p>Grob über „Liter × Emissionsfaktor“. Werte sind Näherungen und können je nach Kraftstoff und Fahrzeug abweichen.</p>
-      </details>
-
-      <div style="margin-top:14px;display:flex;justify-content:center">
-        <a class="btn large" href="/faq.html" style="max-width:360px">Mehr FAQ ansehen</a>
-      </div>
-    </section>
-
-    <!-- Countries -->
-    <section class="card countries-section" aria-label="Spritkosten-Rechner nach Land">
-      <h2>Spritkosten-Rechner nach Land</h2>
-      <p class="small" style="margin:0 0 10px 0">Funktioniert weltweit mit Länder-Erkennung. Beliebte Regionen:</p>
-
-      <div class="countries-grid">
-        <div class="country-card">
-          <h3>Deutschland</h3>
-          <p>
-            Plane deine Fahrtkosten in Deutschland schnell und zuverlässig.
-            Berechne Spritkosten, Maut, laufende Kosten und den fairen Preis pro Person für Autobahn-, Stadt- und Urlaubsfahrten.
-          </p>
-        </div>
-        <div class="country-card">
-          <h3>Österreich</h3>
-          <p>
-            Ideal für Alpen-, Autobahn- und Urlaubsfahrten.
-            Der Rechner berücksichtigt typische Verbrauchswerte sowie eine Maut- und Vignetten-Schätzung.
-          </p>
-        </div>
-        <div class="country-card">
-          <h3>Schweiz</h3>
-          <p>
-            Perfekt für Strecken durch Städte, Alpenpässe und Autobahnen.
-            Berechne Spritkosten, Gesamtkosten und Kosten pro Person inklusive Vignetten-Schätzung.
-          </p>
-        </div>
-        <div class="country-card">
-          <h3>Europa</h3>
-          <p>
-            Berechne deine Reisekosten für ganz Europa.
-            Der Rechner eignet sich für grenzüberschreitende Fahrten mit grober Maut- und Verbrauchsschätzung.
-          </p>
-        </div>
-        <div class="country-card">
-          <h3>Weltweit</h3>
-          <p>
-            Nutze den Spritkosten-Rechner weltweit für nahezu alle Länder, Städte und Regionen.
-            Ideal für Roadtrips, Urlaubsreisen und internationale Fahrten mit fairer Kostenaufteilung.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Ad: Bottom -->
-    <div class="ad-block">
-      <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-4852698472752437"
-        data-ad-slot="3048839661"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
 
     <!-- Footer -->
     <footer class="small">
@@ -881,15 +746,13 @@
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <!-- ✅ Länderpreise (monatlich tauschen) -->
   <script src="prices/country-prices.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const CURRENCY_SYMBOL = '€';
 
-      // Optional: Tankerkoenig nur für DE (wenn du später willst, hier eintragen)
+      // Optional: Tankerkoenig (DE) – später für "Günstig tanken" Seite nützlich
       const TANKERKOENIG_API_KEY = "";
 
       const parse = v => (v === '' || v == null) ? NaN : Number(String(v).replace(',', '.'));
@@ -898,7 +761,7 @@
       const fmtL = n => fmt(n).replace('.', ',');
       const fmtKg = n => (Number.isFinite(n) ? (Math.round(n * 10) / 10).toFixed(1).replace('.', ',') : '—') + ' kg';
 
-      // Tabs
+      // Tabs (Spritkosten / Taschenrechner)
       const tabButtons = document.querySelectorAll('.tabs [role="tab"]');
       tabButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -964,18 +827,10 @@
       const cmpRailEl = document.getElementById('cmp-rail');
       const cmpFlightEl = document.getElementById('cmp-flight');
 
-      // Emissionsfaktoren (grobe Näherung, Tank-to-Wheel)
-      const CO2_PER_LITER = {
-        unleaded91: 2.31,
-        unleaded95: 2.31,
-        diesel: 2.65
-      };
-
+      // Emissionsfaktoren (grobe Näherung)
+      const CO2_PER_LITER = { unleaded91: 2.31, unleaded95: 2.31, diesel: 2.65 };
       // Vergleichswerte (g CO2 pro Person-km, grob)
-      const COMPARE_G_PER_PKM = {
-        rail: 41,
-        flight: 255
-      };
+      const COMPARE_G_PER_PKM = { rail: 41, flight: 255 };
 
       function resetCO2UI(){
         co2LitersEl.textContent = '—';
@@ -998,7 +853,6 @@
 
       // Route state
       let startCC = null, destCC = null;
-      let startCoord = null, destCoord = null;
       let routeKm = 0;
 
       // Maut state
@@ -1169,14 +1023,7 @@
 
       // Vignetten (Fixbetrag) – grobe Näherung
       const vignetteFlat = {
-        AT: 11.50,
-        CH: 40.00,
-        CZ: 12.00,
-        SK: 12.00,
-        HU: 16.00,
-        SI: 16.00,
-        RO: 3.50,
-        BG: 7.50
+        AT: 11.50, CH: 40.00, CZ: 12.00, SK: 12.00, HU: 16.00, SI: 16.00, RO: 3.50, BG: 7.50
       };
 
       function estimateTollForCountry(cc, km){
@@ -1199,8 +1046,8 @@
         }
 
         const isCross = (startCC && destCC && startCC !== destCC);
-
         const parts = [];
+
         if(!isCross){
           parts.push({ cc: startCC, km: routeKm });
         } else {
@@ -1253,15 +1100,15 @@
         co2PerPersonEl.textContent = fmtKg(co2PerPerson);
         co2Per100El.textContent = fmtKg(co2Per100);
 
-        const carPerPerson = co2PerPerson;
         const railPerPerson = (km * COMPARE_G_PER_PKM.rail) / 1000;     // kg
         const flightPerPerson = (km * COMPARE_G_PER_PKM.flight) / 1000; // kg
 
-        cmpCarEl.textContent = fmtKg(carPerPerson) + ' / Person';
+        cmpCarEl.textContent = fmtKg(co2PerPerson) + ' / Person';
         cmpRailEl.textContent = fmtKg(railPerPerson) + ' / Person';
         cmpFlightEl.textContent = fmtKg(flightPerPerson) + ' / Person';
       }
 
+      // Events
       document.getElementById('btn-geocode').addEventListener('click', async () => {
         const from = placeFromEl.value.trim();
         const to = placeToEl.value.trim();
@@ -1282,9 +1129,6 @@
             tollInfoEl.classList.add('error');
             return;
           }
-
-          startCoord = { lat: a.lat, lon: a.lon };
-          destCoord  = { lat: b.lat, lon: b.lon };
 
           startCC = await reverseCountryCode(a.lat, a.lon);
           destCC  = await reverseCountryCode(b.lat, b.lon);
@@ -1332,7 +1176,6 @@
         priceModeWrap.style.display = 'none';
 
         startCC = null; destCC = null;
-        startCoord = null; destCoord = null;
         routeKm = 0;
 
         tollInfoEl.textContent = '';
@@ -1422,7 +1265,7 @@
         resetCO2UI();
       });
 
-      // Rechner
+      // Taschenrechner
       const num1 = document.getElementById('num1');
       const num2 = document.getElementById('num2');
       const result = document.getElementById('result');
