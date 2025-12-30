@@ -17,15 +17,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" href="/favicon.ico">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Global Style -->
-  <link rel="stylesheet" href="/assets/css/style.css" />
-
-  <!-- SEO: FAQPage Schema (kurz gehalten, reicht für Google) -->
+  <!-- FAQ Schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -39,13 +31,327 @@
     ]
   }
   </script>
+
+  <style>
+    *{box-sizing:border-box;}
+    :root{
+      --bg1:#0f172a;
+      --bg2:#e9eef5;
+      --card:#ffffff;
+      --muted:#4b5563;
+      --text:#0b1220;
+      --accent:#0ea5a3;
+      --accent-2:#4f46e5;
+      --button-h:48px;
+      --maxw:1400px;
+    }
+    html, body{ overflow-x:hidden; }
+    html{
+      min-height:100%;
+      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+    }
+    body{
+      margin:0;
+      width:100%;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color:var(--text);
+      min-height:100vh;
+      background:transparent;
+    }
+
+    /* Fix Mobile „verzogen“ */
+    body.menu-open{
+      position:fixed;
+      width:100%;
+      left:0; right:0;
+      overflow:hidden;
+    }
+
+    /* Header */
+    .site-header{
+      position: sticky;
+      top:0;
+      z-index: 2147483647;
+      width:100%;
+      background:#fff;
+      border-bottom:1px solid rgba(15,23,42,0.06);
+    }
+    .header-inner{
+      width:100%;
+      margin:0;
+      padding:10px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      position:relative;
+      z-index:2147483647;
+      flex-wrap:nowrap;
+    }
+    .logo-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+      flex:1 1 auto;
+      min-width:0;
+    }
+    .logo-title img{ height:54px; width:auto; display:block; }
+    .site-title{
+      font-weight:900;
+      font-size:18px;
+      white-space:nowrap;
+      letter-spacing:.2px;
+      max-width:560px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .tabs{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex:0 0 auto;
+      position:relative;
+      z-index:2147483647;
+    }
+    .tabs a.navbtn{
+      background:transparent;
+      border:1px solid transparent;
+      color:var(--muted);
+      padding:.6rem 1rem;
+      border-radius:.6rem;
+      cursor:pointer;
+      font-weight:900;
+      font-size:.95rem;
+      height:var(--button-h);
+      white-space:nowrap;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      touch-action:manipulation;
+    }
+    .tabs a.navbtn.active{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#fff;
+    }
+
+    .lang-link{
+      font-weight:900;
+      text-decoration:none;
+      color:var(--accent-2);
+      border:1px solid rgba(79,70,229,0.15);
+      background:#eef2ff;
+      padding:.55rem .8rem;
+      border-radius:.6rem;
+      height:var(--button-h);
+      display:inline-flex;
+      align-items:center;
+      touch-action:manipulation;
+    }
+
+    .header-actions{ display:none; align-items:center; gap:8px; flex:0 0 auto; }
+    .hamburger{
+      width:44px;height:44px;
+      border-radius:10px;
+      border:1px solid rgba(15,23,42,0.10);
+      background:#fff;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      touch-action:manipulation;
+    }
+    .hamburger span{
+      display:block;
+      width:20px;height:2px;
+      background:rgba(15,23,42,0.65);
+      position:relative;
+    }
+    .hamburger span::before,
+    .hamburger span::after{
+      content:"";
+      position:absolute;
+      left:0;
+      width:20px;height:2px;
+      background:rgba(15,23,42,0.65);
+    }
+    .hamburger span::before{ top:-6px; }
+    .hamburger span::after{ top:6px; }
+
+    .mobile-menu{
+      background:#fff;
+      border-bottom:1px solid rgba(15,23,42,0.06);
+      padding:10px 12px 14px 12px;
+      overflow:hidden;
+      max-height:0;
+      opacity:0;
+      transform: translateY(-6px);
+      transition: max-height .22s ease, opacity .18s ease, transform .18s ease;
+    }
+    .mobile-menu.open{ max-height:260px; opacity:1; transform: translateY(0); }
+    .mobile-menu .grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .mobile-menu a{
+      height:46px;
+      border-radius:10px;
+      border:1px solid rgba(15,23,42,0.10);
+      background:#fff;
+      font-weight:900;
+      color:var(--muted);
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 10px;
+      white-space:nowrap;
+      touch-action:manipulation;
+    }
+    .mobile-menu a.active{
+      border:0;
+      color:#fff;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    }
+
+    /* Mobile earlier */
+    @media(max-width:1200px){
+      .tabs{display:none;}
+      .header-actions{display:flex;}
+      .header-inner{padding:10px 12px;}
+      .site-title{max-width:180px;}
+    }
+    @media(max-width:420px){ .site-title{display:none;} }
+
+    /* Page */
+    .page-container{
+      width:100%;
+      max-width: min(var(--maxw), 94vw);
+      margin:0 auto;
+      padding: 24px 12px 0 12px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    @media (min-width: 992px){
+      .page-container{ padding-left:24px; padding-right:24px; padding-top:24px; }
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
+      border:1px solid rgba(15,23,42,0.05);
+      width:100%;
+      overflow:hidden;
+    }
+    h2{font-size:1.1rem;margin:0 0 10px 0}
+    .small{font-size:.9rem;color:var(--muted)}
+    .faq-item{margin:10px 0}
+    .faq-item summary{
+      cursor:pointer;font-weight:900;color:var(--accent-2);
+      padding:10px;border-radius:8px;background:rgba(79,70,229,0.06)
+    }
+    .faq-item summary:hover{background:rgba(79,70,229,0.12)}
+    .faq-item p{margin:10px 0 0 0;line-height:1.6}
+
+    footer, footer *{ color:#000 !important; opacity:1 !important; }
+    footer{ padding:18px 0 30px 0; }
+    footer a{ text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
+
+    /* Cookie banner */
+    .cookie-banner{
+      position:fixed;
+      left:12px; right:12px; bottom:12px;
+      z-index:2147483647;
+      background:#fff;
+      border:1px solid rgba(15,23,42,0.10);
+      border-radius:14px;
+      box-shadow:0 12px 30px rgba(0,0,0,.15);
+      padding:12px;
+      display:none;
+      max-width:980px;
+      margin:0 auto;
+    }
+    .cookie-banner .row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center; justify-content:space-between;
+    }
+    .cookie-banner .txt{
+      flex:1 1 420px;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.45;
+    }
+    .cookie-banner .actions{ display:flex; gap:10px; flex:0 0 auto; }
+    .cookie-banner button{
+      height:44px; border-radius:10px; border:none;
+      cursor:pointer; font-weight:900; padding:0 14px;
+    }
+    .cookie-banner .accept{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#fff;
+    }
+    .cookie-banner .reject{
+      background:#eef2ff;
+      color:var(--accent-2);
+      border:1px solid rgba(79,70,229,0.12);
+    }
+
+    .ad-block{ margin:0 0 18px 0; }
+  </style>
 </head>
 
-<body data-page="faq">
-  <!-- Header wird per loader.js geladen -->
-  <div id="site-header"></div>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo-title">
+        <img src="/logo.png" alt="Spritkosten-Check Logo">
+        <span class="site-title">Spritkosten-Rechner – Benzin & Reisekosten berechnen</span>
+      </a>
+
+      <nav class="tabs" aria-label="Hauptnavigation">
+        <a class="navbtn" href="/">Spritkosten</a>
+        <a class="navbtn" href="/taschenrechner.html">Taschenrechner</a>
+        <a class="navbtn" href="/ratgeber.html">Ratgeber</a>
+        <a class="navbtn" href="/faq.html">FAQ</a>
+        <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en" title="English">EN</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en" title="English">EN</a>
+        <button class="hamburger" id="hamburger" aria-label="Menü öffnen" aria-expanded="false" type="button">
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobiles Menü">
+      <div class="grid">
+        <a href="/">Spritkosten</a>
+        <a href="/taschenrechner.html">Taschenrechner</a>
+        <a href="/ratgeber.html">Ratgeber</a>
+        <a href="/faq.html">FAQ</a>
+      </div>
+    </div>
+  </header>
 
   <div class="page-container">
+
+    <!-- Optional Ads auf FAQ (werden erst nach Consent geladen) -->
+    <div class="ad-block">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="7158625008"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    </div>
 
     <section class="card">
       <h2>FAQ – Häufige Fragen</h2>
@@ -53,166 +359,224 @@
         Hier findest du Antworten rund um Spritkosten, Verbrauch, Route, Maut/Vignette, CO₂ und praktische Spartipps.
       </p>
 
-      <!-- 1 -->
       <details class="faq-item" open>
         <summary>Wie berechne ich Spritkosten?</summary>
         <p><b>Liter</b> = km × Verbrauch ÷ 100. <b>Spritkosten</b> = Liter × Preis pro Liter.</p>
       </details>
 
-      <!-- 2 -->
-      <details class="faq-item">
-        <summary>Was ist „Verbrauch (L/100 km)“?</summary>
+      <details class="faq-item"><summary>Was ist „Verbrauch (L/100 km)“?</summary>
         <p>Wie viele Liter dein Auto im Schnitt auf 100 km braucht. Beispiel: 7,5 L/100 km bedeutet 7,5 Liter pro 100 km.</p>
       </details>
 
-      <!-- 3 -->
-      <details class="faq-item">
-        <summary>Welche Verbrauchswerte sind realistisch?</summary>
+      <details class="faq-item"><summary>Welche Verbrauchswerte sind realistisch?</summary>
         <p>Am besten nimmst du deinen echten Durchschnitt (Bordcomputer, Tank-App oder über mehrere Tankfüllungen). Stadt, Kurzstrecke und Winter erhöhen oft den Verbrauch.</p>
       </details>
 
-      <!-- 4 -->
-      <details class="faq-item">
-        <summary>Warum ist mein echter Verbrauch höher als Herstellerangaben?</summary>
+      <details class="faq-item"><summary>Warum ist mein echter Verbrauch höher als Herstellerangaben?</summary>
         <p>Herstellerwerte entstehen unter standardisierten Bedingungen. In der Realität wirken Temperatur, Verkehr, Fahrstil, Steigungen, Beladung und Reifen stärker.</p>
       </details>
 
-      <!-- 5 -->
-      <details class="faq-item">
-        <summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
+      <details class="faq-item"><summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
         <p>Du gibst die Strecke ein, die du wirklich fährst. Für Hin- & Rückfahrt einfach die Kilometer verdoppeln.</p>
       </details>
 
-      <!-- 6 -->
-      <details class="faq-item">
-        <summary>Kann ich Start/Ziel eingeben statt Kilometer?</summary>
-        <p>Ja – nutze Start/Ziel und klicke „Strecke berechnen“. Dann wird die Route ermittelt und die Distanz automatisch übernommen.</p>
+      <details class="faq-item"><summary>Kann ich Start/Ziel eingeben statt Kilometer?</summary>
+        <p>Ja – nutze Start/Ziel und klicke „Strecke berechnen“ auf der Startseite. Dann wird die Distanz automatisch übernommen.</p>
       </details>
 
-      <!-- 7 -->
-      <details class="faq-item">
-        <summary>Warum kann die Route von Google Maps abweichen?</summary>
+      <details class="faq-item"><summary>Warum kann die Route von Google Maps abweichen?</summary>
         <p>Unterschiedliche Routing-Dienste und Einstellungen (z. B. Maut vermeiden, Autobahn bevorzugen) können andere Routen liefern.</p>
       </details>
 
-      <!-- 8 -->
-      <details class="faq-item">
-        <summary>Wie genau sind die Spritpreise im Rechner?</summary>
+      <details class="faq-item"><summary>Wie genau sind die Spritpreise im Rechner?</summary>
         <p>Das sind Durchschnittswerte für eine schnelle Planung. Für genaue Ergebnisse trage deinen aktuellen Preis (Tankstelle) manuell ein.</p>
       </details>
 
-      <!-- 9 -->
-      <details class="faq-item">
-        <summary>Startland und Zielland sind unterschiedlich – welcher Spritpreis gilt?</summary>
+      <details class="faq-item"><summary>Startland und Zielland sind unterschiedlich – welcher Spritpreis gilt?</summary>
         <p>Du kannst wählen: Startland, Zielland oder Mittelwert. Für Roadtrips ist „Mittelwert“ oft am realistischsten.</p>
       </details>
 
-      <!-- 10 -->
-      <details class="faq-item">
-        <summary>Wie berechnet ihr „laufende Kosten“?</summary>
-        <p>Das ist eine vereinfachte Schätzung (z. B. Wartung, Reifen, Verschleiß, Wertverlust, Versicherung) plus Maut/Vignette-Richtwert. Für exakte KFZ-Kosten brauchst du ein detailliertes Kostenmodell.</p>
+      <details class="faq-item"><summary>Wie berechnet ihr „laufende Kosten“?</summary>
+        <p>Das ist eine vereinfachte Schätzung (z. B. Wartung, Reifen, Verschleiß, Wertverlust, Versicherung) plus Maut/Vignette-Richtwert.</p>
       </details>
 
-      <!-- 11 -->
-      <details class="faq-item">
-        <summary>Was ist in Maut/Vignette enthalten?</summary>
-        <p>Der Rechner zeigt eine grobe Maut-Schätzung (€/100 km) und ggf. Vignetten als Fixbetrag (je Land einmal). Das ist nur ein Richtwert.</p>
+      <details class="faq-item"><summary>Was ist in Maut/Vignette enthalten?</summary>
+        <p>Grobe Maut-Schätzung (€/100 km) und ggf. Vignetten als Fixbetrag (je Land einmal). Nur Richtwert.</p>
       </details>
 
-      <!-- 12 -->
-      <details class="faq-item">
-        <summary>Warum steht bei Maut/Vignette manchmal „—“?</summary>
-        <p>Wenn noch keine Route berechnet wurde (Start/Ziel fehlt) oder keine Strecke gesetzt ist, kann keine Schätzung angezeigt werden.</p>
+      <details class="faq-item"><summary>Warum steht bei Maut/Vignette manchmal „—“?</summary>
+        <p>Wenn noch keine Route berechnet wurde oder keine Strecke gesetzt ist, kann keine Schätzung angezeigt werden.</p>
       </details>
 
-      <!-- 13 -->
-      <details class="faq-item">
-        <summary>Wie kann ich Sprit sparen – die größten Hebel?</summary>
+      <details class="faq-item"><summary>Wie kann ich Sprit sparen – die größten Hebel?</summary>
         <p>Ruhiger fahren, vorausschauend bremsen, gleichmäßiges Tempo, Reifendruck korrekt, unnötiges Gewicht raus, Dachbox nur wenn nötig.</p>
       </details>
 
-      <!-- 14 -->
-      <details class="faq-item">
-        <summary>Bringt Reifendruck wirklich was?</summary>
-        <p>Ja. Zu niedriger Druck erhöht Rollwiderstand → mehr Verbrauch. Am besten regelmäßig prüfen (kalt) und nach Herstellerangabe einstellen.</p>
+      <details class="faq-item"><summary>Bringt Reifendruck wirklich was?</summary>
+        <p>Ja. Zu niedriger Druck erhöht Rollwiderstand → mehr Verbrauch. Am besten regelmäßig prüfen (kalt).</p>
       </details>
 
-      <!-- 15 -->
-      <details class="faq-item">
-        <summary>Wie stark beeinflusst Tempo den Verbrauch?</summary>
-        <p>Sehr stark – besonders ab ~120 km/h steigt der Luftwiderstand stark an. Ein etwas niedrigeres Tempo spart oft deutlich Sprit.</p>
+      <details class="faq-item"><summary>Wie stark beeinflusst Tempo den Verbrauch?</summary>
+        <p>Sehr stark – besonders ab ~120 km/h steigt der Luftwiderstand stark an.</p>
       </details>
 
-      <!-- 16 -->
-      <details class="faq-item">
-        <summary>Wie wirkt sich eine Dachbox aus?</summary>
-        <p>Dachbox/Dachträger erhöhen Luftwiderstand. Auf Autobahn kann der Verbrauch spürbar steigen. Wenn du sie nicht brauchst: runter.</p>
+      <details class="faq-item"><summary>Wie wirkt sich eine Dachbox aus?</summary>
+        <p>Dachbox/Dachträger erhöhen Luftwiderstand. Auf Autobahn kann der Verbrauch spürbar steigen.</p>
       </details>
 
-      <!-- 17 -->
-      <details class="faq-item">
-        <summary>Kurzstrecke: Warum kostet das mehr Sprit?</summary>
-        <p>Motor wird nicht warm, mehr Kaltstart-Anteil, höhere Reibung, oft Stadtverkehr. Kurzstrecke ist fast immer teurer pro km.</p>
+      <details class="faq-item"><summary>Kurzstrecke: Warum kostet das mehr Sprit?</summary>
+        <p>Motor wird nicht warm, mehr Kaltstart-Anteil, oft Stadtverkehr. Kurzstrecke ist fast immer teurer pro km.</p>
       </details>
 
-      <!-- 18 -->
-      <details class="faq-item">
-        <summary>Hilft Wartung beim Verbrauch?</summary>
-        <p>Ja. Luftfilter, Öl, richtige Reifen, korrekte Achsgeometrie und ein gesunder Motorlauf können den Verbrauch verbessern.</p>
+      <details class="faq-item"><summary>Hilft Wartung beim Verbrauch?</summary>
+        <p>Ja. Luftfilter, Öl, richtige Reifen und guter Motorlauf können den Verbrauch verbessern.</p>
       </details>
 
-      <!-- 19 -->
-      <details class="faq-item">
-        <summary>Was ist besser: E10 oder E5?</summary>
-        <p>E10 ist oft günstiger, kann aber minimal höheren Verbrauch haben (je nach Auto kaum merkbar). Ob dein Fahrzeug E10 verträgt, steht im Handbuch/Herstellerfreigabe.</p>
+      <details class="faq-item"><summary>Was ist besser: E10 oder E5?</summary>
+        <p>E10 ist oft günstiger, kann aber minimal höheren Verbrauch haben. Ob dein Auto E10 verträgt: Handbuch/Herstellerfreigabe.</p>
       </details>
 
-      <!-- 20 -->
-      <details class="faq-item">
-        <summary>Wie wird CO₂ im Rechner berechnet?</summary>
-        <p>Als Näherung über <b>Liter</b> × <b>CO₂-Faktor</b> (Benzin/Diesel). Das ist eine verständliche Planungsgröße, keine Labor-Messung.</p>
+      <details class="faq-item"><summary>Wie wird CO₂ im Rechner berechnet?</summary>
+        <p>Als Näherung über <b>Liter</b> × <b>CO₂-Faktor</b> (Benzin/Diesel).</p>
       </details>
 
-      <!-- 21 -->
-      <details class="faq-item">
-        <summary>Was kann ich tun, um CO₂ zu senken?</summary>
-        <p>Ähnlich wie beim Spritsparen: ruhiger fahren, weniger Tempo, weniger Gewicht, korrekter Reifendruck, Fahrgemeinschaft (mehr Personen → weniger pro Kopf).</p>
+      <details class="faq-item"><summary>Was kann ich tun, um CO₂ zu senken?</summary>
+        <p>Ruhiger fahren, weniger Tempo, weniger Gewicht, korrekter Reifendruck, Fahrgemeinschaft.</p>
       </details>
 
-      <!-- 22 -->
-      <details class="faq-item">
-        <summary>Vergleich Auto vs. Bahn/Flug – wie soll ich das lesen?</summary>
-        <p>Das sind Richtwerte zur Einordnung. Bahn ist pro Person oft deutlich niedriger. Beim Auto hängt es stark von Auslastung (Personen) und Fahrstil ab.</p>
+      <details class="faq-item"><summary>Vergleich Auto vs. Bahn/Flug – wie soll ich das lesen?</summary>
+        <p>Richtwerte zur Einordnung. Bahn ist pro Person oft deutlich niedriger. Beim Auto hängt es stark von Personen/Fahrstil ab.</p>
       </details>
 
-      <!-- 23 -->
-      <details class="faq-item">
-        <summary>Kann ich die Kosten fair aufteilen?</summary>
-        <p>Ja. Stelle „Personen“ ein. Viele rechnen zusätzlich Parkgebühren separat – je nach Absprache.</p>
+      <details class="faq-item"><summary>Kann ich die Kosten fair aufteilen?</summary>
+        <p>Ja. Stelle „Personen“ ein. Parkgebühren ggf. separat absprechen.</p>
       </details>
 
-      <!-- 24 -->
-      <details class="faq-item">
-        <summary>Warum zeigt der Rechner „0,00“ oder Fehler an?</summary>
-        <p>Meist fehlt ein Pflichtwert (km/Verbrauch/Preis) oder eine externe Anfrage (Route/Ort) ist kurz nicht erreichbar. Werte prüfen und nochmal versuchen.</p>
+      <details class="faq-item"><summary>Warum zeigt der Rechner „0,00“ oder Fehler an?</summary>
+        <p>Meist fehlt ein Pflichtwert oder eine externe Anfrage war kurz nicht erreichbar. Werte prüfen und nochmal versuchen.</p>
       </details>
 
-      <!-- 25 -->
-      <details class="faq-item">
-        <summary>Ich habe Feedback oder einen Bug – wie melde ich das?</summary>
-        <p>Am besten über Kontakt. Schreib dazu: Strecke, Verbrauch, Preis und (falls genutzt) Start/Ziel – dann kann man es schnell nachstellen.</p>
+      <details class="faq-item"><summary>Ich habe Feedback oder einen Bug – wie melde ich das?</summary>
+        <p>Schreib dazu: Strecke, Verbrauch, Preis und (falls genutzt) Start/Ziel – dann kann man es schnell nachstellen.</p>
       </details>
-
     </section>
 
-    <!-- Footer wird per loader.js geladen -->
-    <div id="site-footer"></div>
+    <footer class="small">
+      Kostenloser Spritkosten-Rechner für Deutschland, Europa und weltweit.
+      Ideal für Pendler, Roadtrips, Urlaubsfahrten und faire Kostenaufteilung pro Person.
+      <span style="opacity:.75;margin-left:10px">|</span>
+      <a href="/faq.html">FAQ</a> <span style="opacity:.75">|</span>
+      <a href="/impressum.html">Impressum</a> <span style="opacity:.75">|</span>
+      <a href="/datenschutz.html">Datenschutz</a> <span style="opacity:.75">|</span>
+      <a href="/ratgeber.html">Ratgeber</a>
+    </footer>
   </div>
 
-  <script src="/assets/js/loader.js"></script>
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie Hinweis">
+    <div class="row">
+      <div class="txt">
+        Wir verwenden Cookies für Werbung (Google AdSense). Du kannst ablehnen oder zustimmen.
+        Mehr Infos in der <a href="/datenschutz.html">Datenschutzerklärung</a>.
+      </div>
+      <div class="actions">
+        <button class="reject" id="cookieReject" type="button">Ablehnen</button>
+        <button class="accept" id="cookieAccept" type="button">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
 
-  <script src="/assets/js/loader.js"></script>
-<script src="/assets/js/app.js"></script>
+  <script>
+    // Active Nav
+    (function(){
+      const path = (location.pathname || "/").toLowerCase();
+      function clearActive(){
+        document.querySelectorAll('.tabs a.navbtn, .mobile-menu a').forEach(a => a.classList.remove('active'));
+      }
+      function activate(href){
+        const d = document.querySelector(`.tabs a[href="${href}"]`);
+        const m = document.querySelector(`.mobile-menu a[href="${href}"]`);
+        if (d) d.classList.add('active');
+        if (m) m.classList.add('active');
+      }
+      clearActive();
+      if (path.includes("taschenrechner")) activate("/taschenrechner.html");
+      else if (path.includes("ratgeber")) activate("/ratgeber.html");
+      else if (path.includes("faq")) activate("/faq.html");
+      else activate("/");
+    })();
 
+    // Hamburger Fix (kein „verzogen“)
+    (function(){
+      const burger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      let scrollYBeforeMenu = 0;
+
+      function openMenu(){
+        scrollYBeforeMenu = window.scrollY || 0;
+        document.body.classList.add('menu-open');
+        document.body.style.top = `-${scrollYBeforeMenu}px`;
+        mobileMenu.classList.add('open');
+        burger.setAttribute('aria-expanded','true');
+      }
+      function closeMenu(){
+        mobileMenu.classList.remove('open');
+        burger.setAttribute('aria-expanded','false');
+        document.body.classList.remove('menu-open');
+        const top = document.body.style.top;
+        document.body.style.top = '';
+        window.scrollTo(0, top ? Math.abs(parseInt(top,10)) : scrollYBeforeMenu);
+      }
+      function toggleMenu(){
+        mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+      }
+
+      burger.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+      mobileMenu.addEventListener('click', (e) => e.stopPropagation());
+      document.addEventListener('click', () => { if(mobileMenu.classList.contains('open')) closeMenu(); });
+      document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => closeMenu(), { passive:true }));
+    })();
+
+    // Consent-gated Ads
+    (function(){
+      const CONSENT_KEY = "consent_marketing";
+      const banner = document.getElementById('cookieBanner');
+      const btnAccept = document.getElementById('cookieAccept');
+      const btnReject = document.getElementById('cookieReject');
+
+      function loadGoogleAdsOnce(){
+        if (window.__adsLoaded) return;
+        window.__adsLoaded = true;
+
+        const s = document.createElement('script');
+        s.async = true;
+        s.crossOrigin = "anonymous";
+        s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437";
+        document.head.appendChild(s);
+
+        s.onload = function(){
+          try {
+            document.querySelectorAll('ins.adsbygoogle').forEach(() => {
+              try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+            });
+          } catch(e){}
+        };
+      }
+
+      function showBanner(){ banner.style.display = "block"; }
+      function hideBanner(){ banner.style.display = "none"; }
+      function getConsent(){ try { return localStorage.getItem(CONSENT_KEY); } catch(e){ return null; } }
+      function setConsent(v){ try { localStorage.setItem(CONSENT_KEY, v); } catch(e){} }
+
+      const consent = getConsent();
+      if (consent === "1") { hideBanner(); loadGoogleAdsOnce(); }
+      else if (consent === "0") { hideBanner(); }
+      else { showBanner(); }
+
+      btnAccept.addEventListener('click', () => { setConsent("1"); hideBanner(); loadGoogleAdsOnce(); });
+      btnReject.addEventListener('click', () => { setConsent("0"); hideBanner(); });
+    })();
+  </script>
 </body>
 </html>
