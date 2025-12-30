@@ -287,3 +287,10 @@ footer a:hover{ text-decoration:underline; }
 #consentBanner .row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 #consentBanner .txt{flex:1;min-width:260px;color:var(--muted);font-size:.92rem;line-height:1.5}
 #consentBanner .actions{display:flex;gap:10px;flex-wrap:wrap}
+
+/* FORCE: Header NICHT sticky/fixed */
+header,
+.site-header{
+  position: static !important;
+  top: auto !important;
+}
