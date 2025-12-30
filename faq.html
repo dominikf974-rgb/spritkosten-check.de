@@ -4,166 +4,93 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>FAQ - Häufig gestellte Fragen | Spritkostenrechner</title>
-  <meta name="description" content="Häufig gestellte Fragen zum Spritkosten Rechner" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <style>
-    :root{
-      --bg:#f6f8fa; --card:#ffffff; --muted:#4b5563; --text:#0b1220;
-      --accent:#0ea5a3; --accent-2:#4f46e5; --button-h:48px;
-      --max-width:970px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;width:100%;overflow-x:hidden}
-    body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      background:linear-gradient(180deg,var(--bg) 0%, #e9eef5 100%);color:var(--text);
-      padding:0;display:flex;flex-direction:column;min-height:100vh;}
-    header{position:sticky;top:0;z-index:1000;background:white;box-shadow:0 2px 8px rgba(15,23,42,0.08);
-      padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    .logo-title{display:flex;align-items:center;gap:12px}
-    .logo-title img{height:48px;width:auto}
-    .brand-text h1{margin:0;font-size:1.3rem;line-height:1.2;color:var(--text)}
-    .brand-text .subtitle{font-size:0.75rem;color:var(--muted);margin:0}
-    .wrap{width:100%;max-width:var(--max-width);margin:0 auto;padding:20px 16px}
-    h1{font-size:1.8rem;margin:0 0 20px 0;color:var(--text)}
-    h2{font-size:1.3rem;margin:24px 0 12px 0;color:var(--accent-2)}
-    p{line-height:1.7;margin:12px 0;color:var(--text)}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .card{background:var(--card);border-radius:10px;padding:24px;box-shadow:0 8px 24px rgba(15,23,42,0.06);border:1px solid rgba(15,23,42,0.04);margin-bottom:20px}
-    .faq-item{margin:16px 0}
-    .faq-item summary{cursor:pointer;font-weight:600;color:var(--accent-2);padding:12px;border-radius:6px;background:rgba(79,70,229,0.05);list-style-position:outside}
-    .faq-item summary:hover{background:rgba(79,70,229,0.1)}
-    .faq-item p{margin:16px 12px 0 12px;color:var(--text);line-height:1.7}
-    footer{margin-top:auto;padding:20px 16px;text-align:center;font-size:0.85rem;color:var(--muted)}
-    footer a{color:inherit;text-decoration:none;margin:0 8px}
-    footer a:hover{text-decoration:underline}
-    @media(max-width:720px){
-      header{padding:10px 12px;flex-direction:column;align-items:flex-start}
-      .logo-title img{height:40px}
-      .brand-text h1{font-size:1.1rem}
-      .brand-text .subtitle{font-size:0.7rem}
-      h1{font-size:1.4rem}
-      h2{font-size:1.1rem}
-      .card{padding:16px}
-    }
-  </style>
+
+  <title>FAQ – Spritkosten-Rechner (Sprit, Maut, Vignette, CO₂)</title>
+  <meta name="description" content="FAQ zum Spritkosten-Rechner: Spritkosten, Verbrauch, Maut/Vignette, CO₂-Bilanz, Route, Preise und Tipps für realistische Berechnungen." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://spritkosten-check.de/faq.html" />
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <!-- SEO: FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Wie berechne ich Spritkosten?","acceptedAnswer":{"@type":"Answer","text":"Liter = Strecke (km) × Verbrauch (L/100 km) ÷ 100. Spritkosten = Liter × Preis pro Liter."}},
+      {"@type":"Question","name":"Was bedeuten die laufenden Kosten?","acceptedAnswer":{"@type":"Answer","text":"Das ist eine grobe Schätzung für Wartung/Verschleiß/Reifen/Wertverlust/Versicherung plus eine Maut-/Vignetten-Schätzung. Es ist keine exakte KFZ-Kostenrechnung."}},
+      {"@type":"Question","name":"Zählt Hin- und Rückfahrt?","acceptedAnswer":{"@type":"Answer","text":"Gib einfach die Strecke ein, die du tatsächlich fährst. Für Hin- und Rückfahrt: Distanz verdoppeln oder Start/Ziel umkehren und beide Fahrten addieren."}},
+      {"@type":"Question","name":"Wie genau ist die Maut-/Vignetten-Schätzung?","acceptedAnswer":{"@type":"Answer","text":"Sie ist ein schneller Richtwert. Reale Kosten hängen von Route, Fahrzeugklasse, Achsen, Mautabschnitten und lokalen Regeln ab."}},
+      {"@type":"Question","name":"Warum sind die Spritpreise nur Durchschnittswerte?","acceptedAnswer":{"@type":"Answer","text":"Durchschnittspreise sind gut für Planung. Für genaue Ergebnisse trage deinen aktuellen Preis (deine Tankstelle) ein."}},
+      {"@type":"Question","name":"Welche Verbrauchswerte soll ich eingeben?","acceptedAnswer":{"@type":"Answer","text":"Am besten deinen echten Durchschnitt (Bordcomputer/Apps). WLTP/Prospektwerte sind oft zu niedrig."}},
+      {"@type":"Question","name":"Was mache ich bei unterschiedlichen Ländern (Start/Ziel)?","acceptedAnswer":{"@type":"Answer","text":"Du kannst wählen, ob Startland-Preis, Zielland-Preis oder ein Mittelwert verwendet wird."}},
+      {"@type":"Question","name":"Warum unterscheidet sich die Route von Google Maps?","acceptedAnswer":{"@type":"Answer","text":"Je nach Routing-Dienst, Verkehrsregeln und Einstellungen (Maut vermeiden etc.) können Routen variieren."}},
+      {"@type":"Question","name":"Kann ich die Kosten pro Person berechnen?","acceptedAnswer":{"@type":"Answer","text":"Ja – gib die Anzahl Personen ein. Der Rechner teilt die Gesamtkosten durch die Personen."}},
+      {"@type":"Question","name":"Was ist mit E-Auto?","acceptedAnswer":{"@type":"Answer","text":"Aktuell ist der Rechner auf Kraftstoff ausgelegt. Eine E-Auto-Version wäre möglich (kWh/100 km + Strompreis + Ladeverluste)."}},
+      {"@type":"Question","name":"Wieso ist CO₂ nur eine Näherung?","acceptedAnswer":{"@type":"Answer","text":"CO₂ hängt von Kraftstoff, Verbrauch und Faktoren (Vorkette, Fahrstil) ab. Der Rechner nutzt praxisnahe Durchschnittsfaktoren."}},
+      {"@type":"Question","name":"Warum steht manchmal bei Tankstellen/Preisen ein Fehler?","acceptedAnswer":{"@type":"Answer","text":"Wenn externe Dienste kurz nicht erreichbar sind (z.B. Karten/Geocoding), kann es zu Timeouts kommen. Dann einfach nochmal versuchen."}},
+      {"@type":"Question","name":"Kann ich den Rechner auch mobil nutzen?","acceptedAnswer":{"@type":"Answer","text":"Ja, das Layout ist responsive. Auf Handy wird die Karte automatisch kleiner."}},
+      {"@type":"Question","name":"Welche Daten speichert ihr?","acceptedAnswer":{"@type":"Answer","text":"Der Rechner läuft im Browser. Details stehen in der Datenschutzerklärung."}},
+      {"@type":"Question","name":"Ich habe einen Fehler gefunden – was tun?","acceptedAnswer":{"@type":"Answer","text":"Schreib uns über Kontakt. Bitte nenne Strecke, Verbrauch, Preis und (falls genutzt) Start/Ziel."}}
+    ]
+  }
+  </script>
 </head>
-<body>
-  <header>
-    <div class="logo-title">
-      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none">
-        <img src="/logo.png" alt="Spritkostenrechner Logo" />
-        <div class="brand-text">
-          <h1>Spritkostenrechner</h1>
-          <p class="subtitle">Spritkosten-Check.de</p>
-        </div>
-      </a>
-    </div>
-  </header>
 
-  <div class="wrap">
-    <div class="card">
-      <h1>Häufig gestellte Fragen (FAQ)</h1>
-      <p>Hier finden Sie Antworten auf die häufigsten Fragen zum Spritkostenrechner.</p>
+<body data-page="faq">
+  <div id="site-header"></div>
 
-      <p style="margin:12px 0 20px 0;text-align:center">
-        <a href="index.html" style="display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700">← Zurück zum Rechner</a>
-      </p>
-
-      <h2>Allgemeine Fragen</h2>
+  <div class="page-container">
+    <section class="card">
+      <h2>FAQ – Spritkosten-Rechner</h2>
+      <p class="small" style="margin-top:0">Hier findest du die wichtigsten Antworten rund um Spritkosten, Route, Maut/Vignette und CO₂.</p>
 
       <details class="faq-item" open>
-        <summary>Wie wird der Fahrzeugverbrauch gemessen?</summary>
-        <p>Der Fahrzeugverbrauch wird in Litern pro 100 Kilometern gemessen (L/100 km). Wenn dein Auto 7,5 Liter pro 100 km verbraucht, gib 7,5 ein. Du findest diesen Wert in der Bedienungsanleitung oder kannst ihn schätzen (Kleinwagen: 5–7 L/100 km, größere Fahrzeuge: 8–12 L/100 km).</p>
+        <summary>Wie berechne ich Spritkosten?</summary>
+        <p><b>Liter</b> = km × Verbrauch ÷ 100. <b>Spritkosten</b> = Liter × Preis pro Liter.</p>
       </details>
 
       <details class="faq-item">
-        <summary>Wo finde ich aktuelle Benzinpreise?</summary>
-        <p>Der Rechner nutzt Durchschnittspreise für dein erkanntes Land. Für aktuelle Preise in Deutschland check ADAC Spritpreismonitor oder ARAL/OMV-Apps. Österreich: OMV-Spritpreisinfo. Schweiz: Tankstellen-Apps wie TCS. Diese Dienste zeigen Echtzeit-Preise an nahegelegenen Tankstellen.</p>
+        <summary>Was bedeuten die laufenden Kosten?</summary>
+        <p>Eine grobe Schätzung für Wartung/Verschleiß/Reifen/Wertverlust/Versicherung plus Maut-/Vignetten-Schätzung.</p>
       </details>
 
       <details class="faq-item">
-        <summary>Was sind Betriebskosten und wie werden diese berechnet?</summary>
-        <p>Betriebskosten umfassen Sprit, Wartung, Versicherung, Reifen, Abschreibung und Steuern. Die Formel lautet ungefähr: (0,9 × Verbrauch) + 2,0 €/100 km, plus regionale Mautgebühren. Das ergibt einen umfassenden Überblick über die echten Fahrtkosten.</p>
+        <summary>Zählt Hin- und Rückfahrt?</summary>
+        <p>Gib die Kilometer ein, die du wirklich fährst. Für Hin- und Rückfahrt: Strecke verdoppeln.</p>
       </details>
 
       <details class="faq-item">
-        <summary>Funktioniert der Rechner international?</summary>
-        <p>Ja! Unser Spritkosten Rechner funktioniert weltweit für 40+ Länder inklusive Deutschland, Österreich, Schweiz, Frankreich, Italien, Spanien und mehr. Er erkennt deine Position automatisch und wendet lokale Preise und Mautgebühren an.</p>
-      </details>
-
-      <h2>Bedienung & Funktionen</h2>
-
-      <details class="faq-item">
-        <summary>Wie funktioniert die automatische Entfernungsberechnung?</summary>
-        <p>Gib Start- und Zielort mit Stadt/Land ein (z.B. „Berlin, Deutschland" zu „München, Deutschland") und klick auf „Entfernung berechnen". Der Rechner nutzt Nominatim-Geocoding (basierend auf OpenStreetMap) um Orte zu finden und Straßenentfernung zu kalkulieren. Das Ergebnis kann etwas länger sein als die Luftlinie.</p>
+        <summary>Wie genau ist die Maut-/Vignetten-Schätzung?</summary>
+        <p>Richtwert. Reale Kosten hängen von Route, Abschnitten, Fahrzeugklasse und Regeln ab.</p>
       </details>
 
       <details class="faq-item">
-        <summary>Kann ich Spritpreise manuell anpassen?</summary>
-        <p>Absolut! Standardpreise sind nur Vorschläge. Gib jederzeit deinen eigenen Benzinpreis ein. Falls dein Land nicht erkannt wird oder du andere Preise nutzen möchtest, gib einfach den Preis pro Liter ein. Klick „Standard wiederherstellen" um zu Defaults zurückzukehren.</p>
+        <summary>Warum sind Spritpreise Durchschnittswerte?</summary>
+        <p>Für Planung. Für Genauigkeit: deinen aktuellen Preis eintragen.</p>
       </details>
 
       <details class="faq-item">
-        <summary>Welche Kraftstofftypen werden unterstützt?</summary>
-        <p><strong>Super 95:</strong> Standardbenzin für die meisten Autos. <strong>E10:</strong> Enthält bis zu 10% Bioethanol, günstiger, leicht unterschiedlicher Verbrauch. <strong>Diesel:</strong> Für Dieselfahrzeuge – verbraucht weniger aber kostet oft mehr pro Liter. Schau in deine Bedienungsanleitung für den korrekten Kraftstofftyp.</p>
+        <summary>Welche Verbrauchswerte soll ich nutzen?</summary>
+        <p>Am besten dein echter Durchschnitt. Prospekt/WLTP ist oft zu optimistisch.</p>
       </details>
 
       <details class="faq-item">
-        <summary>Wie teile ich Kosten fair unter Mitfahrern auf?</summary>
-        <p>Gib die Anzahl der Mitfahrer ein (inklusive Fahrer) und der Rechner teilt alle Kosten automatisch gleich auf. Das umfasst Sprit, Maut, Wartung und sonstige Betriebskosten. Perfekt für Gruppenfahrten und gemeinsame Reisebudgets.</p>
+        <summary>Start/Ziel in verschiedenen Ländern – welcher Preis gilt?</summary>
+        <p>Du kannst Startland, Zielland oder Mittelwert wählen.</p>
       </details>
 
-      <h2>Maut & Kosten</h2>
-
-      <details class="faq-item">
-        <summary>Wie genau sind die Mautkostenschätzungen?</summary>
-        <p>Mautschätzungen basieren auf durchschnittlichen Motorway-Gebühren und Vignetten pro Land. Sie bieten eine gute Richtlinie sind aber nicht exakt – tatsächliche Kosten hängen von Route, Fahrzeugklasse, Gewicht und Achsenzahl ab. Nutze die Schätzung zum Budgetieren; für genaue Maut-Info konsultiere nationale Straßenautoritäten.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Kann ich den Verbrauch meines Fahrzeugs schätzen?</summary>
-        <p>Ja, wenn du die genaue Verbrauchsangabe nicht kennst. Typische Werte: Kleinwagen (Polo, Fiat 500): 5–6 L/100 km; Limousinen (Golf, Focus): 6–8 L/100 km; SUVs: 8–10 L/100 km; Transporter: 10–14 L/100 km. Dein Fahrstil und Straßenzustand beeinflussen den tatsächlichen Verbrauch.</p>
-      </details>
-
-      <h2>Technisches & Datenschutz</h2>
-
-      <details class="faq-item">
-        <summary>Werden meine eingegebenen Daten gespeichert?</summary>
-        <p>Nein! Alle Berechnungen erfolgen ausschließlich lokal in deinem Browser. Deine Eingaben (Entfernung, Verbrauch, Spritpreis) werden nicht an unsere Server übermittelt und nicht gespeichert. Nur bei Nutzung der Geocoding-Funktion werden Ortsnamen an OpenStreetMap Nominatim gesendet.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Funktioniert der Rechner offline?</summary>
-        <p>Teilweise. Nach dem ersten Laden der Seite funktionieren die Grundberechnungen auch offline. Für Karten und Geocoding (Entfernungsberechnung anhand von Ortsnamen) ist jedoch eine Internetverbindung erforderlich, da externe Dienste (OpenStreetMap) genutzt werden.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Ist der Rechner kostenlos?</summary>
-        <p>Ja, der Spritkostenrechner ist vollständig kostenlos nutzbar. Es gibt keine versteckten Gebühren, Premium-Features oder Registrierungspflicht. Zur Deckung der Hosting-Kosten können Werbeanzeigen (Google AdSense) eingeblendet werden.</p>
-      </details>
-
-      <div style="background:#f0f9ff;padding:16px;border-radius:8px;margin:24px 0;border-left:4px solid var(--accent-2)">
-        <p style="margin:0"><strong>Weitere Fragen?</strong></p>
-        <p style="margin:8px 0 0 0">Wenn Ihre Frage hier nicht beantwortet wurde, kontaktieren Sie uns gerne: <a href="mailto:info@spritkosten-check.de">info@spritkosten-check.de</a></p>
-      </div>
-
-      <p style="margin-top:30px;text-align:center;font-size:1.05rem">
-        <a href="index.html" style="display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700">← Zurück zum Rechner</a>
-      </p>
-    </div>
-  </div>
-
-  <footer>
-    <a href="faq.html">FAQ</a> | 
-    <a href="contact.html">Kontakt</a> | 
-    <a href="impressum.html">Impressum</a> | 
-    <a href="datenschutz.html">Datenschutz</a>
-    <div style="margin-top:20px;font-size:0.7rem;opacity:0.4;color:var(--muted)">Dominik Fisher (Deutschland)</div>
-  </footer>
-</body>
-</html>
+      <details class="faq-item
