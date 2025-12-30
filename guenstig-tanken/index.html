@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Günstig tanken – Live Tankstellenpreise</title>
+
+  <!-- Dein Design -->
+  <link rel="stylesheet" href="/assets/css/layout.css" />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    #gt-map{
+      width:100%;
+      height:560px;
+      min-height:320px;
+      border-radius:10px;
+      border:1px solid rgba(15,23,42,0.10);
+      background:#fff;
+    }
+    @media(max-width:980px){ #gt-map{height:320px !important;} }
+  </style>
+</head>
+
+<body data-active="tank">
+  <!-- Wenn du KEIN partial system nutzt, kopier deinen Header hier rein -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo-title">
+        <img src="/logo.png" alt="Spritkosten-Check Logo">
+        <span class="site-title">Spritkosten-Rechner – Benzin & Reisekosten berechnen</span>
+      </a>
+      <nav class="tabs" aria-label="Hauptnavigation">
+        <a class="tabbtn" href="/">Spritkosten-Rechner</a>
+        <a class="tabbtn" href="/taschenrechner.html">Taschenrechner</a>
+        <a class="tabbtn active" href="/guenstig-tanken/">Günstig tanken</a>
+        <a class="tabbtn" href="/ratgeber.html">Ratgeber</a>
+        <a class="tabbtn" href="/faq.html">FAQ</a>
+        <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-container">
+    <section class="card">
+      <h2>Günstig tanken – Live Tankstellenpreise</h2>
+
+      <label>Ort (optional)</label>
+      <input id="gt-place" type="text" placeholder="z.B. München" />
+
+      <label style="margin-top:10px">Radius (km)</label>
+      <input id="gt-radius" type="number" min="1" max="25" value="5" />
+
+      <label style="margin-top:10px">Kraftstoff</label>
+      <select id="gt-fuel">
+        <option value="e5">E5</option>
+        <option value="e10" selected>E10</option>
+        <option value="diesel">Diesel</option>
+      </select>
+
+      <label style="margin-top:10px">Live Suche (Name)</label>
+      <input id="gt-query" type="text" placeholder="Shell, Aral, Total..." />
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+        <button id="gt-locate" class="btn secondary" style="height:44px">Standort holen</button>
+        <button id="gt-load" class="btn" style="height:44px">Tankstellen laden</button>
+      </div>
+
+      <div id="gt-status" class="small" style="margin-top:10px;color:var(--muted)"></div>
+
+      <div style="margin-top:12px" id="gt-map"></div>
+
+      <h2 style="margin-top:16px;font-size:1rem">Ergebnisse</h2>
+      <div id="gt-list" class="small"></div>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/assets/js/guenstig-tanken.js"></script>
+</body>
+</html>
