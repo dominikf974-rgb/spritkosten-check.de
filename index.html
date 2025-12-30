@@ -61,7 +61,6 @@
       --accent-2:#4f46e5;
       --button-h:48px;
 
-      /* ✅ Desktop flexibler/breiter */
       --maxw:1400px;
     }
 
@@ -82,7 +81,6 @@
       background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
     }
 
-    /* Header */
     .site-header{
       position: sticky;
       top:0;
@@ -167,12 +165,11 @@
       z-index: 2147483647;
     }
 
-    /* ✅ Container: flex + Abstand unter Header */
     .page-container{
       width:100%;
       max-width: min(var(--maxw), 94vw);
       margin:0 auto;
-      padding: 24px 12px 0 12px; /* Abstand Header -> erster Block */
+      padding: 24px 12px 0 12px;
       display:flex;
       flex-direction:column;
       gap:18px;
@@ -207,7 +204,7 @@
       display:grid;
       grid-template-columns:minmax(0,420px) minmax(0,1fr);
       gap:16px;
-      align-items:stretch; /* ✅ CHANGED: wie EN, damit Map den weißen Bereich füllen kann */
+      align-items:stretch; /* ✅ Map kann den ganzen weißen Bereich füllen */
       width:100%;
     }
 
@@ -306,19 +303,17 @@
     .result-key{color:var(--muted);font-size:.95rem}
     .result-val{font-weight:900;color:var(--accent-2)}
 
-    /* ✅ NEW: rechte Spalte als Flex-Column, damit #map flexibel wachsen kann */
     .layout > div:last-child{
       display:flex;
       flex-direction:column;
       min-height:0;
     }
 
-    /* ✅ MAP: wie EN – füllt den gesamten weißen Bereich (Desktop) */
     #map{
       width:100%;
       flex:1 1 auto;
-      height:auto;          /* statt fix */
-      min-height:360px;     /* behält deine Mindesthöhe */
+      height:auto;
+      min-height:360px;
       border-radius:8px;
       border:1px solid rgba(15,23,42,0.10);
       background:#fff;
@@ -347,7 +342,6 @@
 
     .ad-block{ margin:0; }
 
-    /* SEO helper layout */
     .two-col{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -355,8 +349,8 @@
     }
 
     @media(max-width:980px){
-      .layout{grid-template-columns:1fr; align-items:start;} /* ✅ mobile normal */
-      #map{height:260px; min-height:260px; flex:none;}       /* ✅ mobile fix wie vorher */
+      .layout{grid-template-columns:1fr; align-items:start;}
+      #map{height:260px; min-height:260px; flex:none;}
       .spinner button{width:38px;height:38px}
       .two-col{grid-template-columns:1fr}
     }
@@ -411,7 +405,7 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- Intro (dein Original) -->
+    <!-- Intro -->
     <section class="card intro-section" aria-label="Einführung Spritkosten-Rechner">
       <h2>Kostenloser Spritkosten-Rechner – Plane deine Fahrtkosten</h2>
       <p>
@@ -464,7 +458,7 @@
                 <button id="btn-geocode" class="btn secondary">Strecke berechnen</button>
                 <button id="btn-clearmap" class="btn secondary">Karte zurücksetzen</button>
               </div>
-              <div class="small">Strecke via Nominatim (OpenStreetMap). Kartenkacheln: OpenStreetMap.</div>
+              <div class="small">Strecke via Nominatim (OpenStreetMap). Route via OSRM (Straßenroute). Kartenkacheln: OpenStreetMap.</div>
             </div>
 
             <label for="fuel-type" style="margin-top:12px">Kraftstoff</label>
@@ -532,7 +526,7 @@
             <h2 style="margin:0 0 8px 0;font-size:1rem">Karte & Strecke</h2>
             <div id="map"></div>
             <div style="margin-top:8px" class="small">
-              Klicke „Strecke berechnen“, um Start/Ziel zu finden. Maut wird grob nach Region geschätzt.
+              Klicke „Strecke berechnen“, um Start/Ziel zu finden. Die Distanz wird als <strong>Straßenroute</strong> berechnet (OSRM).
             </div>
             <div id="toll-info" class="small" style="margin-top:6px;color:var(--muted)"></div>
           </div>
@@ -557,7 +551,6 @@
       </section>
     </main>
 
-    <!-- SEO Block 1 (kurz, nicht überladen) -->
     <section class="card" aria-label="Berechnung erklärt">
       <h2>So berechnest du Spritkosten & Kosten pro Person</h2>
       <p class="small" style="margin-top:0">
@@ -584,7 +577,6 @@
       </div>
     </section>
 
-    <!-- ✅ NEU: Tips-Block wie EN (mit Button) -->
     <section class="card" aria-label="Tipps zum Sprit sparen und Reisekosten senken">
       <h2>Tipps zum Sprit sparen & Reisekosten senken</h2>
       <p class="small" style="margin-top:0">
@@ -604,7 +596,6 @@
       </div>
     </section>
 
-    <!-- Ratgeber: schlank + 1 Button -->
     <section class="card" aria-label="Ratgeber">
       <h2>Ratgeber: Sprit sparen & Reisekosten planen</h2>
       <p class="small" style="margin-top:0">
@@ -613,7 +604,6 @@
       <a class="btn large" href="/ratgeber.html" style="max-width:320px">Zum Ratgeber</a>
     </section>
 
-    <!-- ✅ Startseite: nur 4 FAQ -->
     <section class="card faq-section" aria-label="FAQ">
       <h2>Kurze FAQ</h2>
 
@@ -642,7 +632,6 @@
       </div>
     </section>
 
-    <!-- Countries -->
     <section class="card countries-section" aria-label="Spritkosten-Rechner nach Land">
       <h2>Spritkosten-Rechner nach Land</h2>
       <p class="small" style="margin:0 0 10px 0">Funktioniert weltweit mit Länder-Erkennung. Beliebte Regionen:</p>
@@ -682,9 +671,8 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- ✅ Footer: exakt wie vorher -->
     <footer class="small">
-      Internet erforderlich für Karte/Geocoding. Preise können optional über deinen eigenen HTTPS-Endpunkt geladen werden.
+      Internet erforderlich für Karte/Geocoding/Route. Preise können optional über deinen eigenen HTTPS-Endpunkt geladen werden.
       <span style="opacity:.75;margin-left:10px">|</span>
       <a href="/faq.html">FAQ</a> <span style="opacity:.75">|</span>
       <a href="/impressum.html">Impressum</a> <span style="opacity:.75">|</span>
@@ -724,7 +712,6 @@
             s.setAttribute('aria-hidden', isActive ? 'false' : 'true');
           });
 
-          // ✅ FIX: Leaflet map after show/hide needs resize
           if (target === 'fuel') {
             setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 60);
           }
@@ -826,19 +813,44 @@
       }).addTo(map);
 
       let markers = [];
+      let routeLayer = null;
+
       function clearMarkers(){ markers.forEach(m=>map.removeLayer(m)); markers=[]; }
       function addMarker(lat, lon, label){
         const m = L.marker([lat, lon]).addTo(map).bindPopup(label || '');
         markers.push(m);
         return m;
       }
+      function clearRoute(){
+        if(routeLayer){
+          map.removeLayer(routeLayer);
+          routeLayer = null;
+        }
+      }
 
-      function haversineKm(lat1, lon1, lat2, lon2){
-        const R = 6371, toRad = d => d * Math.PI / 180;
-        const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
-        const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        return R * c;
+      // ✅ OSRM Route (Straßenroute) – liefert Distanz (km) + zeichnet Linie
+      async function getRouteOSRM(lat1, lon1, lat2, lon2){
+        const url =
+          `https://router.project-osrm.org/route/v1/driving/` +
+          `${encodeURIComponent(lon1)},${encodeURIComponent(lat1)};${encodeURIComponent(lon2)},${encodeURIComponent(lat2)}` +
+          `?overview=full&geometries=geojson&alternatives=false&steps=false`;
+
+        const res = await fetch(url);
+        if(!res.ok) throw new Error('OSRM request failed');
+        const j = await res.json();
+
+        if(!j || j.code !== 'Ok' || !j.routes || !j.routes.length) {
+          throw new Error('OSRM no route');
+        }
+
+        const r = j.routes[0];
+        const distKm = (r.distance || 0) / 1000;
+
+        clearRoute();
+        routeLayer = L.geoJSON(r.geometry, { style: { weight: 5, opacity: 0.9 } }).addTo(map);
+        map.fitBounds(routeLayer.getBounds(), { padding:[60,60] });
+
+        return distKm;
       }
 
       async function geocode(q){
@@ -917,6 +929,9 @@
           return;
         }
         try{
+          tollInfoEl.textContent = 'Route wird berechnet…';
+          tollInfoEl.classList.remove('error');
+
           const a = await geocode(from);
           const b = await geocode(to);
           if(!a || !b){
@@ -928,31 +943,34 @@
           const ccA = await reverseCountryCode(a.lat, a.lon);
           if(ccA) applyCountryDefaults(ccA);
 
+          // Marker
           clearMarkers();
           addMarker(a.lat,a.lon,'Start: ' + a.name);
           addMarker(b.lat,b.lon,'Ziel: ' + b.name);
-          map.fitBounds([[a.lat,a.lon],[b.lat,b.lon]], { padding:[60,60] });
 
-          const dist = haversineKm(a.lat,a.lon,b.lat,b.lon);
-          kmEl.value = Math.round(dist*10)/10;
+          // ✅ OSRM Straßenroute statt Luftlinie
+          const distKm = await getRouteOSRM(a.lat, a.lon, b.lat, b.lon);
+          if(!Number.isFinite(distKm) || distKm <= 0){
+            throw new Error('OSRM distance invalid');
+          }
+          kmEl.value = Math.round(distKm*10)/10;
 
-          tollInfoEl.textContent = 'Maut wird geschätzt…';
-          tollInfoEl.classList.remove('error');
-
+          // Maut
           const ccB = await reverseCountryCode(b.lat, b.lon);
-          const toll = await estimateTollsSimple(ccA || 'XX', ccB || ccA || 'XX', dist);
-          estimatedTollPer100 = +(toll.totalCost / dist * 100).toFixed(2);
+          const toll = await estimateTollsSimple(ccA || 'XX', ccB || ccA || 'XX', distKm);
+          estimatedTollPer100 = +(toll.totalCost / distKm * 100).toFixed(2);
 
           tollInfoEl.textContent =
             `Maut (Schätzung): ${fmtMoney(toll.totalCost)} gesamt — ca. ${fmtMoney(estimatedTollPer100)} /100 km`;
         }catch(e){
-          tollInfoEl.textContent = 'Fehler bei Geocoding oder Maut-Schätzung. Bitte Verbindung prüfen.';
+          tollInfoEl.textContent = 'Fehler beim Routing (OSRM) oder Geocoding. Bitte Verbindung prüfen oder anderen Ort versuchen.';
           tollInfoEl.classList.add('error');
         }
       });
 
       document.getElementById('btn-clearmap').addEventListener('click', () => {
         clearMarkers();
+        clearRoute();
         map.setView([51.1657, 10.4515], 5);
         placeFromEl.value = '';
         placeToEl.value = '';
@@ -1032,6 +1050,7 @@
         userEditedPrice = false;
 
         clearMarkers();
+        clearRoute();
         map.setView([51.1657, 10.4515],5);
         setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 60);
       });
@@ -1055,7 +1074,6 @@
         })
       );
 
-      // initial map size safety
       setTimeout(() => { try { map.invalidateSize(); } catch(e){} }, 80);
     });
   </script>
