@@ -1,131 +1,974 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Spritkosten-Rechner – Benzin, Diesel & Reisekosten berechnen</title>
-<meta name="description" content="Kostenloser Spritkosten-Rechner mit Karte, Maut- & Gesamtkosten-Schätzung">
-<link rel="canonical" href="https://spritkosten-check.de/">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437" crossorigin="anonymous"></script>
+  <title>Spritkosten-Rechner – Benzin, Diesel & Reisekosten berechnen</title>
+  <meta name="description" content="Kostenloser Spritkosten-Rechner für Fahrten & Roadtrips. Berechne Spritkosten, Gesamtkosten und Maut-Schätzung mit Karte und Distanzberechnung weltweit." />
+  <meta name="robots" content="index, follow" />
 
-<style>
-*{box-sizing:border-box}
+  <!-- ✅ DE ↔ EN Connection (SEO) -->
+  <link rel="canonical" href="https://spritkosten-check.de/" />
+  <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/" />
+  <link rel="alternate" hreflang="en" href="https://petrolcostcalculator.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/" />
 
-:root{
---bg1:#0f172a;
---bg2:#e9eef5;
---card:#fff;
---text:#0b1220;
---muted:#4b5563;
---accent:#0ea5a3;
---accent-2:#4f46e5;
---maxw:1400px;
---button-h:48px;
-}
+  <!-- Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="/favicon.ico">
 
-body{
-margin:0;
-font-family:system-ui;
-color:var(--text);
-background:linear-gradient(180deg,var(--bg1),var(--bg2));
-}
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-.site-header{
-position:sticky;top:0;background:#fff;border-bottom:1px solid #ddd;z-index:99;
-}
-.header-inner{
-max-width:none;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;
-}
+  <!-- Header Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
-.page-container{
-width:100%;
-max-width:min(1400px,94vw);
-margin:0 auto;
-padding:12px;
-display:flex;
-flex-direction:column;
-gap:16px;
-}
+  <!-- Google Ads (optional) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
+    crossorigin="anonymous"></script>
 
-.card{
-background:#fff;
-border-radius:14px;
-padding:16px;
-box-shadow:0 10px 25px rgba(0,0,0,.1);
-}
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Spritkosten-Rechner",
+    "description": "Kostenloser Online-Rechner für Spritkosten, Kraftstoffpreise, Maut und Reisekosten",
+    "url": "https://spritkosten-check.de",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {"@type":"Offer","price":"0","priceCurrency":"EUR"}
+  }
+  </script>
 
-.layout{
-display:grid;
-grid-template-columns:minmax(0,520px) 1fr;
-gap:16px;
-}
+  <style>
+    *{box-sizing:border-box;}
 
-@media(max-width:980px){
-.layout{grid-template-columns:1fr}
-}
+    :root{
+      --bg1:#0f172a;
+      --bg2:#e9eef5;
+      --card:#ffffff;
+      --muted:#4b5563;
+      --text:#0b1220;
+      --accent:#0ea5a3;
+      --accent-2:#4f46e5;
+      --button-h:48px;
 
-#map{height:420px;border-radius:12px}
+      /* ✅ FIX: früher 1000px -> zu schmal am PC */
+      --maxw:1400px;
+    }
 
-.btn{
-background:linear-gradient(90deg,var(--accent),var(--accent-2));
-color:#fff;border:none;border-radius:10px;height:48px;font-weight:800;cursor:pointer;
-}
-.btn.secondary{background:#eef2ff;color:#4f46e5}
-input,select{width:100%;padding:10px;border-radius:8px;border:1px solid #ccc}
-label{margin-top:8px;display:block;color:#555;font-weight:600}
-</style>
+    /* ✅ Hintergrund 100% nahtfrei */
+    html, body { width:100%; }
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color:var(--text);
+      min-height:100vh;
+      background: transparent;
+      position: relative;
+    }
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+    }
+
+    /* ✅ Header immer klickbar */
+    .site-header{
+      position: sticky;
+      top:0;
+      z-index: 2147483647;
+      width:100%;
+      background:#fff;
+      border-bottom:1px solid rgba(15,23,42,0.06);
+    }
+    .header-inner{
+      width:100%;
+      max-width:none;
+      margin:0;
+      padding:10px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      position: relative;
+      z-index: 2147483647;
+    }
+
+    .logo-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+      flex:1 1 auto;
+      min-width:0;
+    }
+    .logo-title:hover{opacity:.88;}
+    .logo-title img{
+      height:54px;
+      width:auto;
+      display:block;
+    }
+    .site-title{
+      font-family:'Poppins', Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      font-weight:700;
+      font-size:18px;
+      white-space:nowrap;
+      letter-spacing:.2px;
+      max-width: 560px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .tabs{
+      display:flex;
+      gap:8px;
+      margin-left:auto;
+      flex:0 0 auto;
+      align-items:center;
+      position: relative;
+      z-index: 2147483647;
+    }
+    .tabs button{
+      background:transparent;
+      border:1px solid transparent;
+      color:var(--muted);
+      padding:.6rem 1rem;
+      border-radius:.6rem;
+      cursor:pointer;
+      font-weight:800;
+      font-size:.95rem;
+      height:var(--button-h);
+      white-space:nowrap;
+    }
+    .tabs button[aria-selected="true"]{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#fff;
+    }
+
+    .lang-link{
+      font-weight:800;
+      text-decoration:none;
+      color:var(--accent-2);
+      border:1px solid rgba(79,70,229,0.15);
+      background:#eef2ff;
+      padding:.55rem .8rem;
+      border-radius:.6rem;
+      height:var(--button-h);
+      display:inline-flex;
+      align-items:center;
+      position: relative;
+      z-index: 2147483647;
+    }
+
+    /* ✅ FIX: Automatisch flexibel wie "normale" Websites */
+    .page-container{
+      width:100%;
+      max-width: min(var(--maxw), 94vw);
+      margin:0 auto;
+      padding:0 12px;
+
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    /* Desktop: etwas mehr Rand (wie große Seiten) */
+    @media (min-width: 992px){
+      .page-container{ padding: 0 24px; }
+    }
+
+    h1{margin:0;font-size:1.25rem}
+    h2{font-size:1.1rem;margin:16px 0 12px 0}
+
+    .card{
+      background:var(--card);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
+      border:1px solid rgba(15,23,42,0.05);
+      width:100%;
+      overflow:hidden;
+    }
+
+    .intro-section{ line-height:1.65; }
+    .intro-section p{margin:0 0 12px 0;}
+    .intro-section ul{margin:8px 0;padding-left:20px}
+    .intro-section li{margin:6px 0}
+
+    .layout{
+      display:grid;
+      grid-template-columns:minmax(0,420px) minmax(0,1fr);
+      gap:16px;
+      align-items:start;
+      width:100%;
+    }
+
+    label{
+      display:block;
+      margin:.5rem 0 .25rem 0;
+      font-size:.9rem;
+      color:var(--muted);
+      font-weight:600;
+    }
+    input[type="number"], input[type="text"], select{
+      width:100%;
+      padding:.6rem .75rem;
+      border-radius:8px;
+      border:1px solid rgba(15,23,42,0.10);
+      background:transparent;
+      color:var(--text);
+      outline:none;
+      font-size:1rem;
+      margin-top:.25rem;
+    }
+
+    .km-row{display:flex;gap:8px;align-items:center;flex-wrap:nowrap}
+    .km-row .km-input{flex:1;min-width:0}
+
+    .spinner{display:flex;flex-direction:column;gap:6px}
+    .spinner button{
+      width:44px;height:44px;border-radius:8px;border:none;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#fff;font-weight:900;font-size:18px;cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center
+    }
+
+    .big-action{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .btn{
+      flex:1;
+      height:var(--button-h);
+      border-radius:10px;
+      border:none;
+      cursor:pointer;
+      font-weight:800;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#fff;
+      font-size:1rem;
+      min-width:140px
+    }
+    .btn.secondary{
+      background:#eef2ff;
+      color:var(--accent-2);
+      border:1px solid rgba(79,70,229,0.12)
+    }
+    .btn.large{font-size:1.05rem;padding:0 14px;height:54px}
+
+    .small{font-size:.9rem;color:var(--muted)}
+    .hint{font-size:.85rem;color:var(--accent);margin-top:4px;min-height:18px;display:block}
+    .hint.error{color:#e53e3e}
+    .error{color:#e53e3e}
+
+    /* ✅ FIX: Reset-Button nie verschoben (DE/EN) */
+    .price-input-group{
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:10px;
+      align-items:end;
+      margin-top:8px;
+    }
+    .reset-price-btn{
+      height:44px;
+      padding:0 14px;
+      white-space:nowrap;
+    }
+
+    .price-table{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+    .price-card{
+      flex:1;min-width:140px;padding:8px;border-radius:8px;background:#fafafa;
+      border:1px solid rgba(15,23,42,0.05);text-align:center
+    }
+    .price-card strong{display:block;font-size:1.05rem;color:var(--accent-2);margin-top:6px}
+
+    .resultbox{
+      margin-top:12px;
+      padding:12px;
+      border-radius:8px;
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+      border:1px solid rgba(15,23,42,0.06)
+    }
+    .result-row{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:6px 0;border-bottom:1px dashed rgba(15,23,42,0.10);gap:8px
+    }
+    .result-row:last-child{border-bottom:0}
+    .result-key{color:var(--muted);font-size:.95rem}
+    .result-val{font-weight:900;color:var(--accent-2)}
+
+    #map{
+      width:100%;
+      height:360px;
+      min-height:280px;
+      border-radius:8px;
+      border:1px solid rgba(15,23,42,0.10);
+      background:#fff;
+    }
+
+    .faq-item{margin:10px 0}
+    .faq-item summary{
+      cursor:pointer;font-weight:800;color:var(--accent-2);
+      padding:10px;border-radius:8px;background:rgba(79,70,229,0.06)
+    }
+    .faq-item summary:hover{background:rgba(79,70,229,0.12)}
+    .faq-item p{margin:10px 0 0 0;line-height:1.6}
+
+    .countries-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;margin-top:12px
+    }
+    .country-card{
+      background:#f9fafb;border-radius:8px;padding:12px;border:1px solid rgba(15,23,42,0.06);
+      transition:box-shadow .2s ease
+    }
+    .country-card:hover{box-shadow:0 4px 12px rgba(15,23,42,0.10)}
+    .country-card h3{margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)}
+    .country-card p{margin:0 0 8px 0;font-size:.9rem}
+
+    .ad-block{ margin:0; }
+
+    @media(max-width:980px){
+      .layout{grid-template-columns:1fr}
+      #map{height:260px}
+      .spinner button{width:38px;height:38px}
+    }
+    @media(max-width:720px){
+      .header-inner{padding:10px 12px}
+      .site-title{max-width:160px;}
+      .tabs button{padding:.5rem .7rem;height:42px;font-size:.9rem}
+      .lang-link{height:42px;padding:.5rem .7rem}
+      .big-action{flex-direction:column}
+      .btn{width:100%}
+
+      .price-input-group{ grid-template-columns: 1fr; }
+      .reset-price-btn{ width:100%; }
+    }
+    @media(max-width:420px){
+      .site-title{display:none;}
+    }
+
+    /* ✅ Footer schwarz & lesbar */
+    footer, footer *{
+      color:#000 !important;
+      opacity:1 !important;
+    }
+    footer{ padding:18px 0 30px 0; }
+    footer a{ text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
+  </style>
 </head>
 
 <body>
 
-<header class="site-header">
-<div class="header-inner">
-<b>Spritkosten-Rechner</b>
-</div>
-</header>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo-title">
+        <img src="/logo.png" alt="Spritkosten-Check Logo">
+        <span class="site-title">Spritkosten-Rechner – Benzin & Reisekosten berechnen</span>
+      </a>
 
-<div class="page-container">
+      <nav class="tabs" role="tablist" aria-label="Hauptnavigation">
+        <button role="tab" data-target="fuel" aria-selected="true">Spritkosten</button>
+        <button role="tab" data-target="calc" aria-selected="false">Rechner</button>
 
-<div class="card">
-<h2>Spritkosten berechnen</h2>
-<div class="layout">
+        <!-- ✅ DE-Seite muss auf EN zeigen -->
+        <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en" title="English">EN</a>
+      </nav>
+    </div>
+  </header>
 
-<div>
-<label>Strecke (km)</label>
-<input id="km" type="number">
-<label>Verbrauch (L/100km)</label>
-<input id="consumption" type="number" value="7.5">
-<label>Preis €/L</label>
-<input id="price" type="number" value="1.90">
-<button class="btn" onclick="calc()">Berechnen</button>
+  <div class="page-container">
 
-<p><b>Gesamt:</b> <span id="total">0 €</span></p>
-</div>
+    <div class="ad-block">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="7158625008"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
-<div>
-<div id="map"></div>
-</div>
+    <section class="card intro-section" aria-label="Einführung Spritkosten-Rechner">
+      <h2>Kostenloser Spritkosten-Rechner – Plane deine Fahrtkosten</h2>
+      <p>
+        Unser <strong>Spritkosten-Rechner</strong> hilft dir, die Gesamtkosten deiner Fahrt zu schätzen.
+        Gib Strecke, Verbrauch und Spritpreis ein – du erhältst eine Aufschlüsselung aus Spritkosten, laufenden Kosten und einer Maut-Schätzung.
+      </p>
+      <ul>
+        <li><strong>Funktioniert weltweit:</strong> Länder-Erkennung + Standardpreise</li>
+        <li><strong>Strecke berechnen:</strong> Karte + Start/Ziel-Geocoding</li>
+        <li><strong>Maut:</strong> einfache Schätzung nach Region</li>
+        <li><strong>Kosten teilen:</strong> pro Person berechnen</li>
+      </ul>
+    </section>
 
-</div>
-</div>
+    <main aria-label="Hauptinhalt">
+      <section id="fuel" class="card" aria-hidden="false">
 
-</div>
+        <div class="ad-block">
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-4852698472752437"
+            data-ad-slot="3355111369"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-var map=L.map('map').setView([51,10],5);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        <div class="layout">
+          <div>
+            <h2 style="margin:0 0 8px 0;font-size:1rem">Eingaben</h2>
 
-function calc(){
-let km=+document.getElementById('km').value||0;
-let v=+document.getElementById('consumption').value||0;
-let p=+document.getElementById('price').value||0;
-let total=(km*v/100)*p;
-document.getElementById('total').innerText=total.toFixed(2)+" €";
-}
-</script>
+            <label for="km">Strecke (km) — oder per Start/Ziel berechnen</label>
+            <div class="km-row">
+              <input id="km" class="km-input" type="number" inputmode="decimal" min="0" step="0.1"
+                placeholder="z. B. 120,5" aria-label="Strecke in Kilometern" />
+              <div class="spinner" title="Strecke erhöhen / verringern">
+                <button id="km-inc" aria-label="Strecke erhöhen">▲</button>
+                <button id="km-dec" aria-label="Strecke verringern">▼</button>
+              </div>
+            </div>
 
+            <div style="margin-top:12px">
+              <label for="place-from">Oder: Start (Ort, Land)</label>
+              <input id="place-from" type="text" placeholder="z. B. Berlin, Deutschland" aria-label="Startort" />
+              <label for="place-to" style="margin-top:10px">Ziel (Ort, Land)</label>
+              <input id="place-to" type="text" placeholder="z. B. München, Deutschland" aria-label="Zielort" />
+
+              <div class="map-controls" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+                <button id="btn-geocode" class="btn secondary">Strecke berechnen</button>
+                <button id="btn-clearmap" class="btn secondary">Karte zurücksetzen</button>
+              </div>
+              <div class="small">Strecke via Nominatim (OpenStreetMap). Kartenkacheln: OpenStreetMap.</div>
+            </div>
+
+            <label for="fuel-type" style="margin-top:12px">Kraftstoff</label>
+            <select id="fuel-type" aria-label="Kraftstoff">
+              <option value="unleaded91">Benzin (E10/91)</option>
+              <option value="unleaded95">Super (95)</option>
+              <option value="diesel">Diesel</option>
+            </select>
+
+            <label for="consumption" style="margin-top:12px">Verbrauch (L/100 km)</label>
+            <input id="consumption" type="number" inputmode="decimal" min="0" step="0.1"
+              value="7.5" placeholder="z. B. 7,5" aria-label="Kraftstoffverbrauch" />
+
+            <div class="price-input-group">
+              <div>
+                <label for="price">Preis pro Liter (€)</label>
+                <input id="price" type="number" inputmode="decimal" min="0" step="0.01"
+                  placeholder="z. B. 1,89" aria-label="Spritpreis pro Liter" />
+                <span id="price-info" class="hint"></span>
+              </div>
+
+              <button id="btn-reset-price" class="btn secondary reset-price-btn">
+                Auf Standard zurücksetzen
+              </button>
+            </div>
+
+            <div class="price-table" aria-hidden="false">
+              <div class="price-card">
+                <div class="small">Ø Benzin</div>
+                <strong id="avg-unleaded91">—</strong>
+              </div>
+              <div class="price-card">
+                <div class="small">Ø Super (95)</div>
+                <strong id="avg-unleaded95">—</strong>
+              </div>
+              <div class="price-card">
+                <div class="small">Ø Diesel</div>
+                <strong id="avg-diesel">—</strong>
+              </div>
+            </div>
+
+            <label for="passengers" style="margin-top:12px">Personen (inkl. Fahrer)</label>
+            <input id="passengers" type="number" min="1" step="1" value="1" aria-label="Anzahl Personen" />
+
+            <div class="big-action">
+              <button id="calc-fuel" class="btn large">Berechnen</button>
+              <button id="reset-fuel" class="btn secondary large">Zurücksetzen</button>
+            </div>
+
+            <div class="resultbox" aria-live="polite" aria-label="Ergebnisse">
+              <div class="result-row"><div class="result-key">Spritkosten</div><div class="result-val" id="cost-fuel">€0,00</div></div>
+              <div class="result-row"><div class="result-key">Laufende Kosten inkl. Maut (Schätzung)</div><div class="result-val" id="cost-running">€0,00</div></div>
+              <div class="result-row"><div class="result-key">Gesamtkosten</div><div class="result-val" id="cost-total">€0,00</div></div>
+              <div class="result-row"><div class="result-key">Pro Person</div><div class="result-val" id="cost-person">€0,00</div></div>
+              <div class="result-row"><div class="result-key">Liter gesamt</div><div class="result-val" id="liters">0,00 L</div></div>
+              <div class="result-row"><div class="result-key">Durchschnitt (€/100 km)</div><div class="result-val" id="avg100">€0,00 /100km</div></div>
+              <div class="result-row"><div class="result-key small">Schätzung laufende Kosten /100 km (inkl. Maut)</div><div class="result-val small" id="running-est">—</div></div>
+              <div style="margin-top:8px;color:var(--muted);font-size:.85rem">
+                Laufende Kosten enthalten: Wartung, Reifen, Wertverlust, Versicherung + Maut-Schätzung.
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2 style="margin:0 0 8px 0;font-size:1rem">Karte & Strecke</h2>
+            <div id="map"></div>
+            <div style="margin-top:8px" class="small">
+              Klicke „Strecke berechnen“, um Start/Ziel zu finden. Maut wird grob nach Region geschätzt.
+            </div>
+            <div id="toll-info" class="small" style="margin-top:6px;color:var(--muted)"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calc" class="card" aria-hidden="true" style="display:none">
+        <h2>Rechner</h2>
+        <label for="num1">Zahl 1</label>
+        <input id="num1" type="number" inputmode="decimal" placeholder="Zahl 1" />
+        <label for="num2">Zahl 2</label>
+        <input id="num2" type="number" inputmode="decimal" placeholder="Zahl 2" />
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;max-width:240px">
+          <button data-op="+" class="btn" style="height:44px;font-size:1.1rem">+</button>
+          <button data-op="-" class="btn" style="height:44px;font-size:1.1rem">−</button>
+          <button data-op="*" class="btn" style="height:44px;font-size:1.1rem">×</button>
+          <button data-op="/" class="btn" style="height:44px;font-size:1.1rem">÷</button>
+        </div>
+
+        <p style="margin-top:12px" class="small">Ergebnis: <strong id="result">–</strong></p>
+      </section>
+    </main>
+
+    <section class="card faq-section" aria-label="FAQ">
+      <h2>Kurze FAQ</h2>
+
+      <details class="faq-item">
+        <summary>Funktioniert das auch für Dörfer und kleine Orte?</summary>
+        <p>Ja. Wir nutzen OpenStreetMap-Geocoding und Reverse-Geocoding – damit werden auch kleine Orte erkannt.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Kann ich meinen eigenen Spritpreis eingeben?</summary>
+        <p>Ja. Du kannst den Preis jederzeit anpassen. Mit „Auf Standard zurücksetzen“ stellst du die erkannten Standardwerte wieder her.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Wie genau ist die Maut-Schätzung?</summary>
+        <p>Die Maut ist eine grobe Schätzung nach Region. Die realen Kosten hängen von Route, Fahrzeugklasse und lokalen Regeln ab.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Wie werden die laufenden Kosten berechnet?</summary>
+        <p>Die laufenden Kosten sind eine einfache Schätzung für Wartung/Wertverlust plus Maut-Schätzung pro 100 km.</p>
+      </details>
+    </section>
+
+    <section class="card countries-section" aria-label="Spritkosten-Rechner nach Land">
+      <h2>Spritkosten-Rechner nach Land</h2>
+      <p class="small" style="margin:0 0 10px 0">Funktioniert weltweit mit Länder-Erkennung. Beliebte Regionen:</p>
+
+      <div class="countries-grid">
+        <div class="country-card">
+          <h3>Deutschland</h3>
+          <p>Ideal für Fahrten & Kosten pro Person.</p>
+        </div>
+        <div class="country-card">
+          <h3>Österreich</h3>
+          <p>Für Autobahn & Reisen mit Maut-Schätzung.</p>
+        </div>
+        <div class="country-card">
+          <h3>Schweiz</h3>
+          <p>Strecke per Karte + Kostenaufteilung.</p>
+        </div>
+        <div class="country-card">
+          <h3>Europa</h3>
+          <p>Vignetten/Autobahnen werden grob geschätzt.</p>
+        </div>
+        <div class="country-card">
+          <h3>Weltweit</h3>
+          <p>Orte werden auch bei kleinen Städten erkannt.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-block">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="3048839661"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <footer class="small">
+      Internet erforderlich für Karte/Geocoding. Preise können optional über deinen eigenen HTTPS-Endpunkt geladen werden.
+      <span style="opacity:.75;margin-left:10px">|</span>
+      <a href="/faq.html">FAQ</a> <span style="opacity:.75">|</span>
+      <a href="/impressum.html">Impressum</a> <span style="opacity:.75">|</span>
+      <a href="/datenschutz.html">Datenschutz</a> <span style="opacity:.75">|</span>
+      <a href="/ratgeber.html">Ratgeber</a> <span style="opacity:.75">|</span>
+      <a href="/contact.html">Kontakt</a>
+
+      <div style="text-align:center;opacity:.8;margin-top:14px">
+        Deutsch:
+        <a href="https://spritkosten-check.de/" hreflang="de" lang="de">Spritkosten-Check.de</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        Englisch:
+        <a href="https://petrolcostcalculator.com/" hreflang="en" lang="en">PetrolCostCalculator.com</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const MAPBOX_API_KEY = ''; // optional
+      const CURRENCY_SYMBOL = '€';
+
+      // Tabs
+      document.querySelectorAll('.tabs [role="tab"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tabs [role="tab"]').forEach(b => b.setAttribute('aria-selected','false'));
+          btn.setAttribute('aria-selected','true');
+          const target = btn.dataset.target;
+          document.querySelectorAll('main > section').forEach(s => {
+            s.style.display = (s.id === target) ? '' : 'none';
+            s.setAttribute('aria-hidden', s.id === target ? 'false' : 'true');
+          });
+        });
+      });
+
+      const parse = v => (v === '' || v == null) ? NaN : Number(String(v).replace(',', '.'));
+      const fmt = n => (Number.isFinite(n) ? Number.parseFloat(n.toFixed(2)).toFixed(2) : '0.00');
+      const fmtMoney = n => CURRENCY_SYMBOL + fmt(n).replace('.', ',');
+
+      // DOM
+      const kmEl = document.getElementById('km');
+      const consumptionEl = document.getElementById('consumption');
+      const priceEl = document.getElementById('price');
+      const passengersEl = document.getElementById('passengers');
+      const fuelTypeEl = document.getElementById('fuel-type');
+
+      const litersEl = document.getElementById('liters');
+      const costFuelEl = document.getElementById('cost-fuel');
+      const costRunningEl = document.getElementById('cost-running');
+      const costTotalEl = document.getElementById('cost-total');
+      const costPersonEl = document.getElementById('cost-person');
+      const avg100El = document.getElementById('avg100');
+      const runningEstEl = document.getElementById('running-est');
+
+      const avgUnleaded91El = document.getElementById('avg-unleaded91');
+      const avgUnleaded95El = document.getElementById('avg-unleaded95');
+      const avgDieselEl = document.getElementById('avg-diesel');
+      const tollInfoEl = document.getElementById('toll-info');
+      const priceInfoEl = document.getElementById('price-info');
+      const placeFromEl = document.getElementById('place-from');
+      const placeToEl = document.getElementById('place-to');
+
+      // Default prices (EUR/L) — grobe Defaults, kannst du jederzeit anpassen
+      const countryDefaultPriceEUR = {
+        DE: { unleaded91:1.85, unleaded95:1.95, diesel:1.80, name:'Deutschland' },
+        AT: { unleaded91:1.75, unleaded95:1.85, diesel:1.72, name:'Österreich' },
+        CH: { unleaded91:1.95, unleaded95:2.05, diesel:1.92, name:'Schweiz' },
+        FR: { unleaded91:1.85, unleaded95:1.95, diesel:1.82, name:'Frankreich' },
+        IT: { unleaded91:1.90, unleaded95:2.00, diesel:1.88, name:'Italien' },
+        ES: { unleaded91:1.65, unleaded95:1.75, diesel:1.62, name:'Spanien' },
+        NL: { unleaded91:2.05, unleaded95:2.15, diesel:1.95, name:'Niederlande' },
+        BE: { unleaded91:1.85, unleaded95:1.95, diesel:1.80, name:'Belgien' }
+      };
+
+      const fallbackPrices = { unleaded91:1.85, unleaded95:1.95, diesel:1.80 };
+
+      let fuelPrices = { ...fallbackPrices };
+      let userEditedPrice = false;
+
+      function renderAvgPrices(){
+        avgUnleaded91El.textContent = fmtMoney(fuelPrices.unleaded91);
+        avgUnleaded95El.textContent = fmtMoney(fuelPrices.unleaded95);
+        avgDieselEl.textContent = fmtMoney(fuelPrices.diesel);
+      }
+      renderAvgPrices();
+
+      function applyCountryDefaults(countryCode){
+        const code = (countryCode || '').toUpperCase();
+        const prices = countryDefaultPriceEUR[code];
+        if(!prices) return false;
+
+        fuelPrices = { unleaded91: prices.unleaded91, unleaded95: prices.unleaded95, diesel: prices.diesel };
+        renderAvgPrices();
+
+        if(!userEditedPrice){
+          const t = fuelTypeEl.value;
+          priceEl.value = fuelPrices[t] ?? '';
+          priceInfoEl.textContent = `Erkannt: ${prices.name}. Standardpreis gesetzt (€/L). Du kannst ihn ändern.`;
+          priceInfoEl.classList.remove('error');
+        }
+        return true;
+      }
+
+      fuelTypeEl.addEventListener('change', () => {
+        if(!userEditedPrice){
+          priceEl.value = fuelPrices[fuelTypeEl.value] ?? '';
+        }
+      });
+
+      priceEl.addEventListener('input', () => {
+        userEditedPrice = true;
+        priceInfoEl.textContent = '';
+        priceInfoEl.classList.remove('error');
+      });
+
+      document.getElementById('btn-reset-price').addEventListener('click', () => {
+        userEditedPrice = false;
+        const t = fuelTypeEl.value;
+        priceEl.value = fuelPrices[t] ?? '';
+        priceInfoEl.textContent = 'Auf erkannten Standardpreis zurückgesetzt.';
+        priceInfoEl.classList.remove('error');
+      });
+
+      // Map
+      const map = L.map('map', { attributionControl:true }).setView([51.1657, 10.4515], 5); // Deutschland im Fokus
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom:19,
+        attribution:'&copy; OpenStreetMap-Mitwirkende'
+      }).addTo(map);
+
+      let markers = [];
+      function clearMarkers(){ markers.forEach(m=>map.removeLayer(m)); markers=[]; }
+      function addMarker(lat, lon, label){
+        const m = L.marker([lat, lon]).addTo(map).bindPopup(label || '');
+        markers.push(m);
+        return m;
+      }
+
+      function haversineKm(lat1, lon1, lat2, lon2){
+        const R = 6371, toRad = d => d * Math.PI / 180;
+        const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
+        const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
+      }
+
+      async function geocode(q){
+        if(MAPBOX_API_KEY){
+          try{
+            const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(q)}.json?access_token=${encodeURIComponent(MAPBOX_API_KEY)}&limit=1&language=de`;
+            const res = await fetch(url);
+            if(res.ok){
+              const data = await res.json();
+              if(data?.features?.length){
+                const f = data.features[0];
+                return { lat:f.center[1], lon:f.center[0], name:f.place_name };
+              }
+            }
+          }catch(e){}
+        }
+        const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(q);
+        const res = await fetch(url, { headers:{ 'Accept-Language':'de' }});
+        if(!res.ok) throw new Error('Geocoding fehlgeschlagen');
+        const data = await res.json();
+        if(data?.length) return { lat:+data[0].lat, lon:+data[0].lon, name:data[0].display_name };
+        return null;
+      }
+
+      async function reverseCountryCode(lat, lon){
+        try{
+          const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
+          const res = await fetch(url, { headers:{ 'Accept-Language':'de' }});
+          if(!res.ok) return null;
+          const j = await res.json();
+          const cc = j?.address?.country_code ? String(j.address.country_code).toUpperCase() : null;
+          return cc;
+        }catch(e){
+          return null;
+        }
+      }
+
+      // Maut-Schätzung (EUR / 100 km) – einfache Logik
+      const tollPer100km = {
+        DE:0, AT:6, CH:4, FR:10, IT:9, ES:10, NL:0, BE:0,
+        US:3, GB:0, AU:5
+      };
+
+      async function estimateTollsSimple(ccA, ccB, distKm){
+        const a = tollPer100km[ccA] ?? 5;
+        const b = tollPer100km[ccB] ?? a;
+        const rate = (ccA === ccB) ? a : (a + b) / 2;
+        const total = (distKm / 100) * rate;
+        return { totalCost: Math.round(total*100)/100, ratePer100: Math.round(rate*100)/100 };
+      }
+
+      let estimatedTollPer100 = 0;
+
+      // Defaults beim Tippen (optional)
+      let detectTimer = null;
+      placeFromEl.addEventListener('input', () => {
+        clearTimeout(detectTimer);
+        detectTimer = setTimeout(async () => {
+          const txt = placeFromEl.value.trim();
+          if(!txt) return;
+          try{
+            const a = await geocode(txt);
+            if(!a) return;
+            const cc = await reverseCountryCode(a.lat, a.lon);
+            if(cc) applyCountryDefaults(cc);
+          }catch(e){}
+        }, 600);
+      });
+
+      document.getElementById('btn-geocode').addEventListener('click', async () => {
+        const from = placeFromEl.value.trim();
+        const to = placeToEl.value.trim();
+        if(!from || !to){
+          tollInfoEl.textContent = 'Bitte Start und Ziel eingeben.';
+          tollInfoEl.classList.add('error');
+          return;
+        }
+        try{
+          const a = await geocode(from);
+          const b = await geocode(to);
+          if(!a || !b){
+            tollInfoEl.textContent = 'Ort nicht gefunden. Bitte genauer eingeben.';
+            tollInfoEl.classList.add('error');
+            return;
+          }
+
+          const ccA = await reverseCountryCode(a.lat, a.lon);
+          if(ccA) applyCountryDefaults(ccA);
+
+          clearMarkers();
+          addMarker(a.lat,a.lon,'Start: ' + a.name);
+          addMarker(b.lat,b.lon,'Ziel: ' + b.name);
+          map.fitBounds([[a.lat,a.lon],[b.lat,b.lon]], { padding:[60,60] });
+
+          const dist = haversineKm(a.lat,a.lon,b.lat,b.lon);
+          kmEl.value = Math.round(dist*10)/10;
+
+          tollInfoEl.textContent = 'Maut wird geschätzt…';
+          tollInfoEl.classList.remove('error');
+
+          const ccB = await reverseCountryCode(b.lat, b.lon);
+          const toll = await estimateTollsSimple(ccA || 'XX', ccB || ccA || 'XX', dist);
+          estimatedTollPer100 = +(toll.totalCost / dist * 100).toFixed(2);
+
+          tollInfoEl.textContent =
+            `Maut (Schätzung): ${fmtMoney(toll.totalCost)} gesamt — ca. ${fmtMoney(estimatedTollPer100)} /100 km`;
+        }catch(e){
+          tollInfoEl.textContent = 'Fehler bei Geocoding oder Maut-Schätzung. Bitte Verbindung prüfen.';
+          tollInfoEl.classList.add('error');
+        }
+      });
+
+      document.getElementById('btn-clearmap').addEventListener('click', () => {
+        clearMarkers();
+        map.setView([51.1657, 10.4515], 5);
+        placeFromEl.value = '';
+        placeToEl.value = '';
+        tollInfoEl.textContent = '';
+        tollInfoEl.classList.remove('error');
+        estimatedTollPer100 = 0;
+      });
+
+      document.getElementById('km-inc').addEventListener('click', ()=>{ const cur = parse(kmEl.value)||0; kmEl.value = Math.round((cur+1)*10)/10; });
+      document.getElementById('km-dec').addEventListener('click', ()=>{ const cur = parse(kmEl.value)||0; kmEl.value = Math.max(0, Math.round((cur-1)*10)/10); });
+
+      function estimateRunningPer100(consumptionL100){
+        if(!Number.isFinite(consumptionL100) || consumptionL100 <= 0) return 12.0;
+        const est = 1.2 * consumptionL100 + 3.5;
+        return Math.max(5, Math.min(30, Math.round(est * 10) / 10));
+      }
+
+      document.getElementById('calc-fuel').addEventListener('click', () => {
+        const km = parse(kmEl.value);
+        const v  = parse(consumptionEl.value);
+        let p    = parse(priceEl.value);
+        const passengers = Math.max(1, Math.floor(parse(passengersEl.value) || 1));
+
+        if(!Number.isFinite(p)){
+          p = (fuelPrices[fuelTypeEl.value] ?? NaN);
+        }
+
+        if(Number.isNaN(km) || km <= 0 || Number.isNaN(v) || Number.isNaN(p)){
+          priceInfoEl.textContent = 'Bitte Strecke, Verbrauch und Preis korrekt eingeben.';
+          priceInfoEl.classList.add('error');
+          return;
+        }
+        priceInfoEl.textContent = '';
+        priceInfoEl.classList.remove('error');
+
+        const liters = (km * v) / 100;
+        const costFuel = liters * p;
+
+        const runningPer100Base = estimateRunningPer100(v);
+        const runningPer100Total = runningPer100Base + (estimatedTollPer100 || 0);
+
+        const costRunning = (km * runningPer100Total) / 100;
+        const total = costFuel + costRunning;
+        const perPerson = total / passengers;
+        const avgPer100 = (total / km) * 100;
+
+        litersEl.textContent = fmt(liters).replace('.', ',') + ' L';
+        costFuelEl.textContent = fmtMoney(costFuel);
+        costRunningEl.textContent = fmtMoney(costRunning);
+        costTotalEl.textContent = fmtMoney(total);
+        costPersonEl.textContent = fmtMoney(perPerson);
+        avg100El.textContent = fmtMoney(avgPer100) + ' /100km';
+        runningEstEl.textContent = fmtMoney(runningPer100Total) + ' /100km';
+      });
+
+      document.getElementById('reset-fuel').addEventListener('click', () => {
+        kmEl.value = '';
+        consumptionEl.value = '7.5';
+        priceEl.value = '';
+        passengersEl.value = 1;
+
+        litersEl.textContent='0,00 L';
+        costFuelEl.textContent='€0,00';
+        costRunningEl.textContent='€0,00';
+        costTotalEl.textContent='€0,00';
+        costPersonEl.textContent='€0,00';
+        avg100El.textContent='€0,00 /100km';
+        runningEstEl.textContent='—';
+
+        tollInfoEl.textContent='';
+        tollInfoEl.classList.remove('error');
+        estimatedTollPer100 = 0;
+
+        priceInfoEl.textContent='';
+        priceInfoEl.classList.remove('error');
+        userEditedPrice = false;
+
+        clearMarkers();
+        map.setView([51.1657, 10.4515],5);
+      });
+
+      // Rechner
+      const num1 = document.getElementById('num1');
+      const num2 = document.getElementById('num2');
+      const result = document.getElementById('result');
+      document.querySelectorAll('[data-op]').forEach(btn =>
+        btn.addEventListener('click', () => {
+          const a = parse(num1.value), b = parse(num2.value);
+          if(Number.isNaN(a) || Number.isNaN(b)){ result.textContent = '–'; return; }
+          let res;
+          switch(btn.dataset.op){
+            case '+': res = a + b; break;
+            case '-': res = a - b; break;
+            case '*': res = a * b; break;
+            case '/': res = (b === 0 ? '∞' : a / b); break;
+          }
+          result.textContent = (typeof res === 'number') ? fmt(res).replace('.', ',') : res;
+        })
+      );
+    });
+  </script>
 </body>
 </html>
