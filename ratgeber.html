@@ -5,275 +5,160 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>Spritkosten berechnen: Formel, Beispiele & Tipps | Spritkosten-Check.de</title>
-  <meta name="description" content="Spritkosten berechnen: Formel, Beispiele (200/500/1000 km), Kosten pro km, Maut-Schätzung & Spartipps. Mit direktem Link zum Rechner." />
+  <title>Ratgeber – Sprit sparen, Verbrauch senken & Reisekosten planen</title>
+  <meta name="description" content="Ratgeber für Autofahrer: Sprit sparen, Verbrauch senken, Roadtrip planen, Maut/Vignette verstehen und CO₂ einordnen. Praktische Tipps und Checklisten." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://spritkosten-check.de/ratgeber.html" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="/favicon.ico">
 
-  <!-- (Optional) AdSense global loader: nur wenn du ihn NICHT schon überall im <head> nutzt -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
-    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg:#f6f8fa; --card:#ffffff; --muted:#4b5563; --text:#0b1220;
-      --accent:#0ea5a3; --accent-2:#4f46e5; --button-h:48px;
-      --max-width:970px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;width:100%;overflow-x:hidden}
-    body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      background:linear-gradient(180deg,var(--bg) 0%, #e9eef5 100%);color:var(--text);
-      padding:0;display:flex;flex-direction:column;min-height:100vh;}
-    header{position:sticky;top:0;z-index:1000;background:white;box-shadow:0 2px 8px rgba(15,23,42,0.08);
-      padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    .logo-title{display:flex;align-items:center;gap:12px}
-    .logo-title img{height:48px;width:auto}
-    .brand-text h1{margin:0;font-size:1.3rem;line-height:1.2;color:var(--text)}
-    .brand-text .subtitle{font-size:0.75rem;color:var(--muted);margin:0}
-    .wrap{width:100%;max-width:var(--max-width);margin:0 auto;padding:20px 16px}
-    h1{font-size:1.8rem;margin:0 0 12px 0;color:var(--text)}
-    h2{font-size:1.3rem;margin:24px 0 12px 0;color:var(--accent-2)}
-    h3{font-size:1.05rem;margin:18px 0 10px 0;color:var(--text)}
-    p{line-height:1.7;margin:12px 0;color:var(--text)}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .card{background:var(--card);border-radius:10px;padding:24px;box-shadow:0 8px 24px rgba(15,23,42,0.06);border:1px solid rgba(15,23,42,0.04);margin-bottom:20px}
-    .note{background:#f9fafb;padding:14px;border-radius:8px;margin:16px 0;border-left:4px solid var(--accent)}
-    .toc{background:#f9fafb;border:1px solid rgba(15,23,42,0.06);border-radius:10px;padding:14px;margin:14px 0}
-    .toc ul{margin:8px 0 0 18px}
-    .toc li{margin:6px 0}
-    .btn-back{
-      display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700
-    }
-    .grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin:12px 0;
-    }
-    .mini{
-      background:#f9fafb;border:1px solid rgba(15,23,42,0.06);
-      border-radius:10px;padding:14px;
-    }
-    .mini strong{color:var(--accent-2)}
-    .ad-block{margin:16px 0}
-    details{margin:10px 0}
-    summary{cursor:pointer;font-weight:700;color:var(--accent-2)}
-    footer{margin-top:auto;padding:20px 16px;text-align:center;font-size:0.85rem;color:var(--muted)}
-    footer a{color:inherit;text-decoration:none;margin:0 8px}
-    footer a:hover{text-decoration:underline}
-    @media(max-width:720px){
-      header{padding:10px 12px;flex-direction:column;align-items:flex-start}
-      .logo-title img{height:40px}
-      .brand-text h1{font-size:1.1rem}
-      .brand-text .subtitle{font-size:0.7rem}
-      h1{font-size:1.4rem}
-      h2{font-size:1.1rem}
-      .card{padding:16px}
-      .grid{grid-template-columns:1fr}
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Ratgeber: Sprit sparen, Verbrauch senken & Reisekosten planen",
+    "author":{"@type":"Person","name":"Spritkosten-Check"},
+    "publisher":{"@type":"Organization","name":"Spritkosten-Check"},
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://spritkosten-check.de/ratgeber.html"}
+  }
+  </script>
 </head>
 
-<body>
-  <header>
-    <div class="logo-title">
-      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none">
-        <img src="/logo.png" alt="Spritkostenrechner Logo" />
-        <div class="brand-text">
-          <h1>Spritkostenrechner</h1>
-          <p class="subtitle">Spritkosten-Check.de</p>
-        </div>
-      </a>
-    </div>
-  </header>
+<body data-page="ratgeber">
+  <div id="site-header"></div>
 
-  <div class="wrap">
-    <div class="card">
-      <h1>Spritkosten berechnen: So findest du deine echten Fahrtkosten</h1>
+  <div class="page-container">
 
-      <p style="margin:12px 0 20px 0;text-align:center">
-        <a href="index.html" class="btn-back">← Zurück zum Rechner</a>
-      </p>
-
+    <section class="card intro-section">
+      <h2>Ratgeber: Sprit sparen & Kosten realistisch planen</h2>
       <p>
-        Viele rechnen nur den Spritpreis – aber echte Fahrtkosten bestehen aus mehr als Benzin/Diesel.
-        Wenn du wissen willst, was eine Strecke wirklich kostet, brauchst du zusätzlich eine grobe Schätzung für
-        <strong>Verschleiß, Wertverlust, Wartung, Versicherung</strong> und ggf. <strong>Maut</strong>.
+        Hier findest du praktische Tipps, um deinen <strong>Verbrauch zu senken</strong>,
+        Fahrten besser zu planen und typische Kostenfallen (z. B. Dachbox, Tempo, Kurzstrecke) zu vermeiden.
       </p>
 
-      <div class="toc" aria-label="Inhaltsverzeichnis">
-        <strong>Inhalt</strong>
-        <ul>
-          <li><a href="#formel">1) Spritkosten-Formel (einfach)</a></li>
-          <li><a href="#beispiele">2) Beispiele: 200 / 500 / 1000 km</a></li>
-          <li><a href="#prokm">3) Kosten pro km berechnen</a></li>
-          <li><a href="#mehrkosten">4) Warum „echte Fahrtkosten“ höher sind</a></li>
-          <li><a href="#maut">5) Maut & Vignetten (Schätzung)</a></li>
-          <li><a href="#tipps">6) Spartipps: sofort weniger zahlen</a></li>
-          <li><a href="#faq">7) Kurz-FAQ</a></li>
-        </ul>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn secondary" href="#sparen">Sprit sparen</a>
+        <a class="btn secondary" href="#verbrauch">Verbrauch verstehen</a>
+        <a class="btn secondary" href="#roadtrip">Roadtrip-Checkliste</a>
+        <a class="btn secondary" href="#maut">Maut & Vignette</a>
+        <a class="btn secondary" href="#co2">CO₂ & Vergleich</a>
       </div>
+    </section>
 
-      <!-- Ad Slot: TOP (nutze deine vorhandene Top-ID oder lass weg, falls du im Ratgeber nur 2 Ads willst) -->
-      <div class="ad-block" aria-label="Anzeige">
-        <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-4852698472752437"
-          data-ad-slot="7158625008"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-
-      <h2 id="formel">1) Spritkosten-Formel (einfach)</h2>
-      <p>
-        Die klassische Rechnung für reine Kraftstoffkosten lautet:
-      </p>
-      <div class="note">
-        <strong>Formel:</strong> <br />
-        <strong>(Strecke in km × Verbrauch in L/100 km ÷ 100) × Preis pro Liter</strong>
-      </div>
-
-      <h3>Mini-Beispiel</h3>
-      <p>
-        Strecke 150 km, Verbrauch 7,0 L/100 km, Preis 1,90 €:
-        <br /><strong>(150 × 7,0 ÷ 100) × 1,90 = 19,95 €</strong>
-      </p>
-
-      <p style="text-align:center;margin:18px 0;">
-        <a href="index.html" class="btn-back">Jetzt im Rechner berechnen</a>
-      </p>
-
-      <h2 id="beispiele">2) Beispiele: 200 / 500 / 1000 km</h2>
-      <p>Damit du ein Gefühl bekommst, hier typische Distanzen (bei 7,5 L/100 km und 1,90 € pro Liter):</p>
-
-      <div class="grid">
-        <div class="mini">
-          <strong>200 km</strong><br />
-          Liter: 200 × 7,5 ÷ 100 = 15,0 L<br />
-          Spritkosten: 15,0 × 1,90 = <strong>28,50 €</strong>
-        </div>
-        <div class="mini">
-          <strong>500 km</strong><br />
-          Liter: 500 × 7,5 ÷ 100 = 37,5 L<br />
-          Spritkosten: 37,5 × 1,90 = <strong>71,25 €</strong>
-        </div>
-        <div class="mini">
-          <strong>1000 km</strong><br />
-          Liter: 1000 × 7,5 ÷ 100 = 75,0 L<br />
-          Spritkosten: 75,0 × 1,90 = <strong>142,50 €</strong>
-        </div>
-        <div class="mini">
-          <strong>Tipp</strong><br />
-          Ändere im Rechner Verbrauch & Preis – dann bekommst du sofort deine realistische Zahl.
-        </div>
-      </div>
-
-      <h2 id="prokm">3) Kosten pro km berechnen</h2>
-      <p>
-        Für Vergleiche ist „Kosten pro km“ perfekt:
-        <strong>Gesamtkosten ÷ Strecke</strong>.
-        So siehst du schnell, ob sich Auto, Bahn oder Mitfahren lohnt.
-      </p>
-      <div class="note">
-        <strong>Beispiel:</strong> 120 € Gesamtkosten bei 600 km → 120 ÷ 600 = <strong>0,20 € pro km</strong>
-      </div>
-
-      <!-- Ad Slot: MID -->
-      <div class="ad-block" aria-label="Anzeige">
-        <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-4852698472752437"
-          data-ad-slot="3355111369"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-
-      <h2 id="mehrkosten">4) Warum „echte Fahrtkosten“ höher sind</h2>
-      <p>
-        Sprit ist nur ein Teil. Viele unterschätzen vor allem:
-      </p>
-      <ul>
-        <li><strong>Wertverlust:</strong> das Auto verliert mit jedem km an Wert</li>
-        <li><strong>Wartung & Reparaturen:</strong> Inspektion, Öl, Bremsen, TÜV</li>
-        <li><strong>Reifen:</strong> je nach Fahrstil und Modell 25.000–50.000 km</li>
-        <li><strong>Versicherung & Steuer:</strong> fixe Jahreskosten</li>
-        <li><strong>Parken/Maut:</strong> besonders in Städten oder im Ausland</li>
+    <section id="sparen" class="card">
+      <h2>Sprit sparen: Die größten Hebel</h2>
+      <ul style="margin:0;padding-left:18px;line-height:1.8">
+        <li><strong>Tempo reduzieren:</strong> Ab Autobahn-Tempo steigt der Luftwiderstand stark – oft der größte Hebel.</li>
+        <li><strong>Vorausschauend fahren:</strong> Weniger Bremsen/Anfahren spart Sprit.</li>
+        <li><strong>Reifendruck prüfen:</strong> Zu niedriger Druck = mehr Rollwiderstand.</li>
+        <li><strong>Gewicht raus:</strong> Unnötige Ladung und Dachträger/Dachbox nur bei Bedarf.</li>
+        <li><strong>Motor warm fahren:</strong> Viele Kurzstrecken treiben den Durchschnitt hoch.</li>
       </ul>
 
-      <div class="note">
-        <strong>Praxis:</strong> Deshalb ist es sinnvoll, im Rechner neben Sprit auch eine grobe „laufende Kosten“-Schätzung zu betrachten.
+      <div class="two-col" style="margin-top:14px">
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Quick-Tipp: Tankstrategie</h3>
+          <p class="small" style="margin:0">
+            Wenn du flexibel bist: vermeide Tanken direkt an Autobahnen. Vergleiche Preise vorab und tanke eher in Städten/Ortschaften.
+          </p>
+        </div>
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Quick-Tipp: Fahrgemeinschaft</h3>
+          <p class="small" style="margin:0">
+            Kosten und CO₂ pro Kopf sinken stark, wenn ihr zu zweit, zu dritt oder zu viert fahrt (im Rechner: „Personen“).
+          </p>
+        </div>
       </div>
+    </section>
 
-      <h2 id="maut">5) Maut & Vignetten (Schätzung)</h2>
-      <p>
-        Mautkosten hängen stark von Land, Route und Fahrzeugklasse ab. Eine einfache Schätzung ist trotzdem hilfreich,
-        um Überraschungen zu vermeiden – besonders bei Roadtrips.
-      </p>
-      <p>
-        Unser Rechner gibt dir eine grobe Schätzung, sobald du Start/Ziel über die Karte berechnest.
-      </p>
+    <section id="verbrauch" class="card">
+      <h2>Verbrauch verstehen: Warum ist er manchmal höher?</h2>
+      <div class="two-col">
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Typische Gründe</h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.8">
+            <li>Winter/Kälte (mehr Kaltstarts, Heizung, höhere Reibung)</li>
+            <li>Stadtverkehr (Stop-and-go)</li>
+            <li>Dachbox/Dachträger (mehr Luftwiderstand)</li>
+            <li>Zu niedriger Reifendruck</li>
+            <li>Beladung / Anhänger</li>
+          </ul>
+        </div>
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">So findest du deinen echten Verbrauch</h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.8">
+            <li>Mehrere Tankfüllungen tracken</li>
+            <li>Durchschnitt statt Einzelwert</li>
+            <li>Trenne „Stadt“ und „Autobahn“ im Kopf</li>
+            <li>Bordcomputer ist okay – Tankmethode ist genauer</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-      <h2 id="tipps">6) Spartipps: sofort weniger zahlen</h2>
-      <ul>
-        <li><strong>Reifendruck prüfen:</strong> zu niedriger Druck erhöht Verbrauch</li>
-        <li><strong>Konstant fahren:</strong> starkes Beschleunigen kostet richtig Sprit</li>
-        <li><strong>Gewicht reduzieren:</strong> unnötiges Gepäck raus</li>
-        <li><strong>Vergleiche Tankstellen:</strong> oft 10–20 Cent Unterschied</li>
-        <li><strong>Mitfahrer:</strong> Kosten pro Person sinken sofort</li>
+    <section id="roadtrip" class="card">
+      <h2>Roadtrip-Checkliste (10 Minuten, die sich lohnen)</h2>
+      <ol style="margin:0;padding-left:18px;line-height:1.8">
+        <li>Reifendruck (kalt) prüfen</li>
+        <li>Ölstand/Waschwasser checken</li>
+        <li>Dachbox nur montieren, wenn nötig</li>
+        <li>Route + Alternativen checken (Stau/Maut vermeiden?)</li>
+        <li>Vignettenpflicht für Länder auf der Route prüfen</li>
+        <li>Realistischen Verbrauch eintragen (nicht Prospekt)</li>
+        <li>Aktuellen Spritpreis nutzen oder Durchschnitt als Planung</li>
+        <li>Kosten pro Person festlegen (Carsharing-Style: fair teilen)</li>
+        <li>Notfall-Set: Warndreieck, Weste, Verbandskasten</li>
+        <li>Kurzer Pausenplan (konstanter Fahrstil = weniger Verbrauch)</li>
+      </ol>
+
+      <div style="margin-top:16px;display:flex;justify-content:center">
+        <a class="btn large" href="/">Zum Spritkosten-Rechner</a>
+      </div>
+    </section>
+
+    <section id="maut" class="card">
+      <h2>Maut & Vignette: Schnell erklärt</h2>
+      <p class="small" style="margin-top:0;line-height:1.7">
+        In Europa gibt es je nach Land unterschiedliche Systeme: streckenabhängige Maut (z. B. Autobahnabschnitte)
+        oder Vignetten (Fixbetrag). Auf deiner Startseite zeigt der Rechner eine <strong>grobe</strong> Schätzung – für exakte Beträge zählen Route, Klasse und Regeln.
+      </p>
+      <ul style="margin:0;padding-left:18px;line-height:1.8">
+        <li><strong>Vignette:</strong> meist Fixpreis, oft zeitgebunden (z. B. 10 Tage / 1 Jahr)</li>
+        <li><strong>Maut:</strong> abhängig von Strecke/Abschnitt, manchmal Fahrzeugklasse</li>
+        <li><strong>Tipp:</strong> bei Grenzfahrten Vignetten früh planen, um Stress zu vermeiden</li>
       </ul>
+    </section>
 
-      <p style="text-align:center;margin:18px 0;">
-        <a href="index.html" class="btn-back">Zurück zum Rechner</a>
+    <section id="co2" class="card">
+      <h2>CO₂: Was bedeuten die Werte?</h2>
+      <p class="small" style="margin-top:0;line-height:1.7">
+        Der CO₂-Block ist eine <strong>Näherung</strong>, damit du schnell ein Gefühl bekommst. Der Wert pro Person sinkt stark, wenn ihr zu mehreren im Auto sitzt.
       </p>
+      <ul style="margin:0;padding-left:18px;line-height:1.8">
+        <li>CO₂ steigt direkt mit Verbrauch und Strecke</li>
+        <li>Fahrgemeinschaft senkt CO₂ pro Kopf</li>
+        <li>Vergleich Auto/Bahn/Flug sind Richtwerte zur Einordnung</li>
+      </ul>
+    </section>
 
-      <h2 id="faq">7) Kurz-FAQ</h2>
-      <details>
-        <summary>Warum weicht mein Ergebnis von anderen Rechnern ab?</summary>
-        <p>Weil Verbrauch, Preis, Route und Zusatzkosten unterschiedlich sind. Der wichtigste Faktor ist dein realer Verbrauch.</p>
-      </details>
-      <details>
-        <summary>Welche Verbrauchswerte soll ich nutzen?</summary>
-        <p>Am besten deinen echten Durchschnitt aus Bordcomputer/Apps. WLTP-Werte sind oft optimistischer.</p>
-      </details>
-      <details>
-        <summary>Kann ich auch Elektro-Kosten berechnen?</summary>
-        <p>Aktuell ist der Rechner auf Kraftstoff ausgelegt. Du kannst aber „Preis pro Liter“ als groben Ersatz nutzen – besser ist ein eigener E-Auto Rechner (kann ich dir bauen).</p>
-      </details>
+    <div id="site-footer"></div>
 
-      <!-- Ad Slot: BOTTOM -->
-      <div class="ad-block" aria-label="Anzeige">
-        <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-4852698472752437"
-          data-ad-slot="3048839661"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-
-      <p style="margin-top:18px;font-size:0.9rem;color:var(--muted)">
-        Stand: Dezember 2025. Alle Werte sind Schätzungen und ersetzen keine individuellen Preis- oder Routenangaben.
-      </p>
+    <!-- Name ganz unten, sehr unauffällig (wie du wolltest) -->
+    <div class="small" style="text-align:center;opacity:.35;margin:14px 0 22px 0">
+      Dominik Fisher
     </div>
   </div>
 
-  <footer>
-    <a href="ratgeber.html">Ratgeber</a> |
-    <a href="faq.html">FAQ</a> |
-    <a href="contact.html">Kontakt</a> |
-    <a href="impressum.html">Impressum</a> |
-    <a href="datenschutz.html">Datenschutz</a>
-    <div style="margin-top:20px;font-size:0.7rem;opacity:0.4;color:var(--muted)">Spritkosten-Check.de</div>
-  </footer>
+  <script src="/assets/js/loader.js"></script>
 </body>
 </html>
