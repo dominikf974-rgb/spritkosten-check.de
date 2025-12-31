@@ -3,71 +3,50 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
   <title>FAQ – Spritkosten-Check</title>
-  <meta name="description" content="FAQ zum Spritkosten-Rechner: Spritkosten berechnen, Kosten pro Person, Verbrauch, Maut/Vignette und häufige Fragen." />
-  <meta name="robots" content="index, follow" />
 
-  <link rel="canonical" href="https://spritkosten-check.de/faq.html" />
-
-  <!-- Icons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="icon" href="/favicon.ico">
-
-  <!-- ✅ RICHTIGER CSS PFAD -->
   <link rel="stylesheet" href="/assets/css/style.css?v=2026-01" />
 </head>
 
 <body data-page="faq">
-  <!-- ✅ Header Partial wird hier reingeladen -->
+  <!-- Debug-Hinweis (siehst du sofort, ob HTML aktuell ist) -->
+  <div style="padding:8px 12px;background:#fff3cd;border:1px solid #ffeeba;margin:10px;border-radius:8px;font-family:system-ui">
+    FAQ geladen ✅ (wenn du das siehst, ist diese Datei aktiv)
+  </div>
+
+  <!-- WICHTIG: diese IDs müssen exakt so heißen -->
   <div id="site-header"></div>
 
   <div class="page-container">
-    <section class="card intro-section" aria-label="FAQ Einleitung">
-      <h2>FAQ – Häufige Fragen</h2>
-      <p>Antworten rund um Spritkosten, Verbrauch, Kosten pro Person, Maut & Vignette.</p>
+    <section class="card intro-section">
+      <h2>FAQ</h2>
+      <p>Wenn du das Layout siehst, lädt CSS. Wenn Header/Footer fehlen, lädt loader nicht.</p>
     </section>
 
-    <main aria-label="FAQ Inhalt">
-      <section class="card faq-section" aria-label="FAQ Liste">
-        <details class="faq-item">
-          <summary>Wie berechne ich Spritkosten?</summary>
-          <p><strong>Spritkosten</strong> = (km × Verbrauch ÷ 100) × Preis pro Liter.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Wie berechne ich Kosten pro Person?</summary>
-          <p><strong>Pro Person</strong> = Gesamtkosten ÷ Anzahl Personen (inkl. Fahrer).</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
-          <p>Gib die Kilometer ein, die du wirklich fährst (einfach oder hin &amp; zurück).</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Wie genau sind Maut/Vignetten?</summary>
-          <p>Das ist eine grobe Schätzung. Reale Kosten hängen von Route, Fahrzeugklasse und Regeln ab.</p>
-        </details>
-      </section>
-
-      <section class="card" aria-label="Weiter">
-        <div class="big-action">
-          <a class="btn large" href="/">Zum Spritkosten-Rechner</a>
-          <a class="btn secondary large" href="/ratgeber.html">Zum Ratgeber</a>
-        </div>
-      </section>
-    </main>
+    <section class="card faq-section">
+      <details class="faq-item">
+        <summary>Test</summary>
+        <p>Wenn Header/Footer danach erscheinen, passt alles.</p>
+      </details>
+    </section>
   </div>
 
-  <!-- ✅ Footer Partial wird hier reingeladen -->
   <div id="site-footer"></div>
 
-  <!-- ✅ RICHTIGER LOADER PFAD -->
+  <!-- WICHTIG: richtiger Pfad -->
   <script src="/assets/js/loader.js?v=2026-01"></script>
+
+  <!-- Debug: zeigt dir direkt auf der Seite ob loader überhaupt läuft -->
+  <script>
+    setTimeout(() => {
+      const h = document.querySelector("header.site-header");
+      const f = document.querySelector("footer");
+      const msg = document.createElement("div");
+      msg.style.cssText = "padding:8px 12px;background:#e6ffed;border:1px solid #b7ebc6;margin:10px;border-radius:8px;font-family:system-ui";
+      msg.textContent =
+        "Loader-Check: header=" + (h ? "OK" : "FEHLT") + " | footer=" + (f ? "OK" : "FEHLT");
+      document.body.appendChild(msg);
+    }, 1200);
+  </script>
 </body>
 </html>
