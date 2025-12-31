@@ -1,62 +1,89 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>FAQ – Spritkosten-Check</title>
+<section class="card faq-section" aria-label="FAQ">
+  <h2>FAQ – Häufige Fragen</h2>
+  <p class="small" style="margin-top:0">
+    Hier findest du die wichtigsten Antworten rund um Spritkosten, Verbrauch, Route, Maut/Vignette und Kostenaufteilung.
+  </p>
 
-  <meta name="description" content="FAQ zum Spritkosten-Rechner: Spritkosten berechnen, Kosten pro Person, Verbrauch, Maut/Vignette und häufige Fragen." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://spritkosten-check.de/faq.html" />
+  <details class="faq-item">
+    <summary>Wie berechnet sich der Spritverbrauch (Liter gesamt)?</summary>
+    <p>Formel: <strong>Liter = Strecke (km) × Verbrauch (L/100 km) ÷ 100</strong>. Der Rechner übernimmt das automatisch und zeigt dir die Liter gesamt an.</p>
+  </details>
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=2026-01" />
-</head>
+  <details class="faq-item">
+    <summary>Wie berechne ich Spritkosten pro 100 km?</summary>
+    <p>Der Rechner zeigt dir „€/100 km“ automatisch: <strong>Gesamtkosten ÷ Strecke × 100</strong>. So kannst du Strecken schnell vergleichen.</p>
+  </details>
 
-<body data-page="faq">
-  <div id="site-header"></div>
+  <details class="faq-item">
+    <summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
+    <p>Beides möglich: Gib die tatsächlich gefahrenen Kilometer ein. Für Hin- &amp; Rückfahrt kannst du die Strecke einfach verdoppeln.</p>
+  </details>
 
-  <div class="page-container">
-    <section class="card intro-section" aria-label="FAQ Einleitung">
-      <h2>FAQ – Häufige Fragen</h2>
-      <p>Antworten rund um Spritkosten, Verbrauch, Kosten pro Person, Maut &amp; Vignette.</p>
-    </section>
+  <details class="faq-item">
+    <summary>Was ist der Unterschied zwischen „Spritkosten“ und „Laufende Kosten“?</summary>
+    <p><strong>Spritkosten</strong> = nur Kraftstoff. <strong>Laufende Kosten</strong> sind eine Schätzung für Wartung, Reifen, Versicherung, Wertverlust und ggf. Maut/Vignette (je nach deiner Seite/Version).</p>
+  </details>
 
-    <main aria-label="FAQ Inhalt">
-      <section class="card faq-section" aria-label="FAQ Liste">
+  <details class="faq-item">
+    <summary>Wie genau sind die Maut- und Vignettenwerte?</summary>
+    <p>Das sind <strong>Schätzwerte</strong> nach Ländern. Reale Kosten hängen von Route, Fahrzeugklasse, lokalen Regeln und Mautsystemen ab. Für exakte Werte empfehlen wir offizielle Mautrechner oder Betreiber-Websites.</p>
+  </details>
 
-        <details class="faq-item">
-          <summary>Wie berechne ich Spritkosten?</summary>
-          <p><strong>Spritkosten</strong> = (km × Verbrauch ÷ 100) × Preis pro Liter.</p>
-        </details>
+  <details class="faq-item">
+    <summary>Warum unterscheidet sich die berechnete Strecke von Google Maps?</summary>
+    <p>Je nach Routing-Dienst (z. B. OSRM/OpenStreetMap vs. Google) können Route, Regeln (Maut vermeiden, Autobahn bevorzugen) und Streckenführung leicht abweichen.</p>
+  </details>
 
-        <details class="faq-item">
-          <summary>Wie berechne ich Kosten pro Person?</summary>
-          <p><strong>Pro Person</strong> = Gesamtkosten ÷ Anzahl Personen (inkl. Fahrer).</p>
-        </details>
+  <details class="faq-item">
+    <summary>Kann ich den Spritpreis manuell ändern?</summary>
+    <p>Ja. Du kannst den Preis pro Liter frei überschreiben. Der „Auf Standard zurücksetzen“-Button setzt ihn wieder auf den erkannten/Standardwert.</p>
+  </details>
 
-        <details class="faq-item">
-          <summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
-          <p>Gib die Kilometer ein, die du wirklich fährst (einfach oder hin &amp; zurück).</p>
-        </details>
+  <details class="faq-item">
+    <summary>Welche Kraftstoffarten unterstützt der Rechner?</summary>
+    <p>Typisch: Benzin (E10/91), Super (E5/95) und Diesel. Je nach Seite können die Bezeichnungen leicht variieren.</p>
+  </details>
 
-        <details class="faq-item">
-          <summary>Wie genau sind Maut/Vignetten?</summary>
-          <p>Das ist eine grobe Schätzung. Reale Kosten hängen von Route, Fahrzeugklasse und Regeln ab.</p>
-        </details>
+  <details class="faq-item">
+    <summary>Wie teile ich die Kosten fair auf Mitfahrer auf?</summary>
+    <p>Trage bei „Personen“ alle Mitfahrenden inkl. Fahrer ein. Der Rechner zeigt dir dann <strong>Kosten pro Person</strong>.</p>
+  </details>
 
-      </section>
+  <details class="faq-item">
+    <summary>Was bedeutet „CO₂-Bilanz“ und wie wird sie geschätzt?</summary>
+    <p>Das ist eine Näherung basierend auf dem Kraftstoffverbrauch. Für Benzin und Diesel werden typische kg-CO₂/Liter Faktoren verwendet. Es ist eine Orientierung, keine wissenschaftliche Messung.</p>
+  </details>
 
-      <section class="card" aria-label="Weiter">
-        <div class="big-action">
-          <a class="btn large" href="/">Zum Spritkosten-Rechner</a>
-          <a class="btn secondary large" href="/ratgeber.html">Zum Ratgeber</a>
-        </div>
-      </section>
-    </main>
+  <details class="faq-item">
+    <summary>Warum ist der Verbrauch meines Autos in echt höher?</summary>
+    <p>Verbrauch hängt stark ab von Tempo, Beladung, Reifen, Klima, Wetter, Stau und Fahrstil. Für realistische Werte nimm am besten deinen Langzeitverbrauch.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Kann ich den Rechner auch für Motorrad / Transporter nutzen?</summary>
+    <p>Ja, solange du den passenden Verbrauch (L/100 km) und Spritpreis eingibst. Für spezielle Mautklassen sind die Schätzwerte aber ggf. ungenau.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Werden meine Start-/Zielorte gespeichert?</summary>
+    <p>Normalerweise nicht. Die Orte werden nur genutzt, um Strecke/Route zu berechnen. (Wenn du Tracking nutzt, musst du das in der Datenschutzerklärung sauber erklären.)</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Warum sehe ich keine Werbung / warum sehe ich Werbung?</summary>
+    <p>Werbung (z. B. AdSense) wird nur geladen, wenn du zugestimmt hast. Wenn du abgelehnt hast, sollte keine Werbung erscheinen.</p>
+  </details>
+
+  <hr style="border:0;border-top:1px solid rgba(15,23,42,0.10); margin:16px 0;">
+
+  <h3 style="margin:0 0 6px 0; color:var(--accent-2);">Noch Fragen?</h3>
+  <p class="small" style="margin-top:0">
+    Schreib uns gerne eine E-Mail: <strong>info@spritkosten-check.de</strong>
+  </p>
+
+  <div class="big-action" style="margin-top:10px;">
+    <a class="btn secondary btn-ghost" href="/">Zum Spritkosten-Rechner</a>
+    <a class="btn secondary btn-ghost" href="mailto:info@spritkosten-check.de?subject=Frage%20zu%20Spritkosten-Check&body=Hallo%20Team%2C%0A%0Aich%20habe%20eine%20Frage%3A%20"
+      aria-label="E-Mail an info@spritkosten-check.de">E-Mail schreiben</a>
   </div>
-
-  <div id="site-footer"></div>
-
-  <script src="/assets/js/loader.js?v=2026-01"></script>
-</body>
-</html>
+</section>
