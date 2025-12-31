@@ -1,135 +1,55 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAQ – Spritkosten-Rechner</title>
+<meta name="description" content="Antworten auf häufige Fragen zum Spritkosten-Rechner, Maut, CO₂-Bilanz, Verbrauch & Reisekosten.">
 
-  <title>FAQ – Spritkosten-Check</title>
-  <meta name="description" content="FAQ zum Spritkosten-Rechner: Verbrauch, Spritkosten, Maut/Vignette, Route, CO₂ und Kostenaufteilung. Antworten + Kontakt per E-Mail." />
-  <meta name="robots" content="index, follow" />
-
-  <link rel="canonical" href="https://spritkosten-check.de/faq.html" />
-
-  <!-- Icons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="icon" href="/favicon.ico">
-
-  <!-- ✅ GLOBAL CSS (WICHTIG: sonst keine Farben/kein Layout) -->
-  <link rel="stylesheet" href="/assets/css/style.css?v=2026-1">
-
-  <!-- FAQ: Buttons neutral, erst Hover türkis (nur auf FAQ Seite) -->
-  <style>
-    .btn-ghost{
-      background:#ffffff !important;
-      color:var(--accent-2) !important;
-      border:1px solid rgba(15,23,42,0.12) !important;
-      box-shadow:none !important;
-    }
-    .btn-ghost:hover{
-      border-color:rgba(14,165,163,0.55) !important;
-      box-shadow:0 0 0 4px rgba(14,165,163,0.18) !important;
-      background:rgba(14,165,163,0.06) !important;
-      color:var(--accent-2) !important;
-    }
-  </style>
+<link rel="stylesheet" href="/assets/css/style.css">
+<script src="/assets/js/loader.js" defer></script>
 </head>
 
 <body data-page="faq">
 
-  <!-- ✅ Header wird per loader.js hier reingeladen -->
-  <div id="site-header"></div>
+<div id="site-header"></div>
 
-  <div class="page-container">
+<div class="page-container">
 
-    <section class="card intro-section" aria-label="FAQ Einführung">
-      <h2>FAQ – Häufige Fragen</h2>
-      <p class="small" style="margin-top:0">
-        Hier findest du schnelle Antworten rund um Spritkosten, Verbrauch, Route, Maut/Vignette, CO₂ und Kostenaufteilung.
-      </p>
-    </section>
+<section class="card">
+<h1 style="margin-top:0">Häufige Fragen (FAQ)</h1>
 
-    <main aria-label="FAQ Inhalte">
+<details class="faq-item"><summary>Wie berechne ich die Liter?</summary><p>Liter = Kilometer × Verbrauch ÷ 100.</p></details>
+<details class="faq-item"><summary>Was bedeutet L/100 km?</summary><p>Wie viele Liter dein Auto auf 100 km verbraucht.</p></details>
+<details class="faq-item"><summary>Kann ich Hin- und Rückfahrt berechnen?</summary><p>Ja, einfach die gesamte Kilometerzahl eingeben.</p></details>
+<details class="faq-item"><summary>Wie werden Spritpreise bestimmt?</summary><p>Entweder automatisch nach Land oder manuell von dir.</p></details>
+<details class="faq-item"><summary>Warum unterscheiden sich Preise je Land?</summary><p>Steuern und Abgaben sind in jedem Land unterschiedlich.</p></details>
+<details class="faq-item"><summary>Wie genau ist die Maut-Schätzung?</summary><p>Sie ist eine Näherung nach Ländern & Strecke.</p></details>
+<details class="faq-item"><summary>Was zählt zu laufenden Kosten?</summary><p>Wartung, Reifen, Versicherung, Wertverlust & Maut/Vignette.</p></details>
+<details class="faq-item"><summary>Wie teile ich die Kosten pro Person?</summary><p>Personenzahl erhöhen – der Rechner teilt automatisch.</p></details>
+<details class="faq-item"><summary>Wie wird die CO₂-Bilanz berechnet?</summary><p>Aus deinem Verbrauch mit offiziellen Emissionswerten.</p></details>
+<details class="faq-item"><summary>Ist der Rechner kostenlos?</summary><p>Ja – dauerhaft kostenlos & ohne Anmeldung.</p></details>
+<details class="faq-item"><summary>Funktioniert der Rechner weltweit?</summary><p>Ja, weltweit mit Länder- & Routen-Erkennung.</p></details>
+<details class="faq-item"><summary>Warum weicht mein Realverbrauch ab?</summary><p>Fahrstil, Geschwindigkeit, Wetter & Gewicht beeinflussen ihn.</p></details>
+<details class="faq-item"><summary>Kann ich Diesel und Benzin vergleichen?</summary><p>Ja, beides wird unterstützt.</p></details>
+<details class="faq-item"><summary>Was passiert bei Länderwechsel?</summary><p>Der Rechner mischt automatisch die Preise.</p></details>
+<details class="faq-item"><summary>Gibt es CO₂-Vergleiche?</summary><p>Ja, Bahn & Flug werden mit angezeigt.</p></details>
 
-      <section class="card faq-section" aria-label="FAQ Liste">
-        <details class="faq-item">
-          <summary>Wie berechnet sich der Spritverbrauch (Liter gesamt)?</summary>
-          <p><strong>Liter = Strecke (km) × Verbrauch (L/100 km) ÷ 100</strong>. Der Rechner zeigt dir die Liter automatisch an.</p>
-        </details>
+<hr style="margin:18px 0">
 
-        <details class="faq-item">
-          <summary>Wie berechne ich Spritkosten pro 100 km?</summary>
-          <p>Der Rechner zeigt dir „€/100 km“ automatisch: <strong>Gesamtkosten ÷ Strecke × 100</strong>.</p>
-        </details>
+<h3 style="color:var(--accent-2)">Weitere Fragen?</h3>
+<p class="small">Schreiben Sie uns gerne: <b>info@spritkosten-check.de</b></p>
 
-        <details class="faq-item">
-          <summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
-          <p>Beides. Gib die tatsächlichen Kilometer ein. Für Hin- &amp; Rückfahrt kannst du die Strecke einfach verdoppeln.</p>
-        </details>
+<div class="big-action">
+  <a class="btn large" href="/">Zum Spritkosten-Rechner</a>
+  <a class="btn large" href="mailto:info@spritkosten-check.de">E-Mail schreiben</a>
+</div>
 
-        <details class="faq-item">
-          <summary>Was ist der Unterschied zwischen „Spritkosten“ und „Laufende Kosten“?</summary>
-          <p><strong>Spritkosten</strong> = nur Kraftstoff. <strong>Laufende Kosten</strong> sind eine Schätzung für Wartung, Reifen, Versicherung und Wertverlust (plus ggf. Maut/Vignette-Schätzung).</p>
-        </details>
+</section>
 
-        <details class="faq-item">
-          <summary>Wie genau sind Maut- und Vignettenwerte?</summary>
-          <p>Das sind <strong>Schätzwerte</strong> nach Ländern. Reale Kosten hängen von Route, Fahrzeugklasse und lokalen Regeln ab.</p>
-        </details>
+</div>
 
-        <details class="faq-item">
-          <summary>Warum weicht die Strecke manchmal von Google Maps ab?</summary>
-          <p>Je nach Routing-Dienst können Route und Regeln (Autobahn, Maut, etc.) leicht variieren.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Kann ich den Spritpreis manuell ändern?</summary>
-          <p>Ja. Du kannst den Preis pro Liter überschreiben und jederzeit wieder auf Standard zurücksetzen.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Wie teile ich die Kosten fair auf Mitfahrer auf?</summary>
-          <p>Trage bei „Personen“ alle Mitfahrenden inkl. Fahrer ein. Der Rechner zeigt dir dann <strong>Kosten pro Person</strong>.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Wie wird die CO₂-Bilanz geschätzt?</summary>
-          <p>Die CO₂-Bilanz ist eine Näherung basierend auf deinem Verbrauch und typischen Emissionsfaktoren pro Liter Kraftstoff.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Warum ist mein Realverbrauch höher als im Rechner?</summary>
-          <p>Fahrstil, Tempo, Beladung, Klima, Wetter und Stau verändern den Verbrauch stark. Nutze am besten deinen Langzeitverbrauch.</p>
-        </details>
-
-        <hr style="border:0;border-top:1px solid rgba(15,23,42,0.10); margin:16px 0;">
-
-        <h3 style="margin:0 0 6px 0; color:var(--accent-2);">Noch Fragen?</h3>
-        <p class="small" style="margin-top:0">
-          Schreib uns gerne an: <strong>info@spritkosten-check.de</strong>
-        </p>
-
-        <div class="big-action" style="margin-top:10px;">
-          <a class="btn secondary btn-ghost" href="/">Zum Spritkosten-Rechner</a>
-          <a class="btn secondary btn-ghost"
-             href="mailto:info@spritkosten-check.de?subject=Frage%20zu%20Spritkosten-Check&body=Hallo%20Team%2C%0A%0Aich%20habe%20eine%20Frage%3A%20">
-            E-Mail schreiben
-          </a>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- ✅ Footer wird per loader.js hier reingeladen -->
-    <div id="site-footer"></div>
-
-  </div>
-
-  <!-- ✅ loader.js muss geladen werden, sonst kein header/footer -->
-  <script src="/assets/js/loader.js"></script>
+<div id="site-footer"></div>
 
 </body>
 </html>
