@@ -539,49 +539,83 @@ header{
   margin-bottom:0;
 }
 
-/* ===== High-Conversion Cookie Banner ===== */
-#cookieBanner {
+/* ===== Cookie Banner (Site-Look, etwas dicker) ===== */
+#cookieBanner{
   position: fixed !important;
-  bottom: 0;
   left: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.75);
+  right: 0;
+  bottom: 14px;
   z-index: 99999;
-  padding: 16px 12px;
-  box-shadow: 0 -6px 20px rgba(0,0,0,0.4);
+  background: transparent;           /* kein schwarzer Overlay */
+  padding: 0 12px;
+  pointer-events: none;              /* nur Innenbox klickbar */
 }
 
-#cookieBanner .row {
-  max-width: 1200px;
+#cookieBanner .row{
+  pointer-events: auto;
+  max-width: 1100px;
   margin: 0 auto;
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px;
+  background: rgba(255,255,255,0.96); /* leicht “soft”, aber im Site-Look */
+  border: 1px solid rgba(15,23,42,0.10);
+  border-radius: 14px;
+  padding: 18px 16px;               /* dicker */
   display: flex;
   gap: 14px;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  box-shadow: 0 12px 30px rgba(15,23,42,0.18);
+  backdrop-filter: blur(6px);
 }
 
-#cookieBanner .txt {
-  color: #111;
+#cookieBanner .txt{
+  color: inherit;                    /* übernimmt deine Site-Farbe */
   font-size: 14px;
+  line-height: 1.35;
 }
 
-#cookieBanner .actions button.accept {
-  background: linear-gradient(135deg,#00b894,#00cec9);
+#cookieBanner .actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Akzeptieren: nutzt deinen türkisen Button-Look */
+#cookieBanner .actions button.accept{
+  background: var(--accent, #00b894);
   color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 20px;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
   font-weight: 700;
   cursor: pointer;
 }
 
-#cookieBanner .actions button.reject {
-  background: #f1f1f1;
-  border-radius: 10px;
-  padding: 10px 16px;
+/* Ablehnen: neutral / ohne Farbe */
+#cookieBanner .actions button.reject{
+  background: transparent;
+  color: inherit;
+  border: 1px solid rgba(15,23,42,0.18);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
+/* Mobile: untereinander, damit nichts gequetscht ist */
+@media (max-width: 720px){
+  #cookieBanner{
+    bottom: 10px;
+  }
+  #cookieBanner .row{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 14px;
+  }
+  #cookieBanner .actions{
+    width: 100%;
+  }
+  #cookieBanner .actions button{
+    width: 100%;
+  }
+}
