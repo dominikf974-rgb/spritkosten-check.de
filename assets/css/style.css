@@ -501,4 +501,16 @@ footer a:hover{ text-decoration:underline; }
     margin-top:0;
   }
 }
+/* ===== ABSOLUTE NOTBREMSE: HEADER DARF NIEMALS STICKY SEIN ===== */
+.site-header,
+header.site-header,
+header{
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  z-index: auto !important;
+}
 
