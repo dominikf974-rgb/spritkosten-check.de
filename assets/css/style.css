@@ -1,3 +1,9 @@
+/* =========================================================
+   Spritkosten-Check – CLEAN STYLE.CSS (2026)
+   - Header: niemals sticky/fixed
+   - Cookie Banner: ein System, full width, dark, 2 buttons
+   ========================================================= */
+
 /* Global Font 2026 */
 *{
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -26,55 +32,31 @@ body{
   background:transparent;
 }
 
-/* =========================
-   HEADER: 100% KEIN STICKY
-   ========================= */
+/* =========================================================
+   HEADER (normal flow, niemals sticky/fixed)
+   ========================================================= */
 
-/* Kill sticky/fixed on any likely header/nav element */
-header,
-.site-header,
+/* Nur die relevanten Elemente killen (nicht #site-header * !) */
 #site-header,
-#masthead,
-.navbar,
-.navbar-sticky,
-.header,
-.topbar{
+#site-header header.site-header,
+header.site-header{
   position: static !important;
-  inset: auto !important;         /* top/right/bottom/left reset */
   top: auto !important;
-  right: auto !important;
   bottom: auto !important;
   left: auto !important;
-  transform: none !important;
-  z-index: auto !important;
-}
-
-/* If frameworks/classes add sticky/fixed, neutralize them */
-.sticky,
-.is-sticky,
-.sticky-top,
-.fixed,
-.fixed-top,
-.header-fixed,
-.navbar-fixed{
-  position: static !important;
+  right: auto !important;
   inset: auto !important;
-  top: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  left: auto !important;
   transform: none !important;
   z-index: auto !important;
 }
 
-/* Your actual header styling (still normal flow) */
+/* Optik Header */
 .site-header{
   width:100%;
   background:#fff;
   border-bottom:1px solid rgba(15,23,42,0.06);
 }
 
-/* Header content */
 .header-inner{
   width:100%;
   max-width:none;
@@ -99,7 +81,7 @@ header,
 .logo-title img{ height:54px; width:auto; display:block; }
 
 .site-title{
-  font-family:'Poppins', Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  font-family:'Poppins', Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight:700;
   font-size:18px;
   white-space:nowrap;
@@ -148,9 +130,10 @@ header,
   background:#eef2ff;
 }
 
-/* =========================
+/* =========================================================
    Container / Cards
-   ========================= */
+   ========================================================= */
+
 .page-container{
   width:100%;
   max-width: min(var(--maxw), 94vw);
@@ -160,6 +143,7 @@ header,
   flex-direction:column;
   gap:18px;
 }
+
 @media (min-width: 992px){
   .page-container{ padding-left:24px; padding-right:24px; padding-top:24px; }
 }
@@ -191,7 +175,10 @@ header,
   .layout{grid-template-columns:1fr}
 }
 
-/* Form */
+/* =========================================================
+   Form
+   ========================================================= */
+
 label{
   display:block;
   margin:.5rem 0 .25rem 0;
@@ -256,24 +243,16 @@ input[type="number"], input[type="text"], select{
   flex-wrap:wrap
 }
 
-@media(max-width:720px){
-  .big-action{flex-direction:column}
-  .btn{width:100%}
-  .header-inner{padding:10px 12px}
-  .site-title{max-width:160px;}
-  .tablink, .lang-link{height:42px;padding:.5rem .7rem;font-size:.9rem}
-}
-@media(max-width:420px){
-  .site-title{display:none;}
-}
-
 /* Helper text */
 .small{font-size:.9rem;color:var(--muted)}
 .hint{font-size:.85rem;color:var(--accent);margin-top:4px;min-height:18px;display:block}
 .hint.error{color:#e53e3e}
 .error{color:#e53e3e}
 
-/* Price section */
+/* =========================================================
+   Price section
+   ========================================================= */
+
 .price-input-group{
   display:grid;
   grid-template-columns: 1fr auto;
@@ -284,7 +263,12 @@ input[type="number"], input[type="text"], select{
 @media(max-width:720px){
   .price-input-group{ grid-template-columns:1fr; }
 }
-.reset-price-btn{ height:44px; padding:0 14px; white-space:nowrap; }
+
+.reset-price-btn{
+  height:44px;
+  padding:0 14px;
+  white-space:nowrap;
+}
 
 .price-table{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
 .price-card{
@@ -336,12 +320,15 @@ input[type="number"], input[type="text"], select{
   display:flex;
   justify-content:space-between;
   gap:10px;
-  padding:6px 0;
+  padding:8px 0;
   border-bottom:1px dashed rgba(15,23,42,0.10);
   font-size:.92rem;
+  align-items:baseline;
 }
 .thinbox .line:last-child{border-bottom:0}
 .mono{font-variant-numeric:tabular-nums;}
+
+#toll-info{ margin:0 !important; }
 
 /* Price mode */
 .price-mode{
@@ -361,21 +348,40 @@ input[type="number"], input[type="text"], select{
 .pill input{margin:0}
 .country-badge{margin-top:8px; min-height:18px; font-size:.85rem; color:var(--muted);}
 
-/* Map */
-.map-col{display:flex;flex-direction:column;gap:10px}
+/* =========================================================
+   Map (stabil)
+   ========================================================= */
+
+.map-col{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  height:100%;
+  min-height:0;
+}
+
 #map{
   width:100%;
   height:520px;
-  min-height:320px;
+  min-height:380px;
   border-radius:10px;
   border:1px solid rgba(15,23,42,0.10);
   background:#fff;
-}
-@media(max-width:980px){
-  #map{height:260px !important;}
+  flex:1 1 auto;
 }
 
-/* FAQ */
+@media(max-width:980px){
+  #map{
+    flex: 0 0 auto;
+    height:260px !important;
+    min-height:260px;
+  }
+}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+
 .faq-item{margin:10px 0}
 .faq-item summary{
   cursor:pointer;
@@ -388,90 +394,16 @@ input[type="number"], input[type="text"], select{
 .faq-item summary:hover{background:rgba(79,70,229,0.12)}
 .faq-item p{margin:10px 0 0 0;line-height:1.6}
 
+/* Ads */
 .ad-block{ margin:0; }
 
 /* Two col */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:980px){ .two-col{grid-template-columns:1fr} }
 
-/* Footer */
-footer, footer *{ color:#000 !important; opacity:1 !important; }
-footer{ padding:18px 0 30px 0; }
-footer a{ text-decoration:none; }
-footer a:hover{ text-decoration:underline; }
-
-/* Consent Banner */
-#consentBanner{
-  position:fixed;
-  left:14px; right:14px; bottom:14px;
-  background:#fff;
-  border:1px solid rgba(15,23,42,0.12);
-  border-radius:14px;
-  box-shadow:0 18px 40px rgba(0,0,0,.15);
-  padding:12px 12px;
-  z-index:2147483647;
-  display:none;
-}
-#consentBanner .row{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap
-}
-#consentBanner .txt{
-  flex:1;
-  min-width:260px;
-  color:var(--muted);
-  font-size:.92rem;
-  line-height:1.5
-}
-#consentBanner .actions{display:flex;gap:10px;flex-wrap:wrap}
-/* ================================
-   FIXES: Index Layout / Abstände
-   ================================ */
-
-.layout{
-  align-items: stretch;
-}
-
-.map-col{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  height:100%;
-  min-height:0;
-}
-
-#map{
-  flex: 1 1 auto;
-  min-height:380px;
-}
-
-@media(max-width:980px){
-  #map{
-    flex: 0 0 auto;
-    height:260px !important;
-    min-height:260px;
-  }
-}
-
-.thinbox{
-  margin-top:0 !important;
-}
-
-#toll-info{
-  margin:0 !important;
-}
-
-.thinbox .line{
-  padding:8px 0;
-  align-items:baseline;
-}
-
-.thinbox .title{
-  margin-bottom:10px;
-}
+/* =========================================================
+   Country cards (Premium)
+   ========================================================= */
 
 .countries-grid{
   display:grid;
@@ -485,37 +417,7 @@ footer a:hover{ text-decoration:underline; }
   flex-direction:column;
   justify-content:flex-start;
   min-height:140px;
-}
 
-.price-input-group{
-  align-items:start !important;
-}
-
-.reset-price-btn{
-  margin-top:28px;
-  height:44px;
-}
-
-@media(max-width:720px){
-  .reset-price-btn{
-    margin-top:0;
-  }
-}
-/* ===== ABSOLUTE NOTBREMSE: HEADER DARF NIEMALS STICKY SEIN ===== */
-.site-header,
-header.site-header,
-header{
-  position: static !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  transform: none !important;
-  z-index: auto !important;
-}
-/* ===== PREMIUM COUNTRY CARDS ===== */
-
-.country-card{
   background:linear-gradient(180deg,#ffffff,#f8fbff);
   border-radius:16px;
   padding:16px 14px;
@@ -530,186 +432,117 @@ header{
   border-color:rgba(79,70,229,.35);
 }
 
-.country-card h3{
-  margin-top:0;
-  font-size:1.05rem;
-}
+.country-card h3{ margin-top:0; font-size:1.05rem; }
+.country-card p{ margin-bottom:0; }
 
-.country-card p{
-  margin-bottom:0;
-}
+/* =========================================================
+   Footer
+   ========================================================= */
 
-/* =====================================================================
-   FINAL COOKIE OVERRIDE (2 Buttons nebeneinander, Accept Gradient, Glow)
-   ===================================================================== */
+footer, footer *{ color:#000 !important; opacity:1 !important; }
+footer{ padding:18px 0 30px 0; }
+footer a{ text-decoration:none; }
+footer a:hover{ text-decoration:underline; }
+
+/* =========================================================
+   Cookie Banner (ONLY SYSTEM)
+   - full width (wie Header)
+   - dark grey
+   - 2 Buttons nebeneinander
+   ========================================================= */
 
 #cookieBanner{
-  position: fixed !important;
+  position: fixed;
   left: 0;
   right: 0;
-  bottom: 14px;
+  bottom: 0;
   z-index: 2147483647;
-  padding: 0 14px;
-  pointer-events: none;
+  padding: 12px 14px;
 }
 
 #cookieBanner.is-hidden{ display:none !important; }
 
 #cookieBanner .row{
-  pointer-events: auto;
-  width: 100% !important;
-  max-width: none !important;
+  width: 100%;
+  max-width: min(var(--maxw), 94vw);
   margin: 0 auto;
 
-  background: rgba(17,17,17,0.94);
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(28,28,28,0.96);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
 
-  padding: 26px 22px;
+  padding: 18px 18px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
 
-  box-shadow:
-    0 0 0 6px rgba(255,255,255,0.08),
-    0 30px 80px rgba(0,0,0,0.45);
+  box-shadow: 0 22px 70px rgba(0,0,0,0.45);
 }
 
 #cookieBanner .txt{
   color: #fff;
-  font-size: 15.5px;
-  line-height: 1.5;
-  max-width: 760px;
+  font-size: 15px;
+  line-height: 1.45;
+  flex: 1 1 auto;
+  min-width: 240px;
+}
+
+#cookieBanner .txt a{
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 800;
 }
 
 #cookieBanner .actions{
-  display: flex;
-  gap: 14px;
+  display:flex;
+  gap: 12px;
   flex: 0 0 auto;
+  align-items:center;
 }
 
-#cookieBanner .actions button.accept{
-  background: linear-gradient(90deg,var(--accent),var(--accent-2));
-  color: #fff;
-  border-radius: 14px;
-  padding: 16px 26px;
+#cookieBanner button{
+  height: 48px;
+  border-radius: 12px;
+  padding: 0 18px;
   font-weight: 900;
-  font-size: 16px;
-  border: none;
+  font-size: 15px;
   cursor: pointer;
-  min-width: 180px;
+  border: 0;
+  white-space: nowrap;
 }
 
-#cookieBanner .actions button.reject{
-  background: #2d2d2d;
-  color: #bdbdbd;
-  border: 1px solid #555;
-  border-radius: 14px;
-  padding: 16px 26px;
-  font-weight: 800;
-  cursor: pointer;
-  min-width: 160px;
+#cookieBanner button.accept{
+  background: var(--accent);
+  color: #062524;
+}
+
+#cookieBanner button.reject{
+  background: transparent;
+  color: rgba(255,255,255,0.78);
+  border: 1px solid rgba(255,255,255,0.22);
 }
 
 @media (max-width: 720px){
-  #cookieBanner{ bottom: 10px; padding: 0 10px; }
+  .big-action{flex-direction:column}
+  .btn{width:100%}
+  .header-inner{padding:10px 12px}
+  .site-title{max-width:160px;}
+  .tablink, .lang-link{height:42px;padding:.5rem .7rem;font-size:.9rem}
+
   #cookieBanner .row{
     flex-direction: column;
     align-items: stretch;
-    gap: 16px;
-    padding: 18px 14px;
   }
   #cookieBanner .actions{
     width: 100%;
   }
-  #cookieBanner .actions button{
+  #cookieBanner button{
     width: 100%;
   }
 }
-/* ===== FINAL: Header darf NIE sticky/fixed sein (Notbremse) ===== */
-#site-header,
-.site-header,
-header,
-header.site-header,
-#masthead,
-.navbar,
-.topbar,
-.sticky,
-.is-sticky,
-.sticky-top,
-.fixed,
-.fixed-top,
-.header-fixed,
-.navbar-fixed{
-  position: static !important;
-  top: auto !important;
-  bottom: auto !important;
-  left: auto !important;
-  right: auto !important;
-  transform: none !important;
-}
 
-/* falls irgendwer z-index hochzieht */
-#site-header,
-.site-header,
-header{
-  z-index: auto !important;
+@media(max-width:420px){
+  .site-title{display:none;}
 }
-
-/* ===== ULTIMATIVE NOTBREMSE: Header MUSS scrollen (nie sticky/fixed) ===== */
-#site-header,
-#site-header header,
-#site-header .site-header,
-.site-header,
-header.site-header,
-header,
-.header-inner,
-.tabs{
-  position: relative !important;   /* relative scrollt immer mit */
-  top: auto !important;
-  bottom: auto !important;
-  left: auto !important;
-  right: auto !important;
-  inset: auto !important;
-  transform: none !important;
-  z-index: auto !important;
-}
-
-/* Falls ein Script 'sticky' Klassen vergibt */
-#site-header .sticky,
-#site-header .is-sticky,
-#site-header .sticky-top,
-#site-header .fixed,
-#site-header .fixed-top{
-  position: relative !important;
-  top: auto !important;
-}
-
-/* Falls irgendwo "position:sticky" direkt auf dem Header hängt */
-#site-header [style*="position:sticky"],
-#site-header [style*="position: fixed"],
-#site-header [style*="position:fixed"]{
-  position: relative !important;
-  top: auto !important;
-}
-
-/* ===== FINAL: Header darf niemals sticky/fixed sein ===== */
-#site-header,
-#site-header *{
-  position: static !important;
-  top: auto !important;
-  bottom: auto !important;
-  left: auto !important;
-  right: auto !important;
-  inset: auto !important;
-  transform: none !important;
-}
-
-/* Header wieder normal layouten (nur Optik, kein sticky) */
-#site-header .header-inner,
-#site-header .tabs{
-  position: relative !important;
-}
-
