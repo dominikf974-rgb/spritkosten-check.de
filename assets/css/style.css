@@ -628,3 +628,32 @@ header{
     width: 100%;
   }
 }
+/* ===== FINAL: Header darf NIE sticky/fixed sein (Notbremse) ===== */
+#site-header,
+.site-header,
+header,
+header.site-header,
+#masthead,
+.navbar,
+.topbar,
+.sticky,
+.is-sticky,
+.sticky-top,
+.fixed,
+.fixed-top,
+.header-fixed,
+.navbar-fixed{
+  position: static !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+/* falls irgendwer z-index hochzieht */
+#site-header,
+.site-header,
+header{
+  z-index: auto !important;
+}
