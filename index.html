@@ -521,8 +521,9 @@
         const isCross = (startCC && destCC && startCC !== destCC);
         const mode = isCross ? getMode() : 'start';
 
-       const startP = pricesForCountryStatic(startCC);
-       const destP  = pricesForCountryStatic(destCC);
+      const startP = await pricesForCountryStatic(startCC);
+      const destP  = await pricesForCountryStatic(destCC);
+
 
 
         let chosen, note;
@@ -891,5 +892,6 @@
   <script src="/assets/js/loader.js?v=2026-01"></script>
 </body>
 </html>
+
 
 
