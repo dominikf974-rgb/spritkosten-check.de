@@ -5,10 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>FAQ – Spritkosten-Rechner, Maut/Vignette & CO₂</title>
-  <meta name="description" content="FAQ zum Spritkosten-Rechner: Spritkosten, Verbrauch, Maut/Vignette, CO₂, Route, Preise, Kosten pro Person und Tipps zum Spritsparen." />
+  <title>FAQ – Spritkosten-Check</title>
+  <meta name="description" content="FAQ zum Spritkosten-Rechner: Spritkosten berechnen, Kosten pro Person, Verbrauch, Maut/Vignette, Tipps & häufige Fragen." />
   <meta name="robots" content="index, follow" />
+
   <link rel="canonical" href="https://spritkosten-check.de/faq.html" />
+  <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/faq.html" />
+  <link rel="alternate" hreflang="en" href="https://petrolcostcalculator.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/" />
 
   <!-- Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -17,563 +21,120 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" href="/favicon.ico">
 
-  <!-- FAQ Schema -->
+  <!-- Global Styles (für alle Seiten gleich) -->
+  <link rel="stylesheet" href="/assets/style.css?v=2026-01" />
+
+  <!-- Schema -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"Wie berechne ich Spritkosten?","acceptedAnswer":{"@type":"Answer","text":"Liter = Strecke (km) × Verbrauch (L/100 km) ÷ 100. Spritkosten = Liter × Preis pro Liter."}},
-      {"@type":"Question","name":"Wie berechne ich Kosten pro Person?","acceptedAnswer":{"@type":"Answer","text":"Gesamtkosten ÷ Anzahl Personen. Im Rechner einfach „Personen“ einstellen."}},
-      {"@type":"Question","name":"Wie genau sind Maut- und Vignettenwerte?","acceptedAnswer":{"@type":"Answer","text":"Das sind Richtwerte. Reale Kosten hängen von Route, Fahrzeugklasse, Abschnitten und lokalen Regeln ab."}},
-      {"@type":"Question","name":"Wie wird CO₂ berechnet?","acceptedAnswer":{"@type":"Answer","text":"Als Näherung über Kraftstoffmenge (Liter) und einen CO₂-Faktor je Kraftstoff."}},
-      {"@type":"Question","name":"Welche Verbrauchswerte soll ich eingeben?","acceptedAnswer":{"@type":"Answer","text":"Am besten deinen echten Durchschnitt (Bordcomputer/Apps). Prospektwerte sind oft zu niedrig."}}
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich Spritkosten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Spritkosten = (km × Verbrauch / 100) × Preis pro Liter. Der Rechner übernimmt das automatisch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich Kosten pro Person?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kosten pro Person = Gesamtkosten / Anzahl Personen. Im Rechner kannst du Personen inkl. Fahrer angeben."
+        }
+      }
     ]
   }
   </script>
-
-  <style>
-    *{box-sizing:border-box; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;}
-    :root{
-      --bg1:#0f172a;
-      --bg2:#e9eef5;
-      --card:#ffffff;
-      --muted:#4b5563;
-      --text:#0b1220;
-      --accent:#0ea5a3;
-      --accent-2:#4f46e5;
-      --button-h:44px;
-      --maxw:1400px;
-    }
-    html, body{ overflow-x:hidden; }
-    html{
-      min-height:100%;
-      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
-      background-repeat:no-repeat;
-      background-attachment:fixed;
-    }
-    body{
-      margin:0;
-      width:100%;
-      color:var(--text);
-      min-height:100vh;
-      background:transparent;
-    }
-
-    /* HEADER: NICHT sticky/fixed (scrollt mit) + sauber links/rechts */
-    .site-header{
-      position:static !important;
-      top:auto !important;
-      background:#fff;
-      border-bottom:1px solid rgba(15,23,42,0.06);
-      z-index:auto !important;
-    }
-    .header-inner{
-      width:100%;
-      max-width:min(var(--maxw), 94vw);
-      margin:0 auto;
-      padding:8px 12px;            /* schlank */
-      display:flex;
-      align-items:center;
-      justify-content:space-between; /* logo links, nav rechts */
-      gap:12px;
-    }
-    .logo-title{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      text-decoration:none;
-      color:inherit;
-      min-width:0;
-      flex:1 1 auto;
-    }
-    .logo-title img{ height:34px; width:auto; display:block; }
-    .site-title{
-      font-weight:900;
-      font-size:15px;
-      white-space:nowrap;
-      letter-spacing:.2px;
-      max-width:52vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .tabs{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      flex:0 0 auto;
-    }
-    .tabs a.navbtn{
-      height:var(--button-h);
-      background:transparent;
-      border:1px solid transparent;
-      color:var(--muted);
-      padding:0 12px;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:900;
-      font-size:.95rem;
-      white-space:nowrap;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      touch-action:manipulation;
-    }
-    .tabs a.navbtn:hover{
-      background:rgba(79,70,229,0.08);
-      color:var(--accent-2);
-    }
-    .tabs a.navbtn.active{
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:#fff;
-    }
-
-    .lang-link{
-      height:var(--button-h);
-      font-weight:900;
-      text-decoration:none;
-      color:var(--accent-2);
-      border:1px solid rgba(79,70,229,0.15);
-      background:#eef2ff;
-      padding:0 12px;
-      border-radius:10px;
-      display:inline-flex;
-      align-items:center;
-      touch-action:manipulation;
-    }
-
-    /* Mobile actions */
-    .header-actions{ display:none; align-items:center; gap:8px; flex:0 0 auto; }
-    .hamburger{
-      width:44px;height:44px;
-      border-radius:10px;
-      border:1px solid rgba(15,23,42,0.10);
-      background:#fff;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      touch-action:manipulation;
-    }
-    .hamburger span{
-      display:block;
-      width:20px;height:2px;
-      background:rgba(15,23,42,0.65);
-      position:relative;
-    }
-    .hamburger span::before,
-    .hamburger span::after{
-      content:"";
-      position:absolute;
-      left:0;
-      width:20px;height:2px;
-      background:rgba(15,23,42,0.65);
-    }
-    .hamburger span::before{ top:-6px; }
-    .hamburger span::after{ top:6px; }
-
-    /* Mobile menu: KEIN body-fix -> kein verzogen */
-    .mobile-menu{
-      max-width:min(var(--maxw), 94vw);
-      margin:0 auto;
-      background:#fff;
-      border-bottom:1px solid rgba(15,23,42,0.06);
-      padding:0 12px;
-      overflow:hidden;
-      max-height:0;
-      opacity:0;
-      transform: translateY(-6px);
-      transition: max-height .22s ease, opacity .18s ease, transform .18s ease, padding .18s ease;
-    }
-    .mobile-menu.open{
-      max-height:260px;
-      opacity:1;
-      transform: translateY(0);
-      padding:10px 12px 14px 12px;
-    }
-    .mobile-menu .grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-    .mobile-menu a{
-      height:46px;
-      border-radius:12px;
-      border:1px solid rgba(15,23,42,0.10);
-      background:#fff;
-      font-weight:900;
-      color:var(--muted);
-      cursor:pointer;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:0 10px;
-      white-space:nowrap;
-      touch-action:manipulation;
-    }
-    .mobile-menu a.active{
-      border:0;
-      color:#fff;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-    }
-
-    @media(max-width:1200px){
-      .tabs{display:none;}
-      .header-actions{display:flex;}
-      .site-title{max-width:48vw;}
-    }
-    @media(max-width:420px){ .site-title{display:none;} }
-
-    /* Page */
-    .page-container{
-      width:100%;
-      max-width: min(var(--maxw), 94vw);
-      margin:0 auto;
-      padding: 18px 12px 0 12px;
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-    }
-    .card{
-      background:var(--card);
-      border-radius:16px;
-      padding:16px;
-      box-shadow:0 12px 30px rgba(0,0,0,.08);
-      border:1px solid rgba(15,23,42,0.05);
-      width:100%;
-      overflow:hidden;
-    }
-    h2{font-size:1.1rem;margin:0 0 10px 0}
-    .small{font-size:.9rem;color:var(--muted)}
-    .faq-item{margin:10px 0}
-    .faq-item summary{
-      cursor:pointer;font-weight:900;color:var(--accent-2);
-      padding:10px;border-radius:12px;background:rgba(79,70,229,0.06)
-    }
-    .faq-item summary:hover{background:rgba(79,70,229,0.12)}
-    .faq-item p{margin:10px 0 0 0;line-height:1.6}
-
-    footer, footer *{ color:#000 !important; opacity:1 !important; }
-    footer{ padding:18px 0 10px 0; }
-    footer a{ text-decoration:none; }
-    footer a:hover{ text-decoration:underline; }
-
-    /* Cookie banner */
-    .cookie-banner{
-      position:fixed;
-      left:12px; right:12px; bottom:12px;
-      z-index:2147483647;
-      background:#fff;
-      border:1px solid rgba(15,23,42,0.10);
-      border-radius:14px;
-      box-shadow:0 12px 30px rgba(0,0,0,.15);
-      padding:12px;
-      display:none;
-      max-width:980px;
-      margin:0 auto;
-    }
-    .cookie-banner .row{
-      display:flex; gap:10px; flex-wrap:wrap;
-      align-items:center; justify-content:space-between;
-    }
-    .cookie-banner .txt{
-      flex:1 1 420px;
-      color:var(--muted);
-      font-size:.92rem;
-      line-height:1.45;
-    }
-    .cookie-banner .actions{ display:flex; gap:10px; flex:0 0 auto; }
-    .cookie-banner button{
-      height:44px; border-radius:10px; border:none;
-      cursor:pointer; font-weight:900; padding:0 14px;
-    }
-    .cookie-banner .accept{
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:#fff;
-    }
-    .cookie-banner .reject{
-      background:#eef2ff;
-      color:var(--accent-2);
-      border:1px solid rgba(79,70,229,0.12);
-    }
-
-    .ad-block{ margin:0 0 18px 0; }
-  </style>
 </head>
 
-<body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="/" class="logo-title">
-        <img src="/logo.png" alt="Spritkosten-Check Logo">
-        <span class="site-title">Spritkosten-Rechner – Benzin & Reisekosten berechnen</span>
-      </a>
-
-      <nav class="tabs" aria-label="Hauptnavigation">
-        <a class="navbtn" href="/">Spritkosten</a>
-        <a class="navbtn" href="/taschenrechner.html">Taschenrechner</a>
-        <a class="navbtn" href="/ratgeber.html">Ratgeber</a>
-        <a class="navbtn active" href="/faq.html">FAQ</a>
-        <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en" title="English">EN</a>
-      </nav>
-
-      <div class="header-actions">
-        <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en" title="English">EN</a>
-        <button class="hamburger" id="hamburger" aria-label="Menü öffnen" aria-expanded="false" type="button">
-          <span></span>
-        </button>
-      </div>
-    </div>
-
-    <div class="mobile-menu" id="mobile-menu" aria-label="Mobiles Menü">
-      <div class="grid">
-        <a href="/">Spritkosten</a>
-        <a href="/taschenrechner.html">Taschenrechner</a>
-        <a href="/ratgeber.html">Ratgeber</a>
-        <a class="active" href="/faq.html">FAQ</a>
-      </div>
-    </div>
-  </header>
+<body data-page="faq">
+  <!-- Header wird per loader.js geladen -->
+  <div id="site-header"></div>
 
   <div class="page-container">
 
-    <!-- Optional Ads auf FAQ (werden erst nach Consent geladen) -->
-    <div class="ad-block">
-      <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-4852698472752437"
-        data-ad-slot="7158625008"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    </div>
-
-    <!-- === HIER: DEIN KOMPLETTER INHALT 1:1 (NICHTS GELÖSCHT) === -->
-    <section class="card">
-      <h2>FAQ – Häufige Fragen</h2>
-      <p class="small" style="margin-top:0">
-        Hier findest du Antworten rund um Spritkosten, Verbrauch, Route, Maut/Vignette, CO₂ und praktische Spartipps.
+    <section class="card intro-section" aria-label="FAQ Einleitung">
+      <h2>FAQ – Häufige Fragen zum Spritkosten-Rechner</h2>
+      <p>
+        Hier findest du Antworten auf die häufigsten Fragen rund um Spritkosten, Verbrauch, Kosten pro Person
+        sowie Maut- und Vignetten-Schätzungen.
       </p>
-
-      <details class="faq-item" open>
-        <summary>Wie berechne ich Spritkosten?</summary>
-        <p><b>Liter</b> = km × Verbrauch ÷ 100. <b>Spritkosten</b> = Liter × Preis pro Liter.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Was ist „Verbrauch (L/100 km)“?</summary>
-        <p>Wie viele Liter dein Auto im Schnitt auf 100 km braucht. Beispiel: 7,5 L/100 km bedeutet 7,5 Liter pro 100 km.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Welche Verbrauchswerte sind realistisch?</summary>
-        <p>Am besten nimmst du deinen echten Durchschnitt (Bordcomputer, Tank-App oder über mehrere Tankfüllungen). Stadt, Kurzstrecke und Winter erhöhen oft den Verbrauch.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Warum ist mein echter Verbrauch höher als Herstellerangaben?</summary>
-        <p>Herstellerwerte entstehen unter standardisierten Bedingungen. In der Realität wirken Temperatur, Verkehr, Fahrstil, Steigungen, Beladung und Reifen stärker.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
-        <p>Du gibst die Strecke ein, die du wirklich fährst. Für Hin- & Rückfahrt einfach die Kilometer verdoppeln.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Kann ich Start/Ziel eingeben statt Kilometer?</summary>
-        <p>Ja – nutze Start/Ziel und klicke „Strecke berechnen“ auf der Startseite. Dann wird die Distanz automatisch übernommen.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Warum kann die Route von Google Maps abweichen?</summary>
-        <p>Unterschiedliche Routing-Dienste und Einstellungen (z. B. Maut vermeiden, Autobahn bevorzugen) können andere Routen liefern.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wie genau sind die Spritpreise im Rechner?</summary>
-        <p>Das sind Durchschnittswerte für eine schnelle Planung. Für genaue Ergebnisse trage deinen aktuellen Preis (Tankstelle) manuell ein.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Startland und Zielland sind unterschiedlich – welcher Spritpreis gilt?</summary>
-        <p>Du kannst wählen: Startland, Zielland oder Mittelwert. Für Roadtrips ist „Mittelwert“ oft am realistischsten.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wie berechnet ihr „laufende Kosten“?</summary>
-        <p>Das ist eine vereinfachte Schätzung (z. B. Wartung, Reifen, Verschleiß, Wertverlust, Versicherung) plus Maut/Vignette-Richtwert.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Was ist in Maut/Vignette enthalten?</summary>
-        <p>Grobe Maut-Schätzung (€/100 km) und ggf. Vignetten als Fixbetrag (je Land einmal). Nur Richtwert.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Warum steht bei Maut/Vignette manchmal „—“?</summary>
-        <p>Wenn noch keine Route berechnet wurde oder keine Strecke gesetzt ist, kann keine Schätzung angezeigt werden.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wie kann ich Sprit sparen – die größten Hebel?</summary>
-        <p>Ruhiger fahren, vorausschauend bremsen, gleichmäßiges Tempo, Reifendruck korrekt, unnötiges Gewicht raus, Dachbox nur wenn nötig.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Bringt Reifendruck wirklich was?</summary>
-        <p>Ja. Zu niedriger Druck erhöht Rollwiderstand → mehr Verbrauch. Am besten regelmäßig prüfen (kalt).</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wie stark beeinflusst Tempo den Verbrauch?</summary>
-        <p>Sehr stark – besonders ab ~120 km/h steigt der Luftwiderstand stark an.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wie wirkt sich eine Dachbox aus?</summary>
-        <p>Dachbox/Dachträger erhöhen Luftwiderstand. Auf Autobahn kann der Verbrauch spürbar steigen.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Kurzstrecke: Warum kostet das mehr Sprit?</summary>
-        <p>Motor wird nicht warm, mehr Kaltstart-Anteil, oft Stadtverkehr. Kurzstrecke ist fast immer teurer pro km.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Hilft Wartung beim Verbrauch?</summary>
-        <p>Ja. Luftfilter, Öl, richtige Reifen und guter Motorlauf können den Verbrauch verbessern.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Was ist besser: E10 oder E5?</summary>
-        <p>E10 ist oft günstiger, kann aber minimal höheren Verbrauch haben. Ob dein Auto E10 verträgt: Handbuch/Herstellerfreigabe.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wie wird CO₂ im Rechner berechnet?</summary>
-        <p>Als Näherung über <b>Liter</b> × <b>CO₂-Faktor</b> (Benzin/Diesel).</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Was kann ich tun, um CO₂ zu senken?</summary>
-        <p>Ruhiger fahren, weniger Tempo, weniger Gewicht, korrekter Reifendruck, Fahrgemeinschaft.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Vergleich Auto vs. Bahn/Flug – wie soll ich das lesen?</summary>
-        <p>Richtwerte zur Einordnung. Bahn ist pro Person oft deutlich niedriger. Beim Auto hängt es stark von Personen/Fahrstil ab.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Kann ich die Kosten fair aufteilen?</summary>
-        <p>Ja. Stelle „Personen“ ein. Parkgebühren ggf. separat absprechen.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Warum zeigt der Rechner „0,00“ oder Fehler an?</summary>
-        <p>Meist fehlt ein Pflichtwert oder eine externe Anfrage war kurz nicht erreichbar. Werte prüfen und nochmal versuchen.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Ich habe Feedback oder einen Bug – wie melde ich das?</summary>
-        <p>Schreib dazu: Strecke, Verbrauch, Preis und (falls genutzt) Start/Ziel – dann kann man es schnell nachstellen.</p>
-      </details>
     </section>
 
-    <footer class="small">
-      Kostenloser Spritkosten-Rechner für Deutschland, Europa und weltweit.
-      Ideal für Pendler, Roadtrips, Urlaubsfahrten und faire Kostenaufteilung pro Person.
-      <span style="opacity:.75;margin-left:10px">|</span>
-      <a href="/faq.html">FAQ</a> <span style="opacity:.75">|</span>
-      <a href="/impressum.html">Impressum</a> <span style="opacity:.75">|</span>
-      <a href="/contact.html">Kontakt</a> <span style="opacity:.75">|</span>
-      <a href="/datenschutz.html">Datenschutz</a> <span style="opacity:.75">|</span>
-      <a href="/ratgeber.html">Ratgeber</a>
-    </footer>
+    <main aria-label="FAQ Inhalt">
+      <section class="card" aria-label="FAQ Liste">
+        <details class="faq-item">
+          <summary>Wie berechne ich Spritkosten pro 100 km?</summary>
+          <p>
+            Der Rechner zeigt dir „€/100 km“ automatisch an. Grundlage ist:
+            <strong>Gesamtkosten ÷ Strecke × 100</strong>.
+          </p>
+        </details>
 
-    <div class="small" style="text-align:center;opacity:.45;margin:8px 0 8px 0">
-      <a href="https://spritkosten-check.de">🇩🇪 Spritkosten-Rechner Deutschland</a>
-      &nbsp; | &nbsp;
-      <a href="https://petrolcostcalculator.com">🇬🇧 Petrol Cost Calculator Worldwide</a>
-    </div>
+        <details class="faq-item">
+          <summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
+          <p>
+            Du kannst beides. Gib einfach die Kilometer ein, die du wirklich fährst
+            (einfach oder hin &amp; zurück).
+          </p>
+        </details>
 
-    <div style="text-align:center;margin-bottom:22px;font-size:12px;opacity:.55">
-      Verifiziert · 2026
-    </div>
+        <details class="faq-item">
+          <summary>Wie genau sind Maut/Vignetten?</summary>
+          <p>
+            Die Anzeige ist eine grobe Schätzung. Reale Kosten hängen von Route, Fahrzeugklasse,
+            lokalen Regeln und eventuellen Sonderstrecken ab.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Warum unterscheiden sich Verbrauchswerte?</summary>
+          <p>
+            Verbrauch hängt stark von Fahrstil, Geschwindigkeit, Wetter, Beladung, Reifendruck
+            und Streckenprofil ab. Für beste Ergebnisse nutze deinen realen Durchschnitt.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Kann ich den Spritpreis manuell ändern?</summary>
+          <p>
+            Ja. Du kannst jeden Wert überschreiben. Mit „Auf Standard zurücksetzen“ springst du wieder
+            auf den Standardwert zurück (falls auf deiner Seite vorhanden).
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Wie kann ich Kosten fair aufteilen?</summary>
+          <p>
+            Trage die Anzahl der Personen ein. Der Rechner teilt die Gesamtkosten automatisch
+            und zeigt dir den Betrag pro Person.
+          </p>
+        </details>
+      </section>
+    </main>
+
+    <section class="card" aria-label="Weiterführende Seiten">
+      <h2>Mehr Infos</h2>
+      <p class="small" style="margin-top:0">
+        Weitere Infos und Tipps findest du im Ratgeber oder du nutzt direkt den Spritkosten-Rechner.
+      </p>
+
+      <div class="big-action" style="margin-top:12px">
+        <a class="btn large" href="/">Zum Spritkosten-Rechner</a>
+        <a class="btn secondary large" href="/ratgeber.html">Zum Ratgeber</a>
+      </div>
+    </section>
 
   </div>
 
-  <!-- Cookie Banner -->
-  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie Hinweis">
-    <div class="row">
-      <div class="txt">
-        Wir verwenden Cookies für Werbung (Google AdSense). Du kannst ablehnen oder zustimmen.
-        Mehr Infos in der <a href="/datenschutz.html">Datenschutzerklärung</a>.
-      </div>
-      <div class="actions">
-        <button class="reject" id="cookieReject" type="button">Ablehnen</button>
-        <button class="accept" id="cookieAccept" type="button">Akzeptieren</button>
-      </div>
-    </div>
-  </div>
+  <!-- Footer wird per loader.js geladen -->
+  <div id="site-footer"></div>
 
-  <script>
-    // Hamburger: stabil, kein "verzogen"
-    (function(){
-      const burger = document.getElementById('hamburger');
-      const mobileMenu = document.getElementById('mobile-menu');
-      function openMenu(){ mobileMenu.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
-      function closeMenu(){ mobileMenu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
-      function toggleMenu(){ mobileMenu.classList.contains('open') ? closeMenu() : openMenu(); }
-
-      burger.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
-      document.addEventListener('click', () => { if(mobileMenu.classList.contains('open')) closeMenu(); });
-      document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
-      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => closeMenu(), { passive:true }));
-    })();
-
-    // Consent-gated Ads
-    (function(){
-      const CONSENT_KEY = "consent_marketing";
-      const banner = document.getElementById('cookieBanner');
-      const btnAccept = document.getElementById('cookieAccept');
-      const btnReject = document.getElementById('cookieReject');
-
-      function loadGoogleAdsOnce(){
-        if (window.__adsLoaded) return;
-        window.__adsLoaded = true;
-
-        const s = document.createElement('script');
-        s.async = true;
-        s.crossOrigin = "anonymous";
-        s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437";
-        document.head.appendChild(s);
-
-        s.onload = function(){
-          try {
-            document.querySelectorAll('ins.adsbygoogle').forEach(() => {
-              try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
-            });
-          } catch(e){}
-        };
-      }
-
-      function showBanner(){ banner.style.display = "block"; }
-      function hideBanner(){ banner.style.display = "none"; }
-      function getConsent(){ try { return localStorage.getItem(CONSENT_KEY); } catch(e){ return null; } }
-      function setConsent(v){ try { localStorage.setItem(CONSENT_KEY, v); } catch(e){} }
-
-      const consent = getConsent();
-      if (consent === "1") { hideBanner(); loadGoogleAdsOnce(); }
-      else if (consent === "0") { hideBanner(); }
-      else { showBanner(); }
-
-      btnAccept.addEventListener('click', () => { setConsent("1"); hideBanner(); loadGoogleAdsOnce(); });
-      btnReject.addEventListener('click', () => { setConsent("0"); hideBanner(); });
-    })();
-  </script>
+  <!-- loader.js lädt Header/Footer + setzt aria-current über data-page -->
+  <script src="/assets/loader.js?v=2026-01"></script>
 </body>
 </html>
