@@ -427,3 +427,78 @@ footer a:hover{ text-decoration:underline; }
   line-height:1.5
 }
 #consentBanner .actions{display:flex;gap:10px;flex-wrap:wrap}
+/* ================================
+   FIXES: Index Layout / Abstände
+   ================================ */
+
+.layout{
+  align-items: stretch;
+}
+
+.map-col{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  height:100%;
+  min-height:0;
+}
+
+#map{
+  flex: 1 1 auto;
+  min-height:380px;
+}
+
+@media(max-width:980px){
+  #map{
+    flex: 0 0 auto;
+    height:260px !important;
+    min-height:260px;
+  }
+}
+
+.thinbox{
+  margin-top:0 !important;
+}
+
+#toll-info{
+  margin:0 !important;
+}
+
+.thinbox .line{
+  padding:8px 0;
+  align-items:baseline;
+}
+
+.thinbox .title{
+  margin-bottom:10px;
+}
+
+.countries-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:12px;
+  align-items:stretch;
+}
+
+.country-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  min-height:140px;
+}
+
+.price-input-group{
+  align-items:start !important;
+}
+
+.reset-price-btn{
+  margin-top:28px;
+  height:44px;
+}
+
+@media(max-width:720px){
+  .reset-price-btn{
+    margin-top:0;
+  }
+}
+
