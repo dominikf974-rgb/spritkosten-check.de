@@ -27,6 +27,18 @@
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
+  <!-- ✅ FIX: Header darf NICHT sticky/fixed sein (Override ohne style.css zu ändern) -->
+  <style>
+    /* versucht alle gängigen Sticky/Fixed-Header-Varianten zu neutralisieren */
+    #site-header, header, .header, .site-header {
+      position: static !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      transform: none !important;
+    }
+  </style>
+
   <!-- Schema -->
   <script type="application/ld+json">
   {
@@ -357,7 +369,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="prices/country-prices.js"></script>
 
-  <!-- ✅ Dein kompletter Rechner-JS bleibt erhalten -->
+  <!-- ✅ Dein kompletter Rechner-JS bleibt erhalten (nur Bugfix + DE live) -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // ===== Proxy Base (DEIN WORKER) =====
@@ -461,6 +473,9 @@
       let userEditedPrice = false;
 
       let startCC = null, destCC = null;
+      let startLat = null, startLon = null;
+      let destLat  = null, destLon  = null;
+
       let routeKm = 0;
       let lastTollTotal = 0;
       let lastVignetteTotal = 0;
@@ -481,33 +496,48 @@
         const e = countryPrices && countryPrices[cc];
         return (e && e.name) ? e.name : cc;
       }
-     async function pricesForCountryStatic(cc, lat=null, lon=null){
-  cc = (cc || "").toUpperCase();
 
-  if(cc === "DE" && lat && lon){
-    try{
-      const r = await fetch(`${API_BASE}/api/tank?lat=${lat}&lon=${lon}&rad=6&type=all`);
-      const j = await r.json();
-      if(j && j.ok && j.stations?.length){
-        let e10=null, e5=null, diesel=null;
-        j.stations.forEach(s=>{
-          if(typeof s.e10==="number") e10 = e10==null?s.e10:Math.min(e10,s.e10);
-          if(typeof s.e5==="number")  e5  = e5 ==null?s.e5 :Math.min(e5 ,s.e5 );
-          if(typeof s.diesel==="number") diesel = diesel==null?s.diesel:Math.min(diesel,s.diesel);
-        });
-        return {unleaded91:e10, unleaded95:e5, diesel, name:"Deutschland (Live)"};
+      // ✅ FIX: saubere Funktion (keine kaputten Klammern, kein "code" undefined)
+      async function pricesForCountryStatic(cc, lat = null, lon = null) {
+        cc = (cc || "").toUpperCase();
+
+        // DE live über Tankerkönig, wenn Koordinaten vorhanden
+        if (cc === "DE" && lat != null && lon != null) {
+          try {
+            const r = await fetchWithTimeout(
+              `${API_BASE}/api/tank?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&rad=6&type=all`,
+              12000
+            );
+            if (r.ok) {
+              const j = await r.json();
+              if (j && j.ok && Array.isArray(j.stations) && j.stations.length) {
+                let e10 = null, e5 = null, diesel = null;
+
+                for (const s of j.stations) {
+                  if (typeof s.e10 === "number") e10 = (e10 == null) ? s.e10 : Math.min(e10, s.e10);
+                  if (typeof s.e5 === "number")  e5  = (e5  == null) ? s.e5  : Math.min(e5,  s.e5);
+                  if (typeof s.diesel === "number") diesel = (diesel == null) ? s.diesel : Math.min(diesel, s.diesel);
+                }
+
+                const st = countryPrices?.["DE"];
+                return {
+                  unleaded91: Number.isFinite(e10) ? e10 : (st?.unleaded91 ?? fallbackPrices.unleaded91),
+                  unleaded95: Number.isFinite(e5)  ? e5  : (st?.unleaded95 ?? fallbackPrices.unleaded95),
+                  diesel:     Number.isFinite(diesel) ? diesel : (st?.diesel ?? fallbackPrices.diesel),
+                  name: "Deutschland (Live)"
+                };
+              }
+            }
+          } catch (e) {}
+        }
+
+        // Statische Weltpreise (bleiben erhalten)
+        const e = countryPrices?.[cc];
+        if (e) return { ...e };
+
+        return { ...fallbackPrices, name: cc || "Fallback" };
       }
-    }catch(e){}
-  }
 
-  const e = COUNTRY_FUEL_PRICES_EUR?.[cc];
-  if(e) return {...e};
-
-  return {unleaded91:1.5, unleaded95:1.6, diesel:1.45, name:"Fallback"};
-}
-
-        return { ...fallbackPrices, name: code || 'Fallback' };
-      }
       function mixPrices(a, b){
         return {
           unleaded91: (a.unleaded91 + b.unleaded91) / 2,
@@ -521,10 +551,9 @@
         const isCross = (startCC && destCC && startCC !== destCC);
         const mode = isCross ? getMode() : 'start';
 
-      const startP = await pricesForCountryStatic(startCC);
-      const destP  = await pricesForCountryStatic(destCC);
-
-
+        // ✅ FIX: await + Koordinaten für DE-live
+        const startP = await pricesForCountryStatic(startCC, startLat, startLon);
+        const destP  = await pricesForCountryStatic(destCC,  destLat,  destLon);
 
         let chosen, note;
         if(isCross){
@@ -542,7 +571,9 @@
         if(!userEditedPrice){
           priceEl.value = fuelPrices[fuelTypeEl.value] ?? '';
           const standTxt = priceStand ? ` (Stand: ${priceStand})` : '';
-          priceInfoEl.textContent = `${note}. Quelle: Länderpreise (statisch)${standTxt}. Du kannst den Preis ändern.`;
+          const isLive = (startCC === "DE" && chosen.name && chosen.name.includes("Live"));
+          const sourceTxt = isLive ? "Deutschland (Live Tankerkönig)" : "Länderpreise (statisch)";
+          priceInfoEl.textContent = `${note}. Quelle: ${sourceTxt}${standTxt}. Du kannst den Preis ändern.`;
           priceInfoEl.classList.remove('error');
         }
       }
@@ -729,6 +760,10 @@
             return;
           }
 
+          // ✅ Koordinaten speichern (für DE live)
+          startLat = a.lat; startLon = a.lon;
+          destLat  = b.lat; destLon  = b.lon;
+
           startCC = await reverseCountryCode(a.lat, a.lon);
           destCC  = await reverseCountryCode(b.lat, b.lon);
 
@@ -771,6 +806,8 @@
         priceModeWrap.style.display = 'none';
 
         startCC = null; destCC = null;
+        startLat = startLon = destLat = destLon = null;
+
         routeKm = 0;
 
         tollInfoEl.textContent = '';
@@ -892,6 +929,3 @@
   <script src="/assets/js/loader.js?v=2026-01"></script>
 </body>
 </html>
-
-
-
