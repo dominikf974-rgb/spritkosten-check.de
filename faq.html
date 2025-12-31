@@ -18,12 +18,12 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" href="/favicon.ico">
 
-  <!-- ✅ RICHTIGER PFAD -->
+  <!-- ✅ RICHTIGER CSS PFAD -->
   <link rel="stylesheet" href="/assets/css/style.css?v=2026-01" />
 </head>
 
 <body data-page="faq">
-  <!-- Header kommt aus /assets/partials/header.html -->
+  <!-- ✅ Header Partial wird hier reingeladen -->
   <div id="site-header"></div>
 
   <div class="page-container">
@@ -34,7 +34,6 @@
 
     <main aria-label="FAQ Inhalt">
       <section class="card faq-section" aria-label="FAQ Liste">
-
         <details class="faq-item">
           <summary>Wie berechne ich Spritkosten?</summary>
           <p><strong>Spritkosten</strong> = (km × Verbrauch ÷ 100) × Preis pro Liter.</p>
@@ -54,7 +53,6 @@
           <summary>Wie genau sind Maut/Vignetten?</summary>
           <p>Das ist eine grobe Schätzung. Reale Kosten hängen von Route, Fahrzeugklasse und Regeln ab.</p>
         </details>
-
       </section>
 
       <section class="card" aria-label="Weiter">
@@ -66,10 +64,10 @@
     </main>
   </div>
 
-  <!-- Footer kommt aus /assets/partials/footer.html -->
+  <!-- ✅ Footer Partial wird hier reingeladen -->
   <div id="site-footer"></div>
 
-  <!-- loader.js laden (Pfad bitte prüfen: liegt der auch unter /assets/ ? ) -->
-  <script src="/assets/loader.js?v=2026-01"></script>
+  <!-- ✅ RICHTIGER LOADER PFAD -->
+  <script src="/assets/js/loader.js?v=2026-01"></script>
 </body>
 </html>
