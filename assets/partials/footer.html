@@ -45,4 +45,54 @@
   </div>
 </div>
 
+  <script>
+(() => {
+  const CONSENT_KEY = "consent_marketing";
+  const banner = document.getElementById('cookieBanner');
+  const btnAccept = document.getElementById('cookieAccept');
+  const btnReject = document.getElementById('cookieReject');
+
+  if(!banner || !btnAccept || !btnReject) return;
+
+  function getConsent(){ try { return localStorage.getItem(CONSENT_KEY); } catch(e){ return null; } }
+  function setConsent(v){ try { localStorage.setItem(CONSENT_KEY, v); } catch(e){} }
+
+  function showBanner(){
+    banner.classList.remove("is-hidden");
+    banner.style.display = "block";
+  }
+  function hideBanner(){
+    banner.classList.add("is-hidden");
+  }
+
+  // Ads nur nach Consent
+  function loadGoogleAdsOnce(){
+    if (window.__adsLoaded) return;
+    window.__adsLoaded = true;
+
+    const s = document.createElement('script');
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437";
+    document.head.appendChild(s);
+
+    s.onload = function(){
+      try {
+        document.querySelectorAll('ins.adsbygoogle').forEach(() => {
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+        });
+      } catch(e){}
+    };
+  }
+
+  const consent = getConsent();
+  if (consent === "1") { hideBanner(); loadGoogleAdsOnce(); }
+  else if (consent === "0") { hideBanner(); }
+  else { showBanner(); }
+
+  btnAccept.addEventListener('click', () => { setConsent("1"); hideBanner(); loadGoogleAdsOnce(); });
+  btnReject.addEventListener('click', () => { setConsent("0"); hideBanner(); });
+})();
+</script>
+
 </footer>
