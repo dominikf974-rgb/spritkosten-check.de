@@ -513,4 +513,29 @@ header{
   transform: none !important;
   z-index: auto !important;
 }
+/* ===== PREMIUM COUNTRY CARDS ===== */
+
+.country-card{
+  background:linear-gradient(180deg,#ffffff,#f8fbff);
+  border-radius:16px;
+  padding:16px 14px;
+  border:1px solid rgba(79,70,229,0.12);
+  box-shadow:0 6px 18px rgba(79,70,229,.08);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.country-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 34px rgba(79,70,229,.18);
+  border-color:rgba(79,70,229,.35);
+}
+
+.country-card h3{
+  margin-top:0;
+  font-size:1.05rem;
+}
+
+.country-card p{
+  margin-bottom:0;
+}
 
