@@ -27,6 +27,45 @@
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
+  <!-- ✅ Kleine Layout-Overrides NUR für diese Seite (damit du nicht extra CSS anfassen musst) -->
+  <style>
+    /* 1) KM-Zeile: kürzer, Spinner ist weg */
+    .km-row{display:flex;align-items:center;gap:10px}
+    .km-input{max-width:220px}
+
+    /* 2) Start/Ziel: Buttons + Spinner rechts in derselben Zeile */
+    .route-row{
+      margin-top:10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:nowrap;
+    }
+    .route-actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-left:14px; /* Buttons etwas mehr Richtung Mitte */
+    }
+    .spinner-route{margin-left:auto;height:38px}
+    .spinner-route button{width:34px;height:19px;line-height:1}
+
+    /* 3) Preisgruppe: Reset-Button höher/parallel zur Preiszeile */
+    .price-input-group{
+      display:flex;
+      align-items:flex-end; /* richtet Button sauber am Input aus */
+      gap:10px;
+    }
+    .reset-price-btn{height:38px;margin-top:0}
+
+    /* 4) Alles etwas “nach oben”/weniger Luft */
+    .intro-section{margin-bottom:14px}
+
+    /* 5) Rechte Boxen: überall gleicher Abstand + Vergleich weiter hoch */
+    .map-col .thinbox{margin-top:12px}
+    #toll-info{margin-bottom:8px}
+  </style>
+
   <!-- Schema -->
   <script type="application/ld+json">
   {
@@ -97,13 +136,11 @@
             <h2 style="margin:0 0 8px 0;font-size:1rem">Eingaben</h2>
 
             <label for="km">Strecke (km) — oder per Start/Ziel berechnen</label>
+
+            <!-- ✅ Spinner ist HIER weg, Feld ist kürzer -->
             <div class="km-row">
               <input id="km" class="km-input" type="number" inputmode="decimal" min="0" step="0.1"
                 placeholder="z. B. 120,5" aria-label="Strecke in Kilometern" />
-              <div class="spinner" title="Strecke erhöhen / verringern">
-                <button id="km-inc" aria-label="Strecke erhöhen" type="button">▲</button>
-                <button id="km-dec" aria-label="Strecke verringern" type="button">▼</button>
-              </div>
             </div>
 
             <div style="margin-top:12px">
@@ -113,9 +150,17 @@
               <label for="place-to" style="margin-top:10px">Ziel (Ort, Land)</label>
               <input id="place-to" type="text" placeholder="z. B. Sankt Petersburg, Russland" aria-label="Zielort" />
 
-              <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-                <button id="btn-geocode" class="btn secondary" type="button">Strecke berechnen</button>
-                <button id="btn-clearmap" class="btn secondary" type="button">Karte zurücksetzen</button>
+              <!-- ✅ Buttons etwas nach rechts + Spinner rechts daneben -->
+              <div class="route-row">
+                <div class="route-actions">
+                  <button id="btn-geocode" class="btn secondary" type="button">Strecke berechnen</button>
+                  <button id="btn-clearmap" class="btn secondary" type="button">Karte zurücksetzen</button>
+                </div>
+
+                <div class="spinner spinner-route" title="Strecke erhöhen / verringern">
+                  <button id="km-inc" aria-label="Strecke erhöhen" type="button">▲</button>
+                  <button id="km-dec" aria-label="Strecke verringern" type="button">▼</button>
+                </div>
               </div>
 
               <div class="country-badge" id="country-badge"></div>
@@ -151,6 +196,7 @@
                 <span id="price-info" class="hint"></span>
               </div>
 
+              <!-- ✅ höher/parallel durch align-items:flex-end + height -->
               <button id="btn-reset-price" class="btn secondary reset-price-btn" type="button">
                 Auf Standard zurücksetzen
               </button>
