@@ -13,20 +13,4 @@
       <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en" title="English">EN</a>
     </nav>
   </div>
-  <script>
-(() => {
-  // kill sticky/fixed, egal wer es setzt
-  const kill = () => {
-    const h = document.querySelector('header.site-header');
-    const wrap = document.getElementById('site-header');
-    if (wrap) { wrap.style.position = 'static'; wrap.style.top = 'auto'; wrap.style.zIndex = 'auto'; }
-    if (h) { h.style.position = 'static'; h.style.top = 'auto'; h.style.zIndex = 'auto'; }
-  };
-  kill();
-  // wenn irgendein Script es wieder sticky macht -> erneut killen
-  const mo = new MutationObserver(kill);
-  mo.observe(document.documentElement, { attributes:true, subtree:true, attributeFilter:['class','style'] });
-})();
-</script>
-
 </header>
