@@ -13,7 +13,7 @@
   --button-h:48px; --maxw:1400px;
 }
 
-/* ✅ BODY ist der Scroller */
+/* ✅ Nur BODY/HTML dürfen scrollen */
 html, body{
   height:auto !important;
   min-height:100% !important;
@@ -43,15 +43,16 @@ body{
   background:#fff;
   border-bottom:1px solid rgba(15,23,42,0.06);
 
-  /* ✅ normaler Flow */
-  position: relative !important;
+  /* ✅ Garantiert nicht sticky/fixed */
+  position: static !important;
   top:auto !important;
   left:auto !important;
   right:auto !important;
   bottom:auto !important;
   inset:auto !important;
   transform:none !important;
-  z-index:10 !important;
+
+  z-index:10;
 }
 
 .header-inner{
@@ -149,11 +150,12 @@ body{
   flex-direction:column;
   gap:18px;
 
-  /* ✅ niemals Scroll-Container */
+  /* ✅ darf niemals scroll-container sein */
+  overflow:visible !important;
   height:auto !important;
   max-height:none !important;
-  overflow:visible !important;
 }
+
 @media (min-width: 992px){
   .page-container{ padding-left:24px; padding-right:24px; padding-top:24px; }
 }
@@ -173,6 +175,8 @@ body{
 .intro-section ul{margin:8px 0;padding-left:20px}
 .intro-section li{margin:6px 0}
 
+h2{ margin:0 0 12px 0; }
+
 /* =========================
    LAYOUT
    ========================= */
@@ -182,6 +186,10 @@ body{
   gap:16px;
   align-items:stretch;
   width:100%;
+
+  overflow:visible !important;
+  height:auto !important;
+  max-height:none !important;
 }
 @media(max-width:980px){
   .layout{grid-template-columns:1fr}
@@ -361,27 +369,28 @@ input[type="number"], input[type="text"], select{
   display:flex;
   flex-direction:column;
   gap:12px;
+  min-height:0;
+
+  overflow:visible !important;
   height:auto !important;
   max-height:none !important;
-  overflow:visible !important;
-  min-height:0;
 }
 
+/* ✅ Leaflet braucht echte Höhe */
 #map{
   width:100%;
-  height:520px;
-  min-height:380px;
+  height:520px !important;
+  min-height:520px !important;
   border-radius:10px;
   border:1px solid rgba(15,23,42,0.10);
   background:#fff;
-  flex: 1 1 auto;
+  display:block;
 }
 
 @media(max-width:980px){
   #map{
     height:260px !important;
-    min-height:260px;
-    flex: 0 0 auto;
+    min-height:260px !important;
   }
 }
 
@@ -427,16 +436,7 @@ input[type="number"], input[type="text"], select{
 .country-card p{ margin-bottom:0; }
 
 /* =========================
-   FOOTER
-   ========================= */
-.site-footer{
-  padding:18px 0 30px 0;
-}
-.site-footer a{ text-decoration:none; }
-.site-footer a:hover{ text-decoration:underline; }
-
-/* =========================
-   COOKIE BANNER (DEIN DESIGN)
+   COOKIE BANNER
    ========================= */
 #cookieBanner{
   position: fixed;
@@ -446,7 +446,6 @@ input[type="number"], input[type="text"], select{
   z-index: 2147483647;
   padding: 0;
 }
-
 #cookieBanner.is-hidden{ display:none !important; }
 
 #cookieBanner .row{
@@ -512,40 +511,4 @@ input[type="number"], input[type="text"], select{
   #cookieBanner .row{flex-direction:column; padding:18px 14px;}
   #cookieBanner .actions{width:100%;}
   #cookieBanner button{width:100%;}
-}
-
-/* =========================
-   EXTRA HARD SAFETY:
-   Kein Wrapper darf scrollen
-   ========================= */
-.page-container, main, section, .layout, .map-col{
-  overflow:visible !important;
-  max-height:none !important;
-}
-
-/* =========================
-   FINAL SCROLL SAFETY
-   ========================= */
-html, body{
-  height:auto !important;
-  min-height:100% !important;
-  overflow-y:auto !important;
-  overflow-x:hidden !important;
-}
-
-/* Nichts darf ein Scroll-Container sein */
-.page-container,
-main,
-section,
-.layout,
-.map-col{
-  height:auto !important;
-  max-height:none !important;
-  overflow:visible !important;
-}
-
-/* Header MUSS normal sein */
-.site-header{
-  position: static !important;
-  top:auto !important;
 }
