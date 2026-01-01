@@ -1,48 +1,46 @@
-(async function () {
+(function () {
+  const BASE = "/"; // bei spritkosten-check.de Root passt "/"
+  const HEADER_URL = BASE + "assets/partials/header.html";
+  const FOOTER_URL = BASE + "assets/partials/footer.html";
+
+  function fetchWithTimeout(url, ms = 8000) {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), ms);
+    return fetch(url, { cache: "force-cache", signal: ctrl.signal })
+      .finally(() => clearTimeout(t));
+  }
+
   async function loadInto(id, url) {
     const el = document.getElementById(id);
     if (!el) return;
 
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) return;
-
-    el.innerHTML = await res.text();
+    try {
+      const res = await fetchWithTimeout(url, 8000);
+      if (!res.ok) return;
+      el.innerHTML = await res.text();
+    } catch (_) {
+      // Timeout/Netzfehler -> einfach überspringen, kein Endlos-Laden
+    }
   }
 
-  await loadInto("site-header", "assets/partials/header.html");
-  await loadInto("site-footer", "assets/partials/footer.html");
+  async function init() {
+    // parallel laden, nicht nacheinander blockieren
+    await Promise.allSettled([
+      loadInto("site-header", HEADER_URL),
+      loadInto("site-footer", FOOTER_URL),
+    ]);
 
-  // Header: niemals sticky/fixed (einmalig + leicht)
-  const headerWrap = document.getElementById("site-header");
-
-  function killSticky() {
-    if (!headerWrap) return;
-    const hdr = headerWrap.querySelector("header.site-header");
-    [headerWrap, hdr].filter(Boolean).forEach(el => {
-      el.style.position = "static";
-      el.style.top = "auto";
-      el.style.bottom = "auto";
-      el.style.left = "auto";
-      el.style.right = "auto";
-      el.style.zIndex = "auto";
-      el.style.transform = "none";
+    // Active Tab
+    const page = document.body.getAttribute("data-page") || "home";
+    document.querySelectorAll('.tablink[data-page]').forEach(a => {
+      if (a.getAttribute("data-page") === page) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
     });
-    if (hdr) hdr.classList.remove("sticky","is-sticky","fixed","fixed-top","sticky-top");
   }
 
-  killSticky();
-  requestAnimationFrame(killSticky);
-
-  // Nur Header beobachten (kein Intervall, kein Ruckeln)
-  if (headerWrap) {
-    const mo = new MutationObserver(() => killSticky());
-    mo.observe(headerWrap, { attributes: true, subtree: true, attributeFilter: ["class", "style"] });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
   }
-
-  // Active tab markieren
-  const page = document.body.getAttribute("data-page") || "home";
-  document.querySelectorAll('.tablink[data-page]').forEach(a => {
-    if (a.getAttribute("data-page") === page) a.setAttribute("aria-current","page");
-    else a.removeAttribute("aria-current");
-  });
 })();
