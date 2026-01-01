@@ -5,15 +5,17 @@
       <p>Plane deine Fahrtkosten schnell: Strecke, Verbrauch, Preis, Maut/Vignette – alles auf einen Blick.</p>
       <p class="small">Kostenlos, ohne Anmeldung. Datenquellen: OpenStreetMap, Länderpreise (statisch) + Tankerkönig (live für DE).</p>
     </div>
+
     <div>
       <h4>Seiten</h4>
       <ul>
-        <li><a href="/faq.html">FAQ</a></li>
-        <li><a href="/ratgeber.html">Ratgeber</a></li>
-        <li><a href="/impressum.html">Impressum</a></li>
-        <li><a href="/datenschutz.html">Datenschutz</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="ratgeber.html">Ratgeber</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
       </ul>
     </div>
+
     <div>
       <h4>Kontakt</h4>
       <ul>
@@ -23,12 +25,12 @@
   </div>
 </footer>
 
-<!-- Cookie Banner -->
+<!-- Cookie Banner (nur HTML, Logik in assets/js/cookies.js) -->
 <div class="cookie-banner is-hidden" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis">
   <div class="cookie-text">
     Wir nutzen Cookies für Grundfunktionen und um Anzeigen auszuliefern. Deine Zustimmung lädt das Anzeigenskript.
     <div class="cookie-links">
-      <a href="/datenschutz.html">Datenschutzerklärung</a> · <a href="/impressum.html">Impressum</a>
+      <a href="datenschutz.html">Mehr erfahren</a> · <a href="impressum.html">Impressum</a>
     </div>
   </div>
   <div class="cookie-actions">
@@ -36,50 +38,3 @@
     <button class="cookie-btn cookie-accept" id="cookie-accept" type="button">Alle akzeptieren</button>
   </div>
 </div>
-
-<script>
-  (function() {
-    const banner = document.getElementById('cookie-banner');
-    const btnAccept = document.getElementById('cookie-accept');
-    const btnReject = document.getElementById('cookie-reject');
-    const KEY = 'cookie-consent';
-
-    function saveConsent(val) { localStorage.setItem(KEY, val); }
-    function loadConsent() { return localStorage.getItem(KEY); }
-
-    function hide() { banner.classList.add('is-hidden'); }
-    function show() { banner.classList.remove('is-hidden'); }
-
-    function loadAds() {
-      const s = document.createElement('script');
-      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437';
-      s.crossOrigin = 'anonymous';
-      document.body.appendChild(s);
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    }
-
-    function init() {
-      const state = loadConsent();
-      if (state === 'accepted') {
-        hide();
-        loadAds();
-        return;
-      }
-      show();
-
-      btnAccept.addEventListener('click', () => {
-        saveConsent('accepted');
-        hide();
-        loadAds();
-      });
-      btnReject.addEventListener('click', () => {
-        saveConsent('rejected');
-        hide();
-      });
-    }
-
-    if (banner && btnAccept && btnReject) {
-      init();
-    }
-  })();
-</script>
