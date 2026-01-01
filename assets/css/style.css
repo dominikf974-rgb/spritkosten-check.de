@@ -528,7 +528,9 @@ main,
   max-height: none !important;
 }
 
-/* Header ist normaler Block im Flow */
-.site-header{
-  position: static !important;
+/* Header ist normaler Seiteninhalt */
+.page-container > .site-header{
+  position: relative;
 }
+
+
