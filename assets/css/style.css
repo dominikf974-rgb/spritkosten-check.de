@@ -111,30 +111,6 @@ body{
   background:#eef2ff;
 }
 
-/* FINAL: Header darf NIE sticky/fixed sein – aber NUR im site-header Bereich */
-#site-header,
-#site-header header.site-header,
-#site-header .site-header,
-#site-header .header-inner,
-#site-header nav.tabs{
-  position: static !important;
-  top:auto !important;
-  right:auto !important;
-  bottom:auto !important;
-  left:auto !important;
-  inset:auto !important;
-  transform:none !important;
-  z-index:auto !important;
-}
-
-/* Falls irgendwo inline sticky/fixed gesetzt wird */
-#site-header [style*="position:sticky"],
-#site-header [style*="position: sticky"],
-#site-header [style*="position:fixed"],
-#site-header [style*="position: fixed"]{
-  position: static !important;
-  top:auto !important;
-}
 
 /* =========================
    Container / Cards
@@ -524,9 +500,7 @@ html, body{
 .page-container,
 main,
 .layout,
-.map-col,
-#site-header,
-#site-footer{
+.map-col,{
   overflow: visible !important;
   height: auto !important;
   max-height: none !important;
@@ -535,6 +509,19 @@ main,
 /* Falls irgendwo 100vh + overflow genutzt wird */
 body{
   min-height: 100vh !important;
+}
+
+/* ===== FINAL: Header darf NIE sticky/fixed sein (direkt am Header) ===== */
+.site-header,
+.site-header *{
+  position: static !important;
+  top:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  left:auto !important;
+  inset:auto !important;
+  transform:none !important;
+  z-index:auto !important;
 }
 
 
