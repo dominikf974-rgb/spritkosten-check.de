@@ -1,123 +1,85 @@
 <footer class="site-footer">
-
-  <!-- Hauptnavigation -->
-  <div style="text-align:center; margin-bottom:12px;">
-    <a href="/faq.html">FAQ</a>
-    <span style="opacity:.5; margin:0 8px;">|</span>
-    <a href="/impressum.html">Impressum</a>
-    <span style="opacity:.5; margin:0 8px;">|</span>
-    <a href="/datenschutz.html">Datenschutz</a>
-    <span style="opacity:.5; margin:0 8px;">|</span>
-    <a href="/contact.html">Kontakt</a>
-    <span style="opacity:.5; margin:0 8px;">|</span>
-    <a href="/ratgeber.html">Ratgeber</a>
-  </div>
-
-  <!-- Beschreibung -->
-  <div style="text-align:center; font-size:.9rem; opacity:.85; margin-bottom:10px;">
-    Kostenloser Spritkosten-Rechner für Deutschland, Europa und weltweit.
-  </div>
-
-  <!-- DE / EN Links -->
-  <div style="text-align:center; margin-bottom:10px;">
-    <a href="https://spritkosten-check.de" style="font-weight:700;">DE: Spritkosten-Check.de</a>
-    <span style="opacity:.5; margin:0 12px;">|</span>
-    <a href="https://petrolcostcalculator.com" style="font-weight:700;">EN: PetrolCostCalculator.com</a>
-  </div>
-
-  <!-- Verifizierung -->
-  <div style="text-align:center; font-size:.75rem; opacity:.6; display:flex; justify-content:center; align-items:center; gap:6px;">
-    <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="black" d="M12 2l2.39 4.85L20 8.27l-4 3.9.94 5.48L12 15.9l-4.94 2.75L8 12.17l-4-3.9 5.61-.42L12 2z"/>
-    </svg>
-    Verifiziert 2026
-  </div>
-
-  <!-- Cookie Banner (NEW 2026 - NIEMALS inline display:none!) -->
-  <div id="cookieBanner" class="is-hidden" role="dialog" aria-label="Cookie Hinweis">
-    <div class="row">
-      <div class="txt">
-        Wir verwenden Cookies für Werbung (Google AdSense). Du kannst ablehnen oder zustimmen.
-        Mehr Infos in der <a href="/datenschutz.html">Datenschutzerklärung</a>.
-      </div>
-      <div class="actions">
-        <button class="reject" id="cookieReject" type="button">Ablehnen</button>
-        <button class="accept" id="cookieAccept" type="button">Akzeptieren</button>
-      </div>
+  <div class="footer-grid">
+    <div>
+      <h4>Spritkosten-Rechner</h4>
+      <p>Plane deine Fahrtkosten schnell: Strecke, Verbrauch, Preis, Maut/Vignette – alles auf einen Blick.</p>
+      <p class="small">Kostenlos, ohne Anmeldung. Datenquellen: OpenStreetMap, Länderpreise (statisch) + Tankerkönig (live für DE).</p>
+    </div>
+    <div>
+      <h4>Seiten</h4>
+      <ul>
+        <li><a href="/faq.html">FAQ</a></li>
+        <li><a href="/ratgeber.html">Ratgeber</a></li>
+        <li><a href="/impressum.html">Impressum</a></li>
+        <li><a href="/datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="mailto:hallo@spritkosten-check.de">hallo@spritkosten-check.de</a></li>
+      </ul>
     </div>
   </div>
-
-  <script>
-  (() => {
-    const CONSENT_KEY = "consent_marketing";
-    const banner = document.getElementById("cookieBanner");
-    const btnAccept = document.getElementById("cookieAccept");
-    const btnReject = document.getElementById("cookieReject");
-
-    if (!banner || !btnAccept || !btnReject) return;
-
-    function getConsent(){ try { return localStorage.getItem(CONSENT_KEY); } catch(e){ return null; } }
-    function setConsent(v){ try { localStorage.setItem(CONSENT_KEY, v); } catch(e){} }
-
-    function showBanner(){
-      banner.classList.remove("is-hidden");
-    }
-    function hideBanner(){
-      banner.classList.add("is-hidden");
-    }
-
-    // Ads laden genau einmal. Bei Ablehnen: non-personalized
-    function loadGoogleAdsOnce({ npa } = { npa: false }){
-      if (window.__adsLoaded) return;
-      window.__adsLoaded = true;
-
-      // Non-personalized Ads Flag vor dem Laden setzen
-      if (npa) {
-        window.adsbygoogle = window.adsbygoogle || [];
-        window.adsbygoogle.requestNonPersonalizedAds = 1;
-      }
-
-      const s = document.createElement("script");
-      s.async = true;
-      s.crossOrigin = "anonymous";
-      s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437";
-      document.head.appendChild(s);
-
-      s.onload = function(){
-        try {
-          document.querySelectorAll("ins.adsbygoogle").forEach(() => {
-            try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
-          });
-        } catch(e){}
-      };
-    }
-
-    const consent = getConsent();
-
-    // Wenn schon entschieden:
-    if (consent === "1") {
-      hideBanner();
-      loadGoogleAdsOnce({ npa: false });
-    } else if (consent === "0") {
-      hideBanner();
-      loadGoogleAdsOnce({ npa: true });
-    } else {
-      // noch keine Entscheidung: Banner zeigen, keine Ads laden
-      showBanner();
-    }
-
-    btnAccept.addEventListener("click", () => {
-      setConsent("1");
-      hideBanner();
-      loadGoogleAdsOnce({ npa: false });
-    });
-
-    btnReject.addEventListener("click", () => {
-      setConsent("0");
-      hideBanner();
-      loadGoogleAdsOnce({ npa: true });
-    });
-  })();
-  </script>
-
 </footer>
+
+<!-- Cookie Banner -->
+<div class="cookie-banner is-hidden" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis">
+  <div class="cookie-text">
+    Wir nutzen Cookies für Grundfunktionen und um Anzeigen auszuliefern. Deine Zustimmung lädt das Anzeigenskript.
+    <div class="cookie-links">
+      <a href="/datenschutz.html">Datenschutzerklärung</a> · <a href="/impressum.html">Impressum</a>
+    </div>
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-btn cookie-reject" id="cookie-reject" type="button">Nur notwendige</button>
+    <button class="cookie-btn cookie-accept" id="cookie-accept" type="button">Alle akzeptieren</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const banner = document.getElementById('cookie-banner');
+    const btnAccept = document.getElementById('cookie-accept');
+    const btnReject = document.getElementById('cookie-reject');
+    const KEY = 'cookie-consent';
+
+    function saveConsent(val) { localStorage.setItem(KEY, val); }
+    function loadConsent() { return localStorage.getItem(KEY); }
+
+    function hide() { banner.classList.add('is-hidden'); }
+    function show() { banner.classList.remove('is-hidden'); }
+
+    function loadAds() {
+      const s = document.createElement('script');
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437';
+      s.crossOrigin = 'anonymous';
+      document.body.appendChild(s);
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    }
+
+    function init() {
+      const state = loadConsent();
+      if (state === 'accepted') {
+        hide();
+        loadAds();
+        return;
+      }
+      show();
+
+      btnAccept.addEventListener('click', () => {
+        saveConsent('accepted');
+        hide();
+        loadAds();
+      });
+      btnReject.addEventListener('click', () => {
+        saveConsent('rejected');
+        hide();
+      });
+    }
+
+    if (banner && btnAccept && btnReject) {
+      init();
+    }
+  })();
+</script>
