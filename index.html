@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>Spritkosten-Rechner â€“ Benzin, Diesel & Reisekosten berechnen</title>
-  <meta name="description" content="Kostenloser Spritkosten-Rechner fÃ¼r Fahrten & Roadtrips. Berechne Spritkosten, Gesamtkosten und Maut-/Vignetten-SchÃ¤tzung mit Karte und Distanzberechnung weltweit." />
+  <title>Spritkosten-Rechner – Benzin, Diesel & Reisekosten berechnen</title>
+  <meta name="description" content="Kostenloser Spritkosten-Rechner für Fahrten & Roadtrips. Berechne Spritkosten, Gesamtkosten und Maut-/Vignetten-Schätzung mit Karte und Distanzberechnung weltweit." />
   <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://spritkosten-check.de/" />
@@ -21,7 +21,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" href="/favicon.ico">
 
-  <!-- âœ… Global CSS - VERSION ERHÃ–HT FÃœR CACHE-BUST -->
+  <!-- ✅ Global CSS - VERSION ERHÖHT FÜR CACHE-BUST -->
   <link rel="stylesheet" href="/assets/css/style.css?v=2026-02" />
 
   <!-- Leaflet -->
@@ -33,7 +33,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Spritkosten-Rechner",
-    "description": "Kostenloser Online-Rechner fÃ¼r Spritkosten, Kraftstoffpreise, Maut/Vignette und Reisekosten",
+    "description": "Kostenloser Online-Rechner für Spritkosten, Kraftstoffpreise, Maut/Vignette und Reisekosten",
     "url": "https://spritkosten-check.de",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Web",
@@ -43,12 +43,12 @@
 </head>
 
 <body data-page="home">
-  <!-- âœ… Header wird geladen -->
+  <!-- ✅ Header wird geladen -->
   <div id="site-header"></div>
 
   <div class="page-container">
 
-    <!-- Ad: Top (Ads werden Ã¼ber Footer-Cookie-Script nach Consent geladen) -->
+    <!-- Ad: Top (Ads werden über Footer-Cookie-Script nach Consent geladen) -->
     <div class="ad-block">
       <ins class="adsbygoogle"
         style="display:block"
@@ -59,17 +59,17 @@
     </div>
 
     <!-- Intro -->
-    <section class="card intro-section" aria-label="EinfÃ¼hrung Spritkosten-Rechner">
-      <h2>Kostenloser Spritkosten-Rechner â€“ Plane deine Fahrtkosten</h2>
+    <section class="card intro-section" aria-label="Einführung Spritkosten-Rechner">
+      <h2>Kostenloser Spritkosten-Rechner – Plane deine Fahrtkosten</h2>
       <p>
-        Unser <strong>Spritkosten-Rechner</strong> hilft dir, die Gesamtkosten deiner Fahrt zu schÃ¤tzen.
-        <strong>Kostenlos â€“ ohne Anmeldung.</strong>
-        Gib Strecke, Verbrauch und Spritpreis ein â€“ du erhÃ¤ltst eine AufschlÃ¼sselung aus Spritkosten, laufenden Kosten und einer Maut-/Vignetten-SchÃ¤tzung.
+        Unser <strong>Spritkosten-Rechner</strong> hilft dir, die Gesamtkosten deiner Fahrt zu schätzen.
+        <strong>Kostenlos – ohne Anmeldung.</strong>
+        Gib Strecke, Verbrauch und Spritpreis ein – du erhältst eine Aufschlüsselung aus Spritkosten, laufenden Kosten und einer Maut-/Vignetten-Schätzung.
       </p>
       <ul>
         <li><strong>Weltweit:</strong> Orte per OpenStreetMap</li>
-        <li><strong>Strecke:</strong> echte StraÃŸenroute + Karte</li>
-        <li><strong>Maut/Vignette:</strong> schnelle SchÃ¤tzung nach LÃ¤ndern</li>
+        <li><strong>Strecke:</strong> echte Straßenroute + Karte</li>
+        <li><strong>Maut/Vignette:</strong> schnelle Schätzung nach Ländern</li>
         <li><strong>Kosten teilen:</strong> pro Person berechnen</li>
       </ul>
     </section>
@@ -93,13 +93,13 @@
           <div>
             <h2 style="margin:0 0 8px 0;font-size:1rem">Eingaben</h2>
 
-            <label for="km">Strecke (km) â€” oder per Start/Ziel berechnen</label>
+            <label for="km">Strecke (km) — oder per Start/Ziel berechnen</label>
             <div class="km-row">
               <input id="km" class="km-input" type="number" inputmode="decimal" min="0" step="0.1"
                 placeholder="z. B. 120,5" aria-label="Strecke in Kilometern" />
-              <div class="spinner" title="Strecke erhÃ¶hen / verringern">
-                <button id="km-inc" aria-label="Strecke erhÃ¶hen" type="button">â–²</button>
-                <button id="km-dec" aria-label="Strecke verringern" type="button">â–¼</button>
+              <div class="spinner" title="Strecke erhöhen / verringern">
+                <button id="km-inc" aria-label="Strecke erhöhen" type="button">▲</button>
+                <button id="km-dec" aria-label="Strecke verringern" type="button">▼</button>
               </div>
             </div>
 
@@ -112,7 +112,7 @@
 
               <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
                 <button id="btn-geocode" class="btn secondary" type="button">Strecke berechnen</button>
-                <button id="btn-clearmap" class="btn secondary" type="button">Karte zurÃ¼cksetzen</button>
+                <button id="btn-clearmap" class="btn secondary" type="button">Karte zurücksetzen</button>
               </div>
 
               <div class="country-badge" id="country-badge"></div>
@@ -142,29 +142,29 @@
 
             <div class="price-input-group">
               <div>
-                <label for="price">Preis pro Liter (â‚¬)</label>
+                <label for="price">Preis pro Liter (€)</label>
                 <input id="price" type="number" inputmode="decimal" min="0" step="0.01"
                   placeholder="z. B. 1,89" aria-label="Spritpreis pro Liter" />
                 <span id="price-info" class="hint"></span>
               </div>
 
               <button id="btn-reset-price" class="btn secondary reset-price-btn" type="button">
-                Auf Standard zurÃ¼cksetzen
+                Auf Standard zurücksetzen
               </button>
             </div>
 
             <div class="price-table">
               <div class="price-card">
-                <div class="small">Ã˜ Benzin (E10)</div>
-                <strong id="avg-unleaded91">â€”</strong>
+                <div class="small">Ø Benzin (E10)</div>
+                <strong id="avg-unleaded91">—</strong>
               </div>
               <div class="price-card">
-                <div class="small">Ã˜ Super (E5)</div>
-                <strong id="avg-unleaded95">â€”</strong>
+                <div class="small">Ø Super (E5)</div>
+                <strong id="avg-unleaded95">—</strong>
               </div>
               <div class="price-card">
-                <div class="small">Ã˜ Diesel</div>
-                <strong id="avg-diesel">â€”</strong>
+                <div class="small">Ø Diesel</div>
+                <strong id="avg-diesel">—</strong>
               </div>
             </div>
 
@@ -173,19 +173,19 @@
 
             <div class="big-action">
               <button id="calc-fuel" class="btn large" type="button">Berechnen</button>
-              <button id="reset-fuel" class="btn secondary large" type="button">ZurÃ¼cksetzen</button>
+              <button id="reset-fuel" class="btn secondary large" type="button">Zurücksetzen</button>
             </div>
 
             <div class="resultbox" aria-live="polite" aria-label="Ergebnisse">
-              <div class="result-row"><div class="result-key">Spritkosten</div><div class="result-val" id="cost-fuel">â‚¬0,00</div></div>
-              <div class="result-row"><div class="result-key">Laufende Kosten inkl. Maut/Vignette (SchÃ¤tzung)</div><div class="result-val" id="cost-running">â‚¬0,00</div></div>
-              <div class="result-row"><div class="result-key">Gesamtkosten</div><div class="result-val" id="cost-total">â‚¬0,00</div></div>
-              <div class="result-row"><div class="result-key">Pro Person</div><div class="result-val" id="cost-person">â‚¬0,00</div></div>
+              <div class="result-row"><div class="result-key">Spritkosten</div><div class="result-val" id="cost-fuel">€0,00</div></div>
+              <div class="result-row"><div class="result-key">Laufende Kosten inkl. Maut/Vignette (Schätzung)</div><div class="result-val" id="cost-running">€0,00</div></div>
+              <div class="result-row"><div class="result-key">Gesamtkosten</div><div class="result-val" id="cost-total">€0,00</div></div>
+              <div class="result-row"><div class="result-key">Pro Person</div><div class="result-val" id="cost-person">€0,00</div></div>
               <div class="result-row"><div class="result-key">Liter gesamt</div><div class="result-val" id="liters">0,00 L</div></div>
-              <div class="result-row"><div class="result-key">Durchschnitt (â‚¬/100 km)</div><div class="result-val" id="avg100">â‚¬0,00 /100km</div></div>
-              <div class="result-row"><div class="result-key small">SchÃ¤tzung laufende Kosten /100 km (inkl. Maut/Vignette)</div><div class="result-val small" id="running-est">â€”</div></div>
+              <div class="result-row"><div class="result-key">Durchschnitt (€/100 km)</div><div class="result-val" id="avg100">€0,00 /100km</div></div>
+              <div class="result-row"><div class="result-key small">Schätzung laufende Kosten /100 km (inkl. Maut/Vignette)</div><div class="result-val small" id="running-est">—</div></div>
               <div style="margin-top:8px;color:var(--muted);font-size:.85rem">
-                Laufende Kosten enthalten: Wartung, Reifen, Wertverlust, Versicherung + Maut/Vignette-SchÃ¤tzung.
+                Laufende Kosten enthalten: Wartung, Reifen, Wertverlust, Versicherung + Maut/Vignette-Schätzung.
               </div>
             </div>
           </div>
@@ -197,27 +197,27 @@
             <div id="toll-info" class="small" style="color:var(--muted)"></div>
 
             <div class="thinbox" aria-label="Maut und Vignetten Details" style="padding:16px 12px">
-              <div class="title">Maut & Vignette â€“ Details</div>
-              <div class="line"><div>Gesamt Maut</div><div class="mono" id="toll-total">â€”</div></div>
-              <div class="line"><div>Gesamt Vignetten</div><div class="mono" id="vignette-total">â€”</div></div>
-              <div class="line"><div>Summe Maut + Vignette</div><div class="mono" id="toll-vignette-sum">â€”</div></div>
+              <div class="title">Maut & Vignette – Details</div>
+              <div class="line"><div>Gesamt Maut</div><div class="mono" id="toll-total">—</div></div>
+              <div class="line"><div>Gesamt Vignetten</div><div class="mono" id="vignette-total">—</div></div>
+              <div class="line"><div>Summe Maut + Vignette</div><div class="mono" id="toll-vignette-sum">—</div></div>
               <div style="margin-top:10px" class="small" id="toll-breakdown"></div>
             </div>
 
             <div class="thinbox" aria-label="CO2 Bilanz">
-              <div class="title">ðŸŒ± COâ‚‚-Bilanz</div>
-              <div class="line"><div>COâ‚‚ gesamt</div><div class="mono" id="co2-total">â€”</div></div>
-              <div class="line"><div>COâ‚‚ pro Person</div><div class="mono" id="co2-per-person">â€”</div></div>
-              <div class="small" style="margin-top:8px">NÃ¤herung auf Basis deines Verbrauchs (kg COâ‚‚).</div>
+              <div class="title">🌱 CO₂-Bilanz</div>
+              <div class="line"><div>CO₂ gesamt</div><div class="mono" id="co2-total">—</div></div>
+              <div class="line"><div>CO₂ pro Person</div><div class="mono" id="co2-per-person">—</div></div>
+              <div class="small" style="margin-top:8px">Näherung auf Basis deines Verbrauchs (kg CO₂).</div>
             </div>
 
             <div class="thinbox" aria-label="Vergleich Verkehrsmittel">
-              <div class="title">ðŸš—ðŸš†âœˆï¸ Vergleich (Richtwerte)</div>
-              <div class="line"><div>Auto</div><div class="mono" id="cmp-car">â€”</div></div>
-              <div class="line"><div>Bahn</div><div class="mono" id="cmp-rail">â€”</div></div>
-              <div class="line"><div>Flug</div><div class="mono" id="cmp-flight">â€”</div></div>
+              <div class="title">🚗🚆✈️ Vergleich (Richtwerte)</div>
+              <div class="line"><div>Auto</div><div class="mono" id="cmp-car">—</div></div>
+              <div class="line"><div>Bahn</div><div class="mono" id="cmp-rail">—</div></div>
+              <div class="line"><div>Flug</div><div class="mono" id="cmp-flight">—</div></div>
               <div class="small" style="margin-top:8px">
-                Werte in kg COâ‚‚ fÃ¼r die Strecke (Richtwerte).<br>
+                Werte in kg CO₂ für die Strecke (Richtwerte).<br>
                 Bahn &amp; Flug: <b>pro Sitzplatz</b>. Auto: <b>pro Fahrzeug</b>.
               </div>
             </div>
@@ -228,29 +228,29 @@
     </main>
 
     <!-- SEO Block -->
-    <section class="card" aria-label="Berechnung erklÃ¤rt">
+    <section class="card" aria-label="Berechnung erklärt">
       <h2>So berechnest du Spritkosten & Kosten pro Person</h2>
       <p class="small" style="margin-top:0">
-        FÃ¼r schnelle ÃœberschlÃ¤ge reichen Strecke (km), Verbrauch (L/100 km) und Spritpreis (â‚¬/L).
-        Der Rechner zeigt dir zusÃ¤tzlich Durchschnittskosten pro 100 km und die Aufteilung pro Person.
+        Für schnelle Überschläge reichen Strecke (km), Verbrauch (L/100 km) und Spritpreis (€/L).
+        Der Rechner zeigt dir zusätzlich Durchschnittskosten pro 100 km und die Aufteilung pro Person.
       </p>
 
       <div class="two-col">
         <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
           <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Kurzformeln</h3>
           <ul style="margin:0;padding-left:18px;line-height:1.7">
-            <li><strong>Liter</strong> = km Ã— Verbrauch Ã· 100</li>
-            <li><strong>Spritkosten</strong> = Liter Ã— Preis</li>
-            <li><strong>pro Person</strong> = Gesamtkosten Ã· Personen</li>
+            <li><strong>Liter</strong> = km × Verbrauch ÷ 100</li>
+            <li><strong>Spritkosten</strong> = Liter × Preis</li>
+            <li><strong>pro Person</strong> = Gesamtkosten ÷ Personen</li>
           </ul>
         </div>
 
         <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
           <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Hinweise</h3>
           <ul style="margin:0;padding-left:18px;line-height:1.7">
-            <li>Maut/Vignette sind SchÃ¤tzwerte.</li>
-            <li>â€žLaufende Kosten" sind eine einfache NÃ¤herung.</li>
-            <li>FÃ¼r genaue Werte: echten Verbrauch + aktuellen Preis nutzen.</li>
+            <li>Maut/Vignette sind Schätzwerte.</li>
+            <li>„Laufende Kosten" sind eine einfache Näherung.</li>
+            <li>Für genaue Werte: echten Verbrauch + aktuellen Preis nutzen.</li>
           </ul>
         </div>
       </div>
@@ -260,14 +260,14 @@
     <section class="card" aria-label="Tipps Sprit sparen">
       <h2>Tipps: Sprit sparen & Reisekosten reduzieren</h2>
       <p class="small" style="margin-top:0">
-        Kleine Ã„nderungen senken die Kosten schnell: richtiger Reifendruck, gleichmÃ¤ÃŸige Geschwindigkeit
+        Kleine Änderungen senken die Kosten schnell: richtiger Reifendruck, gleichmäßige Geschwindigkeit
         und realistische Verbrauchswerte. Wenn ihr zusammen fahrt, teilt die Kosten fair pro Person.
       </p>
       <ul style="margin:0;padding-left:18px;line-height:1.7">
         <li><strong>Ruhig fahren:</strong> weniger stark beschleunigen und bremsen.</li>
-        <li><strong>Reifendruck prÃ¼fen:</strong> zu niedriger Druck erhÃ¶ht den Verbrauch.</li>
-        <li><strong>Gewicht reduzieren:</strong> unnÃ¶tige Ladung raus, Dachbox nur wenn nÃ¶tig.</li>
-        <li><strong>Kosten teilen:</strong> â€žPersonen" nutzen fÃ¼r fairen Betrag pro Kopf.</li>
+        <li><strong>Reifendruck prüfen:</strong> zu niedriger Druck erhöht den Verbrauch.</li>
+        <li><strong>Gewicht reduzieren:</strong> unnötige Ladung raus, Dachbox nur wenn nötig.</li>
+        <li><strong>Kosten teilen:</strong> „Personen" nutzen für fairen Betrag pro Kopf.</li>
       </ul>
 
       <div style="margin-top:18px;display:flex;justify-content:center">
@@ -281,17 +281,17 @@
 
       <details class="faq-item">
         <summary>Wie berechne ich Spritkosten pro 100 km?</summary>
-        <p>Der Rechner zeigt dir â€žâ‚¬/100 km" automatisch an. Grundlage ist: Gesamtkosten Ã· Strecke Ã— 100.</p>
+        <p>Der Rechner zeigt dir „€/100 km" automatisch an. Grundlage ist: Gesamtkosten ÷ Strecke × 100.</p>
       </details>
 
       <details class="faq-item">
-        <summary>ZÃ¤hlt Hin- und RÃ¼ckfahrt oder nur eine Strecke?</summary>
-        <p>Du kannst beides. Gib einfach die Kilometer ein, die du wirklich fÃ¤hrst (einfach oder hin &amp; zurÃ¼ck).</p>
+        <summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
+        <p>Du kannst beides. Gib einfach die Kilometer ein, die du wirklich fährst (einfach oder hin &amp; zurück).</p>
       </details>
 
       <details class="faq-item">
         <summary>Wie genau sind Maut/Vignetten?</summary>
-        <p>Nur grob nach LÃ¤ndern. Reale Kosten hÃ¤ngen von Route, Fahrzeugklasse und lokalen Regeln ab.</p>
+        <p>Nur grob nach Ländern. Reale Kosten hängen von Route, Fahrzeugklasse und lokalen Regeln ab.</p>
       </details>
 
       <div style="margin-top:14px;display:flex;justify-content:center">
@@ -302,7 +302,7 @@
     <!-- Countries -->
     <section class="card countries-section" aria-label="Spritkosten-Rechner nach Land">
       <h2>Spritkosten-Rechner nach Land</h2>
-      <p class="small" style="margin:0 0 10px 0">Funktioniert weltweit mit LÃ¤nder-Erkennung. Beliebte Regionen:</p>
+      <p class="small" style="margin:0 0 10px 0">Funktioniert weltweit mit Länder-Erkennung. Beliebte Regionen:</p>
 
       <div class="countries-grid">
         <div class="country-card">
@@ -310,20 +310,20 @@
           <p>Plane Fahrtkosten, Spritkosten, laufende Kosten und teile fair pro Person.</p>
         </div>
         <div class="country-card">
-          <h3>Ã–sterreich</h3>
-          <p>Ideal fÃ¼r Autobahn &amp; Alpenstrecken â€“ inkl. grober Maut/Vignetten-SchÃ¤tzung.</p>
+          <h3>Österreich</h3>
+          <p>Ideal für Autobahn &amp; Alpenstrecken – inkl. grober Maut/Vignetten-Schätzung.</p>
         </div>
         <div class="country-card">
           <h3>Schweiz</h3>
-          <p>Perfekt fÃ¼r AlpenpÃ¤sse und Autobahnen â€“ inkl. Vignetten-SchÃ¤tzung.</p>
+          <p>Perfekt für Alpenpässe und Autobahnen – inkl. Vignetten-Schätzung.</p>
         </div>
         <div class="country-card">
           <h3>Europa</h3>
-          <p>FÃ¼r grenzÃ¼berschreitende Fahrten mit schneller Maut-/Kosten-NÃ¤herung.</p>
+          <p>Für grenzüberschreitende Fahrten mit schneller Maut-/Kosten-Näherung.</p>
         </div>
         <div class="country-card">
           <h3>Weltweit</h3>
-          <p>FÃ¼r Roadtrips und Urlaubsreisen in nahezu allen LÃ¤ndern &amp; Regionen.</p>
+          <p>Für Roadtrips und Urlaubsreisen in nahezu allen Ländern &amp; Regionen.</p>
         </div>
       </div>
     </section>
@@ -340,21 +340,21 @@
 
   </div>
 
-  <!-- âœ… Footer wird geladen -->
+  <!-- ✅ Footer wird geladen -->
   <div id="site-footer"></div>
 
   <!-- Leaflet + Prices -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="prices/country-prices.js"></script>
 
-  <!-- âœ… Rechner + Map Script -->
+  <!-- ✅ Rechner + Map Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // ===== Proxy Base (DEIN WORKER) =====
       const API_BASE = "https://soft-pine-874.dominikf974.workers.dev";
 
       // ===== Utils =====
-      const CURRENCY_SYMBOL = 'â‚¬';
+      const CURRENCY_SYMBOL = '€';
       const parse = v => (v === '' || v == null) ? NaN : Number(String(v).replace(',', '.'));
       const fmt = n => (Number.isFinite(n) ? Number.parseFloat(n.toFixed(2)).toFixed(2) : '0.00');
       const fmtMoney = n => CURRENCY_SYMBOL + fmt(n).replace('.', ',');
@@ -430,16 +430,16 @@
       }
 
       function getCountryName(cc){
-        if(!cc) return 'â€”';
+        if(!cc) return '—';
         const e = countryPrices && countryPrices[cc];
         return (e && e.name) ? e.name : cc;
       }
 
-      // DE: live via TankerkÃ¶nig, sonst: statisch aus country-prices.js
+      // DE: live via Tankerkönig, sonst: statisch aus country-prices.js
       async function pricesForCountryStatic(cc, lat=null, lon=null){
         cc = (cc || "").toUpperCase();
 
-        // Live nur fÃ¼r Deutschland (wenn Koordinaten vorhanden)
+        // Live nur für Deutschland (wenn Koordinaten vorhanden)
         if(cc === "DE" && lat != null && lon != null){
           try{
             const r = await fetchWithTimeout(`${API_BASE}/api/tank?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&rad=6&type=all`, 12000);
@@ -492,10 +492,10 @@
         if(isCross){
           if(mode === 'start'){ chosen = startP; note = `Startland (${startP.name})`; }
           else if(mode === 'dest'){ chosen = destP; note = `Zielland (${destP.name})`; }
-          else { chosen = mixPrices(startP, destP); note = `Mittelwert (${startP.name} â†” ${destP.name})`; }
+          else { chosen = mixPrices(startP, destP); note = `Mittelwert (${startP.name} ↔ ${destP.name})`; }
         }else{
           chosen = startP;
-          note = startCC ? `Land: ${chosen.name}` : 'Land: â€”';
+          note = startCC ? `Land: ${chosen.name}` : 'Land: —';
         }
 
         fuelPrices = { unleaded91: chosen.unleaded91, unleaded95: chosen.unleaded95, diesel: chosen.diesel };
@@ -505,9 +505,9 @@
           priceEl.value = fuelPrices[fuelTypeEl.value] ?? '';
           const standTxt = priceStand ? ` (Stand: ${priceStand})` : '';
           const sourceTxt = (startCC === "DE" && chosen.name.includes("Live"))
-            ? "Quelle: TankerkÃ¶nig (Live, DE) â€“ sonst LÃ¤nderpreise (statisch)"
-            : "Quelle: LÃ¤nderpreise (statisch)";
-          priceInfoEl.textContent = `${note}. ${sourceTxt}${standTxt}. Du kannst den Preis Ã¤ndern.`;
+            ? "Quelle: Tankerkönig (Live, DE) – sonst Länderpreise (statisch)"
+            : "Quelle: Länderpreise (statisch)";
+          priceInfoEl.textContent = `${note}. ${sourceTxt}${standTxt}. Du kannst den Preis ändern.`;
           priceInfoEl.classList.remove('error');
         }
       }
@@ -624,9 +624,9 @@
 
       function renderTollBreakdown(){
         if(!routeKm || !startCC){
-          tollTotalEl.textContent = 'â€”';
-          vignetteTotalEl.textContent = 'â€”';
-          tollVignetteSumEl.textContent = 'â€”';
+          tollTotalEl.textContent = '—';
+          vignetteTotalEl.textContent = '—';
+          tollVignetteSumEl.textContent = '—';
           tollBreakdownEl.textContent = 'Gib Start/Ziel ein und berechne die Strecke.';
           return;
         }
@@ -656,7 +656,7 @@
           }
 
           const rate = (tollPer100km[p.cc] ?? 5);
-          return `â€¢ ${name} (${p.cc}): ${fmtL(p.km)} km Ã— ${fmt(rate).replace('.', ',')} â‚¬/100 km â‰ˆ <b>${fmtMoney(toll)}</b>`;
+          return `• ${name} (${p.cc}): ${fmtL(p.km)} km × ${fmt(rate).replace('.', ',')} €/100 km ≈ <b>${fmtMoney(toll)}</b>`;
         });
 
         lastTollTotal = tollSum;
@@ -669,7 +669,7 @@
         tollBreakdownEl.innerHTML =
           lines.join('<br>') +
           (vignetteSum > 0 ? `<br><br><span class="small">Vignetten (fix, je Land einmal): ${fmtMoney(vignetteSum)}</span>` : '') +
-          `<br><span class="small">Hinweis: LÃ¤nder-Split ist eine schnelle SchÃ¤tzung (bei LÃ¤nderwechsel 50/50).</span>`;
+          `<br><span class="small">Hinweis: Länder-Split ist eine schnelle Schätzung (bei Länderwechsel 50/50).</span>`;
       }
 
       document.getElementById('btn-geocode').addEventListener('click', async () => {
@@ -683,7 +683,7 @@
         }
 
         try{
-          tollInfoEl.textContent = 'Route wird berechnetâ€¦';
+          tollInfoEl.textContent = 'Route wird berechnet…';
           tollInfoEl.classList.remove('error');
 
           const a = await geocode(from);
@@ -701,8 +701,8 @@
           const destName  = getCountryName(destCC);
 
           badgeEl.innerHTML =
-            `Erkannt: <b>Start</b> ${startName} (${startCC||'â€”'}), <b>Ziel</b> ${destName} (${destCC||'â€”'})` +
-            (!countryPrices ? `<br><span class="error">âš  Preisdatei fehlt: prices/country-prices.js</span>` : '');
+            `Erkannt: <b>Start</b> ${startName} (${startCC||'—'}), <b>Ziel</b> ${destName} (${destCC||'—'})` +
+            (!countryPrices ? `<br><span class="error">⚠ Preisdatei fehlt: prices/country-prices.js</span>` : '');
 
           if(startCC && destCC && startCC !== destCC) priceModeWrap.style.display = 'block';
           else priceModeWrap.style.display = 'none';
@@ -723,7 +723,7 @@
           setTimeout(safeInvalidate, 120);
 
         }catch(e){
-          tollInfoEl.textContent = 'Fehler bei Routing/Geocoding. Bitte Verbindung prÃ¼fen oder anderen Ort versuchen.';
+          tollInfoEl.textContent = 'Fehler bei Routing/Geocoding. Bitte Verbindung prüfen oder anderen Ort versuchen.';
           tollInfoEl.classList.add('error');
         }
       });
@@ -828,18 +828,18 @@
         passengersEl.value = 1;
 
         litersEl.textContent='0,00 L';
-        costFuelEl.textContent='â‚¬0,00';
-        costRunningEl.textContent='â‚¬0,00';
-        costTotalEl.textContent='â‚¬0,00';
-        costPersonEl.textContent='â‚¬0,00';
-        avg100El.textContent='â‚¬0,00 /100km';
-        runningEstEl.textContent='â€”';
+        costFuelEl.textContent='€0,00';
+        costRunningEl.textContent='€0,00';
+        costTotalEl.textContent='€0,00';
+        costPersonEl.textContent='€0,00';
+        avg100El.textContent='€0,00 /100km';
+        runningEstEl.textContent='—';
 
-        co2TotalEl.textContent='â€”';
-        co2PerPersonEl.textContent='â€”';
-        cmpCarEl.textContent='â€”';
-        cmpRailEl.textContent='â€”';
-        cmpFlightEl.textContent='â€”';
+        co2TotalEl.textContent='—';
+        co2PerPersonEl.textContent='—';
+        cmpCarEl.textContent='—';
+        cmpRailEl.textContent='—';
+        cmpFlightEl.textContent='—';
 
         userEditedPrice = false;
         fuelPrices = { ...fallbackPrices };
@@ -859,7 +859,7 @@
     });
   </script>
 
-  <!-- âœ… Loader am Ende (lÃ¤dt Header/Footer) - VERSION ERHÃ–HT FÃœR CACHE-BUST -->
+  <!-- ✅ Loader am Ende (lädt Header/Footer) - VERSION ERHÖHT FÜR CACHE-BUST -->
   <script src="/assets/js/loader.js?v=2026-02"></script>
 </body>
 </html>
