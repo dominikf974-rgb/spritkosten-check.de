@@ -83,7 +83,6 @@ h2{ margin:0 0 12px 0; }
   color:#e5e7eb;
 }
 
-/* Desktop Tabs */
 .tabs{
   display:flex;
   gap:8px;
@@ -105,7 +104,6 @@ h2{ margin:0 0 12px 0; }
   cursor:pointer;
 }
 
-/* HEADER LINKS: normal hell (kein Button) */
 .site-header .tablink{
   background:transparent;
   border:1px solid transparent;
@@ -114,7 +112,6 @@ h2{ margin:0 0 12px 0; }
   transition:all .22s ease;
 }
 
-/* Hover = hologramm glow (nur hover!) */
 .site-header .tablink:hover{
   background: linear-gradient(135deg,#a855f7,#6366f1,#38bdf8);
   background-size:200% 200%;
@@ -124,7 +121,6 @@ h2{ margin:0 0 12px 0; }
   animation: holoFlow 6s linear infinite;
 }
 
-/* ACTIVE TAB = dauerhaft hologramm */
 .site-header .tablink[aria-current="page"]{
   background: linear-gradient(135deg,#a855f7,#6366f1,#38bdf8);
   background-size:200% 200%;
@@ -134,7 +130,6 @@ h2{ margin:0 0 12px 0; }
   animation: holoFlow 6s linear infinite;
 }
 
-/* EN Button: dezent (nicht hologramm) */
 .site-header .lang-link{
   font-weight:800;
   color:#ffffff;
@@ -175,7 +170,6 @@ h2{ margin:0 0 12px 0; }
   background:#ffffff;
 }
 
-/* Mobile Header/Nav */
 @media(max-width:720px){
   .header-inner{padding:10px 12px}
   .site-title{max-width:160px;}
@@ -239,7 +233,6 @@ h2{ margin:0 0 12px 0; }
   .site-title{display:none;}
 }
 
-/* Mobile: kein dauer-hover-glow außer active */
 @media (hover: none){
   .site-header .tablink:hover{
     box-shadow:none;
@@ -317,14 +310,17 @@ input[type="number"], input[type="text"], select{
   margin-top:.25rem;
 }
 
-/* ✅ FIX: (dein Tippfehler war .km-{...}) */
-.km-row{display:flex;gap:8px;align-items:center;flex-wrap:nowrap}
-.km-row .km-input{flex:1;min-width:0}
+/* ✅ FIX: richtige Klasse (dein Tippfehler war .km-{ ... }) */
+.km-row{display:flex;gap:10px;align-items:stretch;flex-wrap:nowrap}
+.km-row .km-input{flex:1;min-width:0;height:var(--button-h)}
 
-/* Spinner */
+/* Spinner im KM-Block rechts, gleiche Gesamthöhe wie Input */
 .spinner{display:flex;flex-direction:column;gap:6px}
-.spinner button{
-  width:44px;height:44px;border-radius:8px;border:none;
+.km-row .spinner{gap:6px}
+.km-row .spinner button{
+  width:44px;
+  height:calc((var(--button-h) - 6px) / 2);
+  border-radius:8px;border:none;
   background:linear-gradient(135deg,#a855f7,#6366f1,#38bdf8);
   background-size:200% 200%;
   color:#fff;font-weight:900;font-size:18px;cursor:pointer;
@@ -369,7 +365,7 @@ input[type="number"], input[type="text"], select{
 
 .btn.large{font-size:1.05rem;padding:0 14px;height:54px}
 
-/* ✅ Strecke berechnen + Karte zurücksetzen zentriert nebeneinander */
+/* ✅ Strecke berechnen + Karte zurücksetzen: zentriert nebeneinander */
 .route-actions{
   margin-top:10px;
   display:flex;
@@ -378,14 +374,17 @@ input[type="number"], input[type="text"], select{
   flex-wrap:nowrap;
 }
 
-/* ✅ Berechnen + Zurücksetzen zentriert nebeneinander */
+/* big-action: Berechnen + Zurücksetzen zentriert nebeneinander */
 .big-action{
   display:flex;
-  gap:10px;
+  gap:12px;
   margin-top:12px;
+  flex-wrap:nowrap;
   justify-content:center;
-  flex-wrap:wrap; /* wenn Handy zu klein: darf umbrechen, aber nicht zwangsweise */
 }
+
+/* ✅ WICHTIG: diese Mobile-Regel hat vorher ALLES kaputt gemacht (full width + stacking) */
+/* Entfernt: .big-action{flex-direction:column} und .btn{width:100%} */
 
 /* Helper text */
 .small{font-size:.9rem;color:var(--muted)}
@@ -393,29 +392,26 @@ input[type="number"], input[type="text"], select{
 .hint.error{color:#e53e3e}
 .error{color:#e53e3e}
 
-/* Price section */
+/* Price section: ✅ Preis + Reset in einer Linie */
 .price-input-group{
-  display:grid;
-  grid-template-columns: 1fr auto;
+  display:flex;
   gap:10px;
-  align-items:end;
+  align-items:flex-end;
   margin-top:8px;
 }
-@media(max-width:720px){
-  .price-input-group{ grid-template-columns:1fr; }
-}
-
-/* ✅ Reset-Button 2px höher (nur optisch, ohne Layout zu verschieben) */
+.price-input-group input#price{height:var(--button-h)}
 .reset-price-btn{
-  height:44px;
+  height:var(--button-h);
   padding:0 14px;
   white-space:nowrap;
-  transform: translateY(-24px); /* <- 2px höher als vorher */
+  margin:0;
 }
 @media(max-width:720px){
-  .reset-price-btn{ transform:none; }
+  .price-input-group{ flex-direction:column; align-items:stretch; }
+  .reset-price-btn{ width:100%; }
 }
 
+/* Price table */
 .price-table{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
 .price-card{
   flex:1;
@@ -467,7 +463,7 @@ input[type="number"], input[type="text"], select{
 .country-badge{margin-top:8px; min-height:18px; font-size:.85rem; color:var(--muted);}
 
 /* =========================
-   MAP RIGHT COLUMN + ALIGN FIX
+   MAP RIGHT COLUMN
    ========================= */
 .map-col{
   display:flex;
@@ -475,7 +471,6 @@ input[type="number"], input[type="text"], select{
   min-height:100%;
 }
 
-/* Leaflet braucht echte Höhe */
 #map{
   width:100%;
   height:520px;
@@ -490,11 +485,11 @@ input[type="number"], input[type="text"], select{
 }
 #toll-info{ margin:0 !important; }
 
-/* Thin boxes: gleicher Abstand + etwas größer */
+/* Thin boxes: gleicher Abstand überall */
 .thinbox{
-  margin-top:12px;              /* wenig Platz dazwischen */
-  padding:14px 14px;            /* größer */
-  border-radius:12px;           /* etwas runder */
+  margin-top:14px;
+  padding:12px 12px;
+  border-radius:10px;
   background:#ffffff;
   border:1px solid rgba(15,23,42,0.10);
 }
@@ -502,7 +497,7 @@ input[type="number"], input[type="text"], select{
   font-weight:900;
   color:var(--accent-2);
   margin-bottom:10px;
-  font-size:1.02rem
+  font-size:.98rem
 }
 .thinbox .line{
   display:flex;
@@ -516,11 +511,9 @@ input[type="number"], input[type="text"], select{
 .thinbox .line:last-child{border-bottom:0}
 .mono{font-variant-numeric:tabular-nums;}
 
-/* ✅ 3 Boxen fast gleich groß + untere Box bündig (wachsen gleichmäßig) */
-.map-col .thinbox[aria-label="Maut und Vignetten Details"],
-.map-col .thinbox[aria-label="CO2 Bilanz"],
+/* ✅ Vergleich NICHT nach unten drücken */
 .map-col .thinbox[aria-label="Vergleich Verkehrsmittel"]{
-  flex:1 1 0;
+  margin-top:14px;
 }
 
 /* Ads */
