@@ -93,7 +93,7 @@
           <div>
             <h2 style="margin:0 0 8px 0;font-size:1rem">Eingaben</h2>
 
-            <label for="km">Strecke (km) — oder per Start/Ziel berechnen</label>
+            <label for="km">Strecke (km) – oder per Start/Ziel berechnen</label>
             <div class="km-row">
               <input id="km" class="km-input" type="number" inputmode="decimal" min="0" step="0.1"
                 placeholder="z. B. 120,5" aria-label="Strecke in Kilometern" />
@@ -218,7 +218,7 @@
               <div class="line"><div>Flug</div><div class="mono" id="cmp-flight">—</div></div>
               <div class="small" style="margin-top:8px">
                 Werte in kg CO₂ für die Strecke (Richtwerte).<br>
-                Bahn &amp; Flug: <b>pro Sitzplatz</b>. Auto: <b>pro Fahrzeug</b>.
+                Bahn & Flug: <b>pro Sitzplatz</b>. Auto: <b>pro Fahrzeug</b>.
               </div>
             </div>
           </div>
@@ -286,7 +286,7 @@
 
       <details class="faq-item">
         <summary>Zählt Hin- und Rückfahrt oder nur eine Strecke?</summary>
-        <p>Du kannst beides. Gib einfach die Kilometer ein, die du wirklich fährst (einfach oder hin &amp; zurück).</p>
+        <p>Du kannst beides. Gib einfach die Kilometer ein, die du wirklich fährst (einfach oder hin & zurück).</p>
       </details>
 
       <details class="faq-item">
@@ -311,7 +311,7 @@
         </div>
         <div class="country-card">
           <h3>Österreich</h3>
-          <p>Ideal für Autobahn &amp; Alpenstrecken – inkl. grober Maut/Vignetten-Schätzung.</p>
+          <p>Ideal für Autobahn & Alpenstrecken – inkl. grober Maut/Vignetten-Schätzung.</p>
         </div>
         <div class="country-card">
           <h3>Schweiz</h3>
@@ -323,7 +323,7 @@
         </div>
         <div class="country-card">
           <h3>Weltweit</h3>
-          <p>Für Roadtrips und Urlaubsreisen in nahezu allen Ländern &amp; Regionen.</p>
+          <p>Für Roadtrips und Urlaubsreisen in nahezu allen Ländern & Regionen.</p>
         </div>
       </div>
     </section>
@@ -448,8 +448,8 @@
               if(j && j.ok && Array.isArray(j.stations) && j.stations.length){
                 let e10=null, e5=null, diesel=null;
                 j.stations.forEach(s=>{
-                  if(typeof s.e10==="number")   e10   = (e10==null)   ? s.e10   : Math.min(e10, s.e10);
-                  if(typeof s.e5==="number")    e5    = (e5==null)    ? s.e5    : Math.min(e5, s.e5);
+                  if(typeof s.e10==="number")   e10   = (e10==null)   ? e10   : Math.min(e10, s.e10);
+                  if(typeof s.e5==="number")    e5    = (e5==null)    ? e5    : Math.min(e5, s.e5);
                   if(typeof s.diesel==="number")diesel= (diesel==null)? s.diesel: Math.min(diesel, s.diesel);
                 });
 
