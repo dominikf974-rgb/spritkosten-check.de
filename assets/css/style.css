@@ -489,57 +489,23 @@ input[type="number"], input[type="text"], select{
   #cookieBanner button{width:100%;}
 }
 
-/* Nichts darf einen eigenen Scroll-Container bauen */
-.page-container,
-main,
-.layout,
-.map-col,{
-  overflow: visible !important;
-  height: auto !important;
-  max-height: none !important;
+/* ========== FINAL HEADER FIX – EINMAL SAUBER ========== */
+
+/* Seite scrollt IMMER über body */
+html, body{
+  height:auto;
+  overflow-y:auto;
 }
 
-}
-
-/* ===== FINAL: Header darf NIE sticky/fixed sein (direkt am Header) ===== */
-.site-header,
-.site-header *{
-  position: static !important;
-  top:auto !important;
-  right:auto !important;
-  bottom:auto !important;
-  left:auto !important;
-  inset:auto !important;
-  transform:none !important;
-  z-index:auto !important;
-}
-
-/* FINAL – Header darf niemals sticky sein */
+/* Header ist normaler Block (niemals sticky/fixed) */
 .site-header{
-  position: static !important;
-}
-
-/* ===== LETZTER FINAL FIX ===== */
-
-/* Die Seite muss über BODY scrollen */
-.page-container{
-  overflow: visible !important;
-  height: auto !important;
-  max-height: none !important;
-}
-
-/* Header ist normaler Seiteninhalt */
-.page-container > .site-header{
   position: relative;
+  top:auto;
+  z-index:1;
 }
 
-/* FINAL FIX: Header MUSS mitscrollen */
-.site-header{
-  position: relative !important;
+/* Kein Wrapper darf scrollen */
+.page-container,
+main{
+  overflow:visible;
 }
-
-body{
-  overflow-y: auto !important;
-}
-
-
