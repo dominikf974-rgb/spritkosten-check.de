@@ -44,7 +44,22 @@
 
 <body data-page="home">
   <!-- ✅ Header wird geladen -->
-  <div id="site-header"></div>
+ <header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-title" aria-label="Startseite">
+      <img src="/logo.png" alt="Spritkosten-Check Logo">
+      <span class="site-title">Spritkosten-Rechner – Benzin & Reisekosten berechnen</span>
+    </a>
+
+    <nav class="tabs" aria-label="Navigation">
+      <a class="tablink" href="index.html" data-page="home">Spritkosten</a>
+      <a class="tablink" href="taschenrechner.html" data-page="calc">Taschenrechner</a>
+      <a class="tablink" href="ratgeber.html" data-page="ratgeber">Ratgeber</a>
+      <a class="tablink" href="faq.html" data-page="faq">FAQ</a>
+      <a class="lang-link" href="https://petrolcostcalculator.com/" hreflang="en" lang="en" title="English">EN</a>
+    </nav>
+  </div>
+</header>
 
   <div class="page-container">
 
@@ -860,10 +875,11 @@
   </script>
 
   <!-- ✅ Loader am Ende (lädt Header/Footer) - VERSION ERHÖHT FÜR CACHE-BUST -->
-<script src="/assets/js/loader.js" defer></script>
+
 <script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>
+
 
 
 
