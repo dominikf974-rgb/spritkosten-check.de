@@ -564,7 +564,7 @@ input[type="number"], input[type="text"], select{
   background: rgba(20,20,25,0.92);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 16px;
-  padding: 18px 26px;
+  padding: 90px 26px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -704,3 +704,4 @@ input[type="number"], input[type="text"], select{
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
+
