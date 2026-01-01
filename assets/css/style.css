@@ -489,13 +489,6 @@ input[type="number"], input[type="text"], select{
   #cookieBanner button{width:100%;}
 }
 
-/* ===== DEBUG/FIX: Body muss scrollen, sonst wirkt Header sticky ===== */
-html, body{
-  height: auto !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-}
-
 /* Nichts darf einen eigenen Scroll-Container bauen */
 .page-container,
 main,
@@ -506,9 +499,6 @@ main,
   max-height: none !important;
 }
 
-/* Falls irgendwo 100vh + overflow genutzt wird */
-body{
-  min-height: 100vh !important;
 }
 
 /* ===== FINAL: Header darf NIE sticky/fixed sein (direkt am Header) ===== */
@@ -522,6 +512,11 @@ body{
   inset:auto !important;
   transform:none !important;
   z-index:auto !important;
+}
+
+/* FINAL – Header darf niemals sticky sein */
+.site-header{
+  position: static !important;
 }
 
 
