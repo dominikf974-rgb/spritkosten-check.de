@@ -322,7 +322,7 @@ input[type="number"], input[type="text"], select{
   margin-top:.25rem;
 }
 
-.km-row{display:flex;gap:8px;align-items:center;flex-wrap:nowrap}
+.km-{display:flex;gap:8px;align-items:center;flex-wrap:nowrap}
 .km-row .km-input{flex:1;min-width:0}
 
 .spinner{display:flex;flex-direction:column;gap:6px}
@@ -564,7 +564,7 @@ input[type="number"], input[type="text"], select{
   background: rgba(20,20,25,0.92);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 16px;
-  padding: 90px 26px;
+  padding: 110px 26px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -704,4 +704,5 @@ input[type="number"], input[type="text"], select{
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
+
 
