@@ -533,4 +533,39 @@ main,
   position: static !important;
 }
 
+/* ========= GLOBAL SCROLL FIX ========= */
+
+/* Nur der Browser darf scrollen */
+html, body {
+  height: auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Niemand darf eigene Scrollcontainer bauen */
+body * {
+  overflow: visible !important;
+  max-height: none !important;
+}
+
+/* 100vh Flex-Fallen töten */
+.page-container,
+main,
+.layout,
+.map-col,
+#map,
+#site-header,
+#site-footer {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Sicherheit: Header wirklich normal */
+.site-header,
+.site-header * {
+  position: static !important;
+}
+
 
