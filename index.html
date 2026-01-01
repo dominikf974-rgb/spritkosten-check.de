@@ -249,18 +249,19 @@
   function norm(u){
     u = (u || '').toLowerCase().trim();
     if(!u) return '';
-    try{
-      if(u.startsWith('http')) u = new URL(u).pathname;
-    }catch(e){}
+    try{ if(u.startsWith('http')) u = new URL(u).pathname; }catch(e){}
     if(!u.startsWith('/')) u = '/' + u;
     if(u === '/index.html') u = '/';
     if(u.length > 1 && u.endsWith('/')) u = u.slice(0,-1);
     return u;
   }
 
-  function setActiveNav(){
-    const links = Array.from(document.querySelectorAll('#site-nav .tablink'));
-    if(!links.length) return;
+  function applyActive(){
+    const nav = document.getElementById('site-nav');
+    if(!nav) return false;
+
+    const links = Array.from(nav.querySelectorAll('.tablink'));
+    if(!links.length) return false;
 
     const path = norm(location.pathname);
 
@@ -281,19 +282,28 @@
     }
 
     if(match) match.setAttribute('aria-current','page');
+    return true;
   }
 
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', setActiveNav);
-  } else {
-    setActiveNav();
-  }
+  // 1) sofort versuchen
+  if (applyActive()) return;
+
+  // 2) warten bis Header nachgeladen ist (MutationObserver)
+  const obs = new MutationObserver(() => {
+    if (applyActive()) obs.disconnect();
+  });
+  obs.observe(document.documentElement, { childList:true, subtree:true });
+
+  // 3) Fallback: nach kurzer Zeit nochmal (für langsame Geräte)
+  setTimeout(applyActive, 600);
+  setTimeout(applyActive, 1500);
 })();
 </script>
 
 
 </body>
 </html>
+
 
 
 
