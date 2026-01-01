@@ -539,6 +539,7 @@ header{
   margin-bottom:0;
 }
 
+/* ===== FINAL COOKIE BANNER – FULLWIDTH / FETT / KLEBT ===== */
 #cookieBanner{
   position: fixed;
   left: 16px;
@@ -548,35 +549,38 @@ header{
   padding: 0;
 }
 
+#cookieBanner.is-hidden{ display:none !important; }
+
 #cookieBanner .row{
   width: 100%;
   margin: 0;
-  background: rgba(20,20,25,0.90);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px;
 
-  padding: 32px 24px; /* FETTER */
+  background: rgba(20,20,25,0.92);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+
+  padding: 50px 26px;        /* schön fett */
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap: 20px;
+  gap: 22px;
 
-  box-shadow: 0 -12px 40px rgba(0,0,0,0.35);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 -14px 44px rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
 }
 
 #cookieBanner .txt{
   color:#fff;
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 15.5px;
+  line-height: 1.55;
   flex:1;
-  min-width:240px;
+  min-width:260px;
 }
 
 #cookieBanner .txt a{
   color:#fff;
   text-decoration: underline;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 #cookieBanner .actions{
@@ -586,10 +590,10 @@ header{
 }
 
 #cookieBanner button{
-  height:48px;
-  border-radius:10px;
-  padding:0 24px;
-  font-weight:700;
+  height:52px;
+  border-radius:12px;
+  padding:0 26px;
+  font-weight:800;
   font-size:15px;
   cursor:pointer;
   border:none;
@@ -602,8 +606,8 @@ header{
 
 #cookieBanner button.reject{
   background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.75);
-  border:1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.78);
+  border:1px solid rgba(255,255,255,0.18);
 }
 
 @media(max-width:768px){
@@ -611,7 +615,3 @@ header{
   #cookieBanner .actions{width:100%;}
   #cookieBanner button{width:100%;}
 }
-
-
-
-
