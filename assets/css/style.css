@@ -1,4 +1,6 @@
-/* Global Font 2026 */
+/* =========================
+   GLOBAL 2026
+   ========================= */
 *{
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   box-sizing:border-box;
@@ -30,14 +32,22 @@ body{
    HEADER (NORMAL, NICHT STICKY)
    ========================= */
 
-/* Optik */
 .site-header{
   width:100%;
   background:#fff;
   border-bottom:1px solid rgba(15,23,42,0.06);
+
+  /* FINAL: normaler Flow */
+  position: relative !important;
+  top:auto !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  inset:auto !important;
+  transform:none !important;
+  z-index:10 !important;
 }
 
-/* Inhalt */
 .header-inner{
   width:100%;
   max-width:none;
@@ -62,7 +72,7 @@ body{
 .logo-title img{ height:54px; width:auto; display:block; }
 
 .site-title{
-  font-family:'Poppins', Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  font-family:'Poppins', Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight:700;
   font-size:18px;
   white-space:nowrap;
@@ -111,9 +121,18 @@ body{
   background:#eef2ff;
 }
 
+/* Mobile Header */
+@media(max-width:720px){
+  .header-inner{padding:10px 12px}
+  .site-title{max-width:160px;}
+  .tablink, .lang-link{height:42px;padding:.5rem .7rem;font-size:.9rem}
+}
+@media(max-width:420px){
+  .site-title{display:none;}
+}
 
 /* =========================
-   Container / Cards
+   CONTAINER / CARDS
    ========================= */
 .page-container{
   width:100%;
@@ -143,7 +162,9 @@ body{
 .intro-section ul{margin:8px 0;padding-left:20px}
 .intro-section li{margin:6px 0}
 
-/* Layout */
+/* =========================
+   LAYOUT
+   ========================= */
 .layout{
   display:grid;
   grid-template-columns:minmax(0,420px) minmax(0,1fr);
@@ -155,7 +176,9 @@ body{
   .layout{grid-template-columns:1fr}
 }
 
-/* Form */
+/* =========================
+   FORM
+   ========================= */
 label{
   display:block;
   margin:.5rem 0 .25rem 0;
@@ -223,12 +246,6 @@ input[type="number"], input[type="text"], select{
 @media(max-width:720px){
   .big-action{flex-direction:column}
   .btn{width:100%}
-  .header-inner{padding:10px 12px}
-  .site-title{max-width:160px;}
-  .tablink, .lang-link{height:42px;padding:.5rem .7rem;font-size:.9rem}
-}
-@media(max-width:420px){
-  .site-title{display:none;}
 }
 
 /* Helper text */
@@ -326,7 +343,9 @@ input[type="number"], input[type="text"], select{
 .pill input{margin:0}
 .country-badge{margin-top:8px; min-height:18px; font-size:.85rem; color:var(--muted);}
 
-/* Map */
+/* =========================
+   MAP
+   ========================= */
 .map-col{
   display:flex;
   flex-direction:column;
@@ -353,10 +372,11 @@ input[type="number"], input[type="text"], select{
   }
 }
 
-/* toll info spacing */
 #toll-info{ margin:0 !important; }
 
-/* FAQ */
+/* =========================
+   FAQ
+   ========================= */
 .faq-item{margin:10px 0}
 .faq-item summary{
   cursor:pointer;
@@ -375,7 +395,9 @@ input[type="number"], input[type="text"], select{
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:980px){ .two-col{grid-template-columns:1fr} }
 
-/* Countries */
+/* =========================
+   COUNTRIES
+   ========================= */
 .countries-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
@@ -406,14 +428,18 @@ input[type="number"], input[type="text"], select{
 .country-card h3{ margin-top:0; font-size:1.05rem; }
 .country-card p{ margin-bottom:0; }
 
-/* Footer (ohne Holzhammer!) */
+/* =========================
+   FOOTER
+   ========================= */
 .site-footer{
   padding:18px 0 30px 0;
 }
 .site-footer a{ text-decoration:none; }
 .site-footer a:hover{ text-decoration:underline; }
 
-/* ===== FINAL COOKIE BANNER – FULLWIDTH / FETT / KLEBT ===== */
+/* =========================
+   COOKIE BANNER (DEIN DESIGN)
+   ========================= */
 #cookieBanner{
   position: fixed;
   left: 16px;
@@ -428,11 +454,12 @@ input[type="number"], input[type="text"], select{
 #cookieBanner .row{
   width: 100%;
   margin: 0;
+
   background: rgba(20,20,25,0.92);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 16px;
 
-  padding: 85px 26px; /* schön fett */
+  padding: 85px 26px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -484,27 +511,19 @@ input[type="number"], input[type="text"], select{
 }
 
 @media(max-width:768px){
-  #cookieBanner .row{flex-direction:column;}
+  #cookieBanner .row{flex-direction:column; padding:18px 14px;}
   #cookieBanner .actions{width:100%;}
   #cookieBanner button{width:100%;}
 }
 
-/* ========== FINAL HEADER FIX – EINMAL SAUBER ========== */
-
-/* Seite scrollt IMMER über body */
+/* =========================
+   FINAL SCROLL SAFETY
+   (keine Wrapper-Scrollcontainer)
+   ========================= */
 html, body{
   height:auto;
   overflow-y:auto;
 }
-
-/* Header ist normaler Block (niemals sticky/fixed) */
-.site-header{
-  position: relative;
-  top:auto;
-  z-index:1;
-}
-
-/* Kein Wrapper darf scrollen */
 .page-container,
 main{
   overflow:visible;
