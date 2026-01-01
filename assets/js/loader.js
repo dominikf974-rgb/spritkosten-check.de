@@ -9,8 +9,8 @@
     el.innerHTML = await res.text();
   }
 
-  await loadInto("site-header", "/assets/partials/header.html");
-  await loadInto("site-footer", "/assets/partials/footer.html");
+  await loadInto("site-header", "assets/partials/header.html");
+  await loadInto("site-footer", "assets/partials/footer.html");
 
   // Header: niemals sticky/fixed (einmalig + leicht)
   const headerWrap = document.getElementById("site-header");
