@@ -1,22 +1,11 @@
 (() => {
   const KEY = "consent_marketing";
 
-    // Reset per URL: /?resetconsent=1
-  try{
-    const p = new URLSearchParams(location.search);
-    if(p.get("resetconsent") === "1"){
-      localStorage.removeItem(KEY);
-      localStorage.removeItem("cookie-consent");
-      localStorage.removeItem("consent_ads_v1");
-    }
-  }catch(e){}
-
-
   function loadAdsOnce({ npa } = { npa: false }) {
     if (window.__adsLoaded) return;
     window.__adsLoaded = true;
 
-    // Non-personalized Ads Flag VOR dem Laden setzen
+    // NPA vor Script-Load setzen
     if (npa) {
       window.adsbygoogle = window.adsbygoogle || [];
       window.adsbygoogle.requestNonPersonalizedAds = 1;
@@ -40,41 +29,39 @@
 
   function init() {
     const banner = document.getElementById("cookieBanner");
-    if (!banner) return setTimeout(init, 300); // footer wird evtl. nachgeladen
-
     const btnAccept = document.getElementById("cookieAccept");
     const btnReject = document.getElementById("cookieReject");
-    if (!btnAccept || !btnReject) return;
+    if (!banner || !btnAccept || !btnReject) return;
 
     let consent = null;
     try { consent = localStorage.getItem(KEY); } catch (e) {}
 
-    // bereits entschieden:
+    // bereits entschieden
     if (consent === "1") {
-      banner.classList.add("is-hidden");
+      banner.remove();
       loadAdsOnce({ npa: false });
       return;
     }
     if (consent === "0") {
-      banner.classList.add("is-hidden");
+      banner.remove();
       loadAdsOnce({ npa: true });
       return;
     }
 
-    // noch keine Entscheidung
+    // keine Entscheidung -> Banner zeigen, keine Ads
     banner.classList.remove("is-hidden");
 
-    btnAccept.onclick = () => {
+    btnAccept.addEventListener("click", () => {
       try { localStorage.setItem(KEY, "1"); } catch (e) {}
-      banner.classList.add("is-hidden");
+      banner.remove();
       loadAdsOnce({ npa: false });
-    };
+    });
 
-    btnReject.onclick = () => {
+    btnReject.addEventListener("click", () => {
       try { localStorage.setItem(KEY, "0"); } catch (e) {}
-      banner.classList.add("is-hidden");
+      banner.remove();
       loadAdsOnce({ npa: true });
-    };
+    });
   }
 
   if (document.readyState === "loading") {
