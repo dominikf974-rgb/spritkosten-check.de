@@ -6,63 +6,118 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <title>Ratgeber – Sprit sparen, Verbrauch senken & Reisekosten planen</title>
-  <meta name="description" content="Ratgeber für Autofahrer: Sprit sparen, Verbrauch senken, Roadtrip planen, Maut/Vignette verstehen und CO₂ einordnen. Praktische Tipps und Checklisten." />
+  <meta name="description" content="Ratgeber für Autofahrer: Sprit sparen, Verbrauch senken, Roadtrip planen, Maut/Vignette verstehen und CO₂ einordnen. Praktische Tipps, Checklisten und Formeln." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://spritkosten-check.de/ratgeber.html" />
+  <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/ratgeber.html" />
+  <link rel="alternate" hreflang="en" href="https://petrolcostcalculator.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/" />
 
+  <!-- Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" href="/favicon.ico">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="assets/css/style.css?v=2026-02" />
 
-  <link rel="stylesheet" href="/assets/css/style.css" />
-
+  <!-- Article Schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"Article",
     "headline":"Ratgeber: Sprit sparen, Verbrauch senken & Reisekosten planen",
-    "author":{"@type":"Person","name":"Spritkosten-Check"},
+    "description":"Praktische Tipps, Checklisten und Formeln für Spritkosten, Verbrauch, Maut/Vignette und CO₂.",
+    "author":{"@type":"Organization","name":"Spritkosten-Check"},
     "publisher":{"@type":"Organization","name":"Spritkosten-Check"},
     "mainEntityOfPage":{"@type":"WebPage","@id":"https://spritkosten-check.de/ratgeber.html"}
   }
   </script>
+
+  <style>
+    /* Ratgeber: kleine, saubere Content-Styles */
+    .toc { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .toc a { text-decoration:none; }
+    .note {
+      border:1px solid rgba(15,23,42,0.08);
+      background:#fbfdff;
+      border-radius:14px;
+      padding:12px 12px;
+    }
+    .checklist { margin:0; padding-left:18px; line-height:1.85; }
+    .mini-faq { display:flex; flex-direction:column; gap:10px; }
+    .mini-faq details{
+      border:1px solid rgba(15,23,42,0.10);
+      border-radius:14px;
+      overflow:hidden;
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+    }
+    .mini-faq summary{
+      cursor:pointer;
+      list-style:none;
+      padding:14px 14px;
+      font-weight:900;
+      color:var(--accent-2);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .mini-faq summary::-webkit-details-marker{ display:none; }
+    .mini-faq .answer{ padding:0 14px 14px 14px; line-height:1.65; }
+    .mini-faq .chev{ opacity:.7; transition:transform .18s ease; user-select:none; }
+    .mini-faq details[open] .chev{ transform:rotate(180deg); }
+  </style>
 </head>
 
 <body data-page="ratgeber">
+
+  <!-- Header via loader -->
   <div id="site-header"></div>
 
-  <div class="page-container">
+  <main class="page-container" aria-label="Seiteninhalt">
 
-    <section class="card intro-section">
+    <!-- Intro -->
+    <section class="card intro-section" aria-label="Ratgeber Intro">
       <h2>Ratgeber: Sprit sparen & Kosten realistisch planen</h2>
       <p>
-        Hier findest du praktische Tipps, um deinen <strong>Verbrauch zu senken</strong>,
-        Fahrten besser zu planen und typische Kostenfallen (z. B. Dachbox, Tempo, Kurzstrecke) zu vermeiden.
+        Hier findest du praktische Tipps, um deinen <strong>Verbrauch zu senken</strong>, Fahrten besser zu planen
+        und typische Kostenfallen (z. B. Dachbox, Tempo, Kurzstrecke) zu vermeiden.
+        Wenn du direkt rechnen willst: <a href="/" class="small"><b>zum Spritkosten-Rechner</b></a>.
       </p>
 
-      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+      <div class="toc" aria-label="Inhaltsverzeichnis">
         <a class="btn secondary" href="#sparen">Sprit sparen</a>
-        <a class="btn secondary" href="#verbrauch">Verbrauch verstehen</a>
+        <a class="btn secondary" href="#verbrauch">Verbrauch</a>
+        <a class="btn secondary" href="#kostenformeln">Kostenformeln</a>
         <a class="btn secondary" href="#roadtrip">Roadtrip-Checkliste</a>
         <a class="btn secondary" href="#maut">Maut & Vignette</a>
-        <a class="btn secondary" href="#co2">CO₂ & Vergleich</a>
+        <a class="btn secondary" href="#co2">CO₂</a>
+        <a class="btn secondary" href="#faq-mini">Mini-FAQ</a>
       </div>
     </section>
 
-    <section id="sparen" class="card">
+    <!-- Ad #1 (Top) -->
+    <div class="ad-block" aria-label="Werbung">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="7158625008"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Sprit sparen -->
+    <section id="sparen" class="card" aria-label="Sprit sparen">
       <h2>Sprit sparen: Die größten Hebel</h2>
-      <ul style="margin:0;padding-left:18px;line-height:1.8">
+      <ul class="checklist">
         <li><strong>Tempo reduzieren:</strong> Ab Autobahn-Tempo steigt der Luftwiderstand stark – oft der größte Hebel.</li>
-        <li><strong>Vorausschauend fahren:</strong> Weniger Bremsen/Anfahren spart Sprit.</li>
+        <li><strong>Vorausschauend fahren:</strong> Weniger Bremsen/Anfahren spart Sprit (und Nerven).</li>
         <li><strong>Reifendruck prüfen:</strong> Zu niedriger Druck = mehr Rollwiderstand.</li>
-        <li><strong>Gewicht raus:</strong> Unnötige Ladung und Dachträger/Dachbox nur bei Bedarf.</li>
-        <li><strong>Motor warm fahren:</strong> Viele Kurzstrecken treiben den Durchschnitt hoch.</li>
+        <li><strong>Gewicht raus:</strong> Unnötige Ladung + Dachträger/Dachbox nur bei Bedarf.</li>
+        <li><strong>Kurzstrecken vermeiden:</strong> Kaltstarts treiben den Durchschnitt massiv hoch.</li>
       </ul>
 
       <div class="two-col" style="margin-top:14px">
@@ -79,14 +134,19 @@
           </p>
         </div>
       </div>
+
+      <div class="note" style="margin-top:14px">
+        <b>Merke:</b> Schon kleine Dinge addieren sich: 0,3–0,8 L/100 km Unterschied merkt man auf langen Strecken sofort im Geldbeutel.
+      </div>
     </section>
 
-    <section id="verbrauch" class="card">
+    <!-- Verbrauch verstehen -->
+    <section id="verbrauch" class="card" aria-label="Verbrauch verstehen">
       <h2>Verbrauch verstehen: Warum ist er manchmal höher?</h2>
       <div class="two-col">
         <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
           <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Typische Gründe</h3>
-          <ul style="margin:0;padding-left:18px;line-height:1.8">
+          <ul class="checklist">
             <li>Winter/Kälte (mehr Kaltstarts, Heizung, höhere Reibung)</li>
             <li>Stadtverkehr (Stop-and-go)</li>
             <li>Dachbox/Dachträger (mehr Luftwiderstand)</li>
@@ -96,7 +156,7 @@
         </div>
         <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
           <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">So findest du deinen echten Verbrauch</h3>
-          <ul style="margin:0;padding-left:18px;line-height:1.8">
+          <ul class="checklist">
             <li>Mehrere Tankfüllungen tracken</li>
             <li>Durchschnitt statt Einzelwert</li>
             <li>Trenne „Stadt“ und „Autobahn“ im Kopf</li>
@@ -104,11 +164,53 @@
           </ul>
         </div>
       </div>
+
+      <div class="note" style="margin-top:14px">
+        <b>Praxis:</b> Wenn du den Rechner nutzt, nimm lieber deinen <b>realen Langzeitverbrauch</b> als Prospektwerte.
+      </div>
     </section>
 
-    <section id="roadtrip" class="card">
+    <!-- Kostenformeln -->
+    <section id="kostenformeln" class="card" aria-label="Kostenformeln">
+      <h2>Kostenformeln: Schnell überschlagen (ohne Taschenrechner-Stress)</h2>
+      <div class="two-col">
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Grundformeln</h3>
+          <ul class="checklist">
+            <li><b>Liter</b> = km × Verbrauch ÷ 100</li>
+            <li><b>Spritkosten</b> = Liter × Preis pro Liter</li>
+            <li><b>Pro Person</b> = Gesamtkosten ÷ Personen</li>
+          </ul>
+        </div>
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Mini-Beispiel</h3>
+          <p class="small" style="margin:0;line-height:1.7">
+            450 km, 7,0 L/100 km → <b>31,5 L</b><br>
+            Bei 1,85 €/L → <b>58,28 €</b> Spritkosten<br>
+            Zu dritt → <b>19,43 € pro Person</b> (nur Sprit)
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;display:flex;justify-content:center">
+        <a class="btn large" href="/">Jetzt im Rechner berechnen</a>
+      </div>
+    </section>
+
+    <!-- Ad #2 (Mid) -->
+    <div class="ad-block" aria-label="Werbung">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="3355111369"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Roadtrip -->
+    <section id="roadtrip" class="card" aria-label="Roadtrip Checkliste">
       <h2>Roadtrip-Checkliste (10 Minuten, die sich lohnen)</h2>
-      <ol style="margin:0;padding-left:18px;line-height:1.8">
+      <ol class="checklist">
         <li>Reifendruck (kalt) prüfen</li>
         <li>Ölstand/Waschwasser checken</li>
         <li>Dachbox nur montieren, wenn nötig</li>
@@ -116,53 +218,155 @@
         <li>Vignettenpflicht für Länder auf der Route prüfen</li>
         <li>Realistischen Verbrauch eintragen (nicht Prospekt)</li>
         <li>Aktuellen Spritpreis nutzen oder Durchschnitt als Planung</li>
-        <li>Kosten pro Person festlegen (Carsharing-Style: fair teilen)</li>
+        <li>Kosten pro Person festlegen (fair teilen)</li>
         <li>Notfall-Set: Warndreieck, Weste, Verbandskasten</li>
         <li>Kurzer Pausenplan (konstanter Fahrstil = weniger Verbrauch)</li>
       </ol>
 
-      <div style="margin-top:16px;display:flex;justify-content:center">
-        <a class="btn large" href="/">Zum Spritkosten-Rechner</a>
+      <div class="note" style="margin-top:14px">
+        <b>Tipp:</b> Für Grenzfahrten: Start & Ziel immer als <b>„Stadt, Land“</b> eingeben (z. B. „Paris, Frankreich“).
       </div>
     </section>
 
-    <section id="maut" class="card">
+    <!-- Maut -->
+    <section id="maut" class="card" aria-label="Maut und Vignette">
       <h2>Maut & Vignette: Schnell erklärt</h2>
       <p class="small" style="margin-top:0;line-height:1.7">
         In Europa gibt es je nach Land unterschiedliche Systeme: streckenabhängige Maut (z. B. Autobahnabschnitte)
-        oder Vignetten (Fixbetrag). Auf deiner Startseite zeigt der Rechner eine <strong>grobe</strong> Schätzung – für exakte Beträge zählen Route, Klasse und Regeln.
+        oder Vignetten (Fixbetrag). Der Rechner zeigt eine <strong>grobe</strong> Schätzung – für exakte Beträge zählen Route, Klasse und Regeln.
       </p>
-      <ul style="margin:0;padding-left:18px;line-height:1.8">
+      <ul class="checklist">
         <li><strong>Vignette:</strong> meist Fixpreis, oft zeitgebunden (z. B. 10 Tage / 1 Jahr)</li>
         <li><strong>Maut:</strong> abhängig von Strecke/Abschnitt, manchmal Fahrzeugklasse</li>
-        <li><strong>Tipp:</strong> bei Grenzfahrten Vignetten früh planen, um Stress zu vermeiden</li>
+        <li><strong>Tipp:</strong> Vignetten früh planen, um Stress an der Grenze zu vermeiden</li>
       </ul>
+
+      <div class="note" style="margin-top:14px">
+        <b>Wichtig:</b> Schätzwerte sind super zum Planen – aber für “auf den Euro” nimm am besten offizielle Stellen pro Land/Route.
+      </div>
     </section>
 
-    <section id="co2" class="card">
+    <!-- CO2 -->
+    <section id="co2" class="card" aria-label="CO2 Einordnung">
       <h2>CO₂: Was bedeuten die Werte?</h2>
       <p class="small" style="margin-top:0;line-height:1.7">
-        Der CO₂-Block ist eine <strong>Näherung</strong>, damit du schnell ein Gefühl bekommst. Der Wert pro Person sinkt stark, wenn ihr zu mehreren im Auto sitzt.
+        Der CO₂-Block ist eine <strong>Näherung</strong>, damit du schnell ein Gefühl bekommst.
+        Der Wert pro Person sinkt stark, wenn ihr zu mehreren im Auto sitzt.
       </p>
-      <ul style="margin:0;padding-left:18px;line-height:1.8">
+      <ul class="checklist">
         <li>CO₂ steigt direkt mit Verbrauch und Strecke</li>
         <li>Fahrgemeinschaft senkt CO₂ pro Kopf</li>
         <li>Vergleich Auto/Bahn/Flug sind Richtwerte zur Einordnung</li>
       </ul>
     </section>
 
+    <!-- Mini FAQ -->
+    <section id="faq-mini" class="card" aria-label="Mini FAQ">
+      <h2>Mini-FAQ (kurz & hilfreich)</h2>
+      <div class="mini-faq">
+        <details>
+          <summary>Wie genau sind die Ergebnisse? <span class="chev">▼</span></summary>
+          <div class="answer">Am genauesten wird’s mit deinem echten Verbrauch und einem aktuellen Preis. Maut/Vignette sind bewusst nur grobe Näherungen.</div>
+        </details>
+
+        <details>
+          <summary>Kann ich Hin- und Rückfahrt berechnen? <span class="chev">▼</span></summary>
+          <div class="answer">Ja: Kilometer einfach verdoppeln oder Route separat hin & zurück berechnen.</div>
+        </details>
+
+        <details>
+          <summary>Warum „Stadt, Land“ bei Start/Ziel? <span class="chev">▼</span></summary>
+          <div class="answer">Damit Geocoding zuverlässig ist. Nur das Land einzugeben führt oft zu Fehlern oder unklaren Treffern.</div>
+        </details>
+      </div>
+
+      <div style="margin-top:16px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <a class="btn large" href="/">Zum Rechner</a>
+        <a class="btn secondary large" href="/faq.html">Zur FAQ-Seite</a>
+      </div>
+    </section>
+
+    <!-- Footer via loader -->
     <div id="site-footer"></div>
 
-    <!-- Name ganz unten, sehr unauffällig (wie du wolltest) -->
+    <!-- Name ganz unten (wie du wolltest) -->
     <div class="small" style="text-align:center;opacity:.35;margin:14px 0 22px 0">
       Dominik Fisher
     </div>
-  </div>
 
-  <script src="/assets/js/loader.js"></script>
+  </main>
 
-  <script src="/assets/js/loader.js"></script>
-<script src="/assets/js/app.js"></script>
+  <!-- Active Tab -->
+  <script src="/assets/js/active-nav.js" defer></script>
+
+  <!-- Header/Footer Loader + Cookies (nach Footer-Load) -->
+<script>
+  async function loadPart(id, url){
+    const el = document.getElementById(id);
+    if(!el) return false;
+    try{
+      const r = await fetch(url, { cache: 'no-cache' });
+      el.innerHTML = await r.text();
+      return true;
+    }catch(e){
+      console.warn('Konnte nicht laden:', url);
+      return false;
+    }
+  }
+
+  function initMobileNav(){
+    const header = document.querySelector('.site-header');
+    const btn = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('site-nav');
+    if(!header || !btn || !nav) return;
+
+    const close = () => {
+      header.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Menü öffnen');
+    };
+
+    const open = () => {
+      header.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-label', 'Menü schließen');
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      header.classList.contains('is-open') ? close() : open();
+    });
+
+    document.addEventListener('click', (e) => {
+      if(!header.classList.contains('is-open')) return;
+      if(header.contains(e.target)) return;
+      close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') close();
+    });
+
+    window.addEventListener('resize', () => {
+      if(window.innerWidth > 720) close();
+    });
+  }
+
+  function loadCookiesAfterFooter(){
+    const s = document.createElement('script');
+    s.src = '/assets/js/cookies.js';
+    s.defer = true;
+    document.body.appendChild(s);
+  }
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    await loadPart('site-header', '/practice/header.html');
+    initMobileNav(); // ✅ DAS war auf Unterseiten gefehlt
+
+    await loadPart('site-footer', '/practice/footer.html');
+    loadCookiesAfterFooter(); // ✅ Cookie Banner überall sicher
+  });
+</script>
 
 </body>
 </html>
