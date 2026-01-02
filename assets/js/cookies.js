@@ -31,8 +31,12 @@
     const banner = document.getElementById("cookieBanner");
     const btnAccept = document.getElementById("cookieAccept");
     const btnReject = document.getElementById("cookieReject");
-    if (!banner || !btnAccept || !btnReject) return;
-
+    
+    if (!banner || !btnAccept || !btnReject) {
+  // Footer/Partial evtl. noch nicht geladen -> später nochmal probieren
+  setTimeout(init, 150);
+  return;
+}
     let consent = null;
     try { consent = localStorage.getItem(KEY); } catch (e) {}
 
