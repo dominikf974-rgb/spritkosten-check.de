@@ -164,31 +164,44 @@
             Keypad (mobilfreundlich)
           </div>
 
-          <div class="keypad">
-            <button class="btn secondary" data-k="(" type="button">(</button>
-            <button class="btn secondary" data-k=")" type="button">)</button>
-            <button class="btn secondary" id="btn-back" type="button">⌫</button>
-            <button class="btn secondary" data-k=" / " type="button">÷</button>
+     <div class="keypad">
+  <!-- Desktop Voll-Keypad -->
+  <div class="keypad-full">
+    <button class="btn secondary" data-k="(">(</button>
+    <button class="btn secondary" data-k=")">)</button>
+    <button class="btn secondary" id="btn-back">⌫</button>
+    <button class="btn secondary" data-k=" / ">÷</button>
 
-            <button class="btn" data-k="7" type="button">7</button>
-            <button class="btn" data-k="8" type="button">8</button>
-            <button class="btn" data-k="9" type="button">9</button>
-            <button class="btn secondary" data-k=" * " type="button">×</button>
+    <button class="btn" data-k="7">7</button>
+    <button class="btn" data-k="8">8</button>
+    <button class="btn" data-k="9">9</button>
+    <button class="btn secondary" data-k=" * ">×</button>
 
-            <button class="btn" data-k="4" type="button">4</button>
-            <button class="btn" data-k="5" type="button">5</button>
-            <button class="btn" data-k="6" type="button">6</button>
-            <button class="btn secondary" data-k=" - " type="button">−</button>
+    <button class="btn" data-k="4">4</button>
+    <button class="btn" data-k="5">5</button>
+    <button class="btn" data-k="6">6</button>
+    <button class="btn secondary" data-k=" - ">−</button>
 
-            <button class="btn" data-k="1" type="button">1</button>
-            <button class="btn" data-k="2" type="button">2</button>
-            <button class="btn" data-k="3" type="button">3</button>
-            <button class="btn secondary" data-k=" + " type="button">+</button>
+    <button class="btn" data-k="1">1</button>
+    <button class="btn" data-k="2">2</button>
+    <button class="btn" data-k="3">3</button>
+    <button class="btn secondary" data-k=" + ">+</button>
 
-            <button class="btn wide" data-k="0" type="button">0</button>
-            <button class="btn" data-k="," type="button">,</button>
-            <button class="btn wide" id="btn-eq-2" type="button">=</button>
-          </div>
+    <button class="btn wide" data-k="0">0</button>
+    <button class="btn" data-k=",">,</button>
+    <button class="btn wide" id="btn-eq-2">=</button>
+  </div>
+
+  <!-- Handy Mini-Keypad -->
+  <div class="keypad-mini">
+    <button class="btn secondary" data-k=" + ">+</button>
+    <button class="btn secondary" data-k=" - ">−</button>
+    <button class="btn secondary" data-k=" * ">×</button>
+    <button class="btn secondary" data-k=" / ">÷</button>
+    <button class="btn" id="btn-eq-mini">=</button>
+  </div>
+</div>
+
 
           <div class="small" style="margin-top:10px;line-height:1.6;color:var(--muted)">
             Erlaubt: Zahlen, Komma/Punkt, + − × ÷, Klammern.<br>
@@ -377,6 +390,9 @@
         });
       });
 
+      const eqMini = document.getElementById('btn-eq-mini');
+if(eqMini) eqMini.addEventListener('click', evaluate);
+      
       exprEl.addEventListener('keydown', (e) => {
         if(e.key === 'Enter'){
           e.preventDefault();
