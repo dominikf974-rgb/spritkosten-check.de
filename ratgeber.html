@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <title>Ratgeber – Sprit sparen, Verbrauch senken & Reisekosten planen</title>
-  <meta name="description" content="Ratgeber für Autofahrer: Sprit sparen, Verbrauch senken, Roadtrip planen, Maut/Vignette verstehen und CO₂ einordnen. Praktische Tipps, Checklisten und Formeln." />
+  <meta name="description" content="Ratgeber für Autofahrer: Sprit sparen, Verbrauch senken, Roadtrip planen, Maut/Vignette verstehen und CO₂ einordnen. Praktische Tipps, Checklisten, Formeln und Mini-FAQ." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://spritkosten-check.de/ratgeber.html" />
   <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/ratgeber.html" />
@@ -37,17 +37,17 @@
   </script>
 
   <style>
-    /* Ratgeber: kleine, saubere Content-Styles */
-    .toc { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
-    .toc a { text-decoration:none; }
-    .note {
+    /* Ratgeber: kleine Content-Styles */
+    .toc{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .toc a{ text-decoration:none; }
+    .note{
       border:1px solid rgba(15,23,42,0.08);
       background:#fbfdff;
       border-radius:14px;
       padding:12px 12px;
     }
-    .checklist { margin:0; padding-left:18px; line-height:1.85; }
-    .mini-faq { display:flex; flex-direction:column; gap:10px; }
+    .checklist{ margin:0; padding-left:18px; line-height:1.85; }
+    .mini-faq{ display:flex; flex-direction:column; gap:10px; }
     .mini-faq details{
       border:1px solid rgba(15,23,42,0.10);
       border-radius:14px;
@@ -69,6 +69,23 @@
     .mini-faq .answer{ padding:0 14px 14px 14px; line-height:1.65; }
     .mini-faq .chev{ opacity:.7; transition:transform .18s ease; user-select:none; }
     .mini-faq details[open] .chev{ transform:rotate(180deg); }
+
+    /* TOC Buttons auf Mobile sauber */
+    @media (max-width: 720px){
+      .toc{
+        display:grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap:10px;
+      }
+      .toc a{ width:100%; }
+      /* letzter Button über volle Breite, zentriert */
+      .toc a:last-child{
+        grid-column: 1 / -1;
+        justify-self:center;
+        max-width: 320px;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
@@ -94,12 +111,12 @@
         <a class="btn secondary" href="#kostenformeln">Kostenformeln</a>
         <a class="btn secondary" href="#roadtrip">Roadtrip-Checkliste</a>
         <a class="btn secondary" href="#maut">Maut & Vignette</a>
-        <a class="btn secondary" href="#co2">CO₂</a>
+        <a class="btn secondary" href="#co2">CO₂ & Vergleich</a>
         <a class="btn secondary" href="#faq-mini">Mini-FAQ</a>
       </div>
     </section>
 
-    <!-- Ad #1 (Top) -->
+    <!-- Ad #1 -->
     <div class="ad-block" aria-label="Werbung">
       <ins class="adsbygoogle"
         style="display:block"
@@ -136,11 +153,11 @@
       </div>
 
       <div class="note" style="margin-top:14px">
-        <b>Merke:</b> Schon kleine Dinge addieren sich: 0,3–0,8 L/100 km Unterschied merkt man auf langen Strecken sofort im Geldbeutel.
+        <b>Merke:</b> Schon kleine Dinge addieren sich: 0,3–0,8 L/100 km Unterschied merkt man auf langen Strecken sofort.
       </div>
     </section>
 
-    <!-- Verbrauch verstehen -->
+    <!-- Verbrauch -->
     <section id="verbrauch" class="card" aria-label="Verbrauch verstehen">
       <h2>Verbrauch verstehen: Warum ist er manchmal höher?</h2>
       <div class="two-col">
@@ -159,20 +176,20 @@
           <ul class="checklist">
             <li>Mehrere Tankfüllungen tracken</li>
             <li>Durchschnitt statt Einzelwert</li>
-            <li>Trenne „Stadt“ und „Autobahn“ im Kopf</li>
             <li>Bordcomputer ist okay – Tankmethode ist genauer</li>
+            <li>Trenne „Stadt“ und „Autobahn“ im Kopf</li>
           </ul>
         </div>
       </div>
 
       <div class="note" style="margin-top:14px">
-        <b>Praxis:</b> Wenn du den Rechner nutzt, nimm lieber deinen <b>realen Langzeitverbrauch</b> als Prospektwerte.
+        <b>Praxis:</b> Im Rechner lieber deinen <b>realen Langzeitverbrauch</b> nutzen als Prospektwerte.
       </div>
     </section>
 
     <!-- Kostenformeln -->
     <section id="kostenformeln" class="card" aria-label="Kostenformeln">
-      <h2>Kostenformeln: Schnell überschlagen (ohne Taschenrechner-Stress)</h2>
+      <h2>Kostenformeln: Schnell überschlagen</h2>
       <div class="two-col">
         <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
           <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Grundformeln</h3>
@@ -197,7 +214,7 @@
       </div>
     </section>
 
-    <!-- Ad #2 (Mid) -->
+    <!-- Ad #2 -->
     <div class="ad-block" aria-label="Werbung">
       <ins class="adsbygoogle"
         style="display:block"
@@ -220,11 +237,11 @@
         <li>Aktuellen Spritpreis nutzen oder Durchschnitt als Planung</li>
         <li>Kosten pro Person festlegen (fair teilen)</li>
         <li>Notfall-Set: Warndreieck, Weste, Verbandskasten</li>
-        <li>Kurzer Pausenplan (konstanter Fahrstil = weniger Verbrauch)</li>
+        <li>Pausen planen (konstant fahren spart Sprit)</li>
       </ol>
 
       <div class="note" style="margin-top:14px">
-        <b>Tipp:</b> Für Grenzfahrten: Start & Ziel immer als <b>„Stadt, Land“</b> eingeben (z. B. „Paris, Frankreich“).
+        <b>Tipp:</b> Start & Ziel immer als <b>„Stadt, Land“</b> eingeben (z. B. „Paris, Frankreich“).
       </div>
     </section>
 
@@ -232,31 +249,26 @@
     <section id="maut" class="card" aria-label="Maut und Vignette">
       <h2>Maut & Vignette: Schnell erklärt</h2>
       <p class="small" style="margin-top:0;line-height:1.7">
-        In Europa gibt es je nach Land unterschiedliche Systeme: streckenabhängige Maut (z. B. Autobahnabschnitte)
-        oder Vignetten (Fixbetrag). Der Rechner zeigt eine <strong>grobe</strong> Schätzung – für exakte Beträge zählen Route, Klasse und Regeln.
+        Es gibt je nach Land unterschiedliche Systeme: streckenabhängige Maut oder Vignetten (Fixbetrag).
+        Der Rechner zeigt eine grobe Schätzung – für exakte Beträge zählen Route, Klasse und Regeln.
       </p>
       <ul class="checklist">
-        <li><strong>Vignette:</strong> meist Fixpreis, oft zeitgebunden (z. B. 10 Tage / 1 Jahr)</li>
-        <li><strong>Maut:</strong> abhängig von Strecke/Abschnitt, manchmal Fahrzeugklasse</li>
-        <li><strong>Tipp:</strong> Vignetten früh planen, um Stress an der Grenze zu vermeiden</li>
+        <li><strong>Vignette:</strong> Fixpreis, oft zeitgebunden</li>
+        <li><strong>Maut:</strong> abhängig von Strecke/Abschnitt</li>
+        <li><strong>Tipp:</strong> Vignetten früh planen, um Stress zu vermeiden</li>
       </ul>
-
-      <div class="note" style="margin-top:14px">
-        <b>Wichtig:</b> Schätzwerte sind super zum Planen – aber für “auf den Euro” nimm am besten offizielle Stellen pro Land/Route.
-      </div>
     </section>
 
     <!-- CO2 -->
     <section id="co2" class="card" aria-label="CO2 Einordnung">
       <h2>CO₂: Was bedeuten die Werte?</h2>
       <p class="small" style="margin-top:0;line-height:1.7">
-        Der CO₂-Block ist eine <strong>Näherung</strong>, damit du schnell ein Gefühl bekommst.
-        Der Wert pro Person sinkt stark, wenn ihr zu mehreren im Auto sitzt.
+        CO₂ ist eine Näherung. Der Wert pro Person sinkt stark, wenn ihr zu mehreren fahrt.
       </p>
       <ul class="checklist">
-        <li>CO₂ steigt direkt mit Verbrauch und Strecke</li>
+        <li>CO₂ steigt mit Verbrauch und Strecke</li>
         <li>Fahrgemeinschaft senkt CO₂ pro Kopf</li>
-        <li>Vergleich Auto/Bahn/Flug sind Richtwerte zur Einordnung</li>
+        <li>Vergleich Auto/Bahn/Flug sind Richtwerte</li>
       </ul>
     </section>
 
@@ -276,97 +288,92 @@
 
         <details>
           <summary>Warum „Stadt, Land“ bei Start/Ziel? <span class="chev">▼</span></summary>
-          <div class="answer">Damit Geocoding zuverlässig ist. Nur das Land einzugeben führt oft zu Fehlern oder unklaren Treffern.</div>
+          <div class="answer">Damit Geocoding zuverlässig ist. Nur das Land einzugeben führt oft zu unklaren Treffern oder Fehlern.</div>
         </details>
       </div>
 
       <div style="margin-top:16px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
         <a class="btn large" href="/">Zum Rechner</a>
-        <a class="btn secondary large" href="/faq.html">Zur FAQ-Seite</a>
+        <a class="btn secondary large" href="/faq.html">Zur FAQ</a>
       </div>
     </section>
 
-    <!-- Footer via loader -->
-    <div id="site-footer"></div>
-
-    <!-- Name ganz unten (wie du wolltest) -->
-    <div class="small" style="text-align:center;opacity:.35;margin:14px 0 22px 0">
-      Dominik Fisher
-    </div>
-
   </main>
+
+  <!-- Footer via loader (WICHTIG: außerhalb vom Container → kein weißer Rand) -->
+  <div id="site-footer"></div>
 
   <!-- Active Tab -->
   <script src="/assets/js/active-nav.js" defer></script>
 
-  <!-- Header/Footer Loader + Cookies (nach Footer-Load) -->
-<script>
-  async function loadPart(id, url){
-    const el = document.getElementById(id);
-    if(!el) return false;
-    try{
-      const r = await fetch(url, { cache: 'no-cache' });
-      el.innerHTML = await r.text();
-      return true;
-    }catch(e){
-      console.warn('Konnte nicht laden:', url);
-      return false;
+  <!-- Header/Footer Loader + Mobile Nav + Cookies -->
+  <script>
+    async function loadPart(id, url){
+      const el = document.getElementById(id);
+      if(!el) return false;
+      try{
+        const r = await fetch(url, { cache: 'no-cache' });
+        el.innerHTML = await r.text();
+        return true;
+      }catch(e){
+        console.warn('Konnte nicht laden:', url);
+        return false;
+      }
     }
-  }
 
-  function initMobileNav(){
-    const header = document.querySelector('.site-header');
-    const btn = document.querySelector('.nav-toggle');
-    const nav = document.getElementById('site-nav');
-    if(!header || !btn || !nav) return;
+    function initMobileNav(){
+      const header = document.querySelector('.site-header');
+      const btn = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('site-nav');
+      if(!header || !btn || !nav) return;
 
-    const close = () => {
-      header.classList.remove('is-open');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', 'Menü öffnen');
-    };
+      const close = () => {
+        header.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Menü öffnen');
+      };
 
-    const open = () => {
-      header.classList.add('is-open');
-      btn.setAttribute('aria-expanded', 'true');
-      btn.setAttribute('aria-label', 'Menü schließen');
-    };
+      const open = () => {
+        header.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Menü schließen');
+      };
 
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      header.classList.contains('is-open') ? close() : open();
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        header.classList.contains('is-open') ? close() : open();
+      });
+
+      document.addEventListener('click', (e) => {
+        if(!header.classList.contains('is-open')) return;
+        if(header.contains(e.target)) return;
+        close();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') close();
+      });
+
+      window.addEventListener('resize', () => {
+        if(window.innerWidth > 720) close();
+      });
+    }
+
+    function loadCookiesAfterFooter(){
+      const s = document.createElement('script');
+      s.src = '/assets/js/cookies.js';
+      s.defer = true;
+      document.body.appendChild(s);
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadPart('site-header', '/practice/header.html');
+      initMobileNav();
+
+      await loadPart('site-footer', '/practice/footer.html');
+      loadCookiesAfterFooter();
     });
-
-    document.addEventListener('click', (e) => {
-      if(!header.classList.contains('is-open')) return;
-      if(header.contains(e.target)) return;
-      close();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') close();
-    });
-
-    window.addEventListener('resize', () => {
-      if(window.innerWidth > 720) close();
-    });
-  }
-
-  function loadCookiesAfterFooter(){
-    const s = document.createElement('script');
-    s.src = '/assets/js/cookies.js';
-    s.defer = true;
-    document.body.appendChild(s);
-  }
-
-  document.addEventListener('DOMContentLoaded', async () => {
-    await loadPart('site-header', '/practice/header.html');
-    initMobileNav(); // ✅ DAS war auf Unterseiten gefehlt
-
-    await loadPart('site-footer', '/practice/footer.html');
-    loadCookiesAfterFooter(); // ✅ Cookie Banner überall sicher
-  });
-</script>
+  </script>
 
 </body>
 </html>
