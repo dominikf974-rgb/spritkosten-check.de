@@ -761,3 +761,21 @@ input[type="number"], input[type="text"], select{
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
+
+/* Mobile: kurzer Titel neben Logo */
+.mobile-site-title{
+  display:none; /* Desktop aus */
+  font-family:'Poppins', Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-weight:800;
+  color:#e5e7eb;
+  font-size:16px;
+  white-space:nowrap;
+}
+
+@media(max-width:720px){
+  .mobile-site-title{ display:inline-block; }
+
+  /* Optional: den langen Titel auf Mobile ausblenden,
+     damit es nicht gequetscht aussieht */
+  .site-title{ display:none; }
+}
