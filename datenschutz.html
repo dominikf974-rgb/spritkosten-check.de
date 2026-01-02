@@ -23,7 +23,6 @@
 </head>
 
 <body data-page="legal">
-  <div id="site-header"></div>
 
   <div class="page-container">
     <section class="card">
@@ -170,5 +169,14 @@
     <div id="site-footer"></div>
   </div>
 
+   <script>
+    fetch('/practice/footer.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('site-footer').innerHTML = html;
+      })
+      .catch(() => {});
+  </script>
+  
 </body>
 </html>
