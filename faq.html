@@ -257,71 +257,11 @@
   <!-- Footer via loader -->
   <div id="site-footer"></div>
 
-  <!-- Active Tab -->
-  <script src="/assets/js/active-nav.js" defer></script>
-
   <!-- Cookies -->
   <script src="/assets/js/cookies.js" defer></script>
 
-  <!-- Header/Footer Loader + Mobile Nav init -->
-  <script>
-    async function loadPart(id, url){
-      const el = document.getElementById(id);
-      if(!el) return false;
-      try{
-        const r = await fetch(url, { cache: 'no-cache' });
-        el.innerHTML = await r.text();
-        return true;
-      }catch(e){
-        console.warn('Konnte nicht laden:', url);
-        return false;
-      }
-    }
-
-    function initMobileNav(){
-      const header = document.querySelector('.site-header');
-      const btn = document.querySelector('.nav-toggle');
-      const nav = document.getElementById('site-nav');
-      if(!header || !btn || !nav) return;
-
-      const close = () => {
-        header.classList.remove('is-open');
-        btn.setAttribute('aria-expanded', 'false');
-        btn.setAttribute('aria-label', 'Menü öffnen');
-      };
-
-      const open = () => {
-        header.classList.add('is-open');
-        btn.setAttribute('aria-expanded', 'true');
-        btn.setAttribute('aria-label', 'Menü schließen');
-      };
-
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        header.classList.contains('is-open') ? close() : open();
-      });
-
-      document.addEventListener('click', (e) => {
-        if(!header.classList.contains('is-open')) return;
-        if(header.contains(e.target)) return;
-        close();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if(e.key === 'Escape') close();
-      });
-
-      window.addEventListener('resize', () => {
-        if(window.innerWidth > 720) close();
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', async () => {
-      await loadPart('site-header', '/practice/header.html');
-      await loadPart('site-footer', '/practice/footer.html');
-      initMobileNav();
-    });
-  </script>
+  <!-- Active Tab -->
+  <script src="/assets/js/active-nav.js" defer></script>
 
   <script>
 async function loadPart(id, url){
