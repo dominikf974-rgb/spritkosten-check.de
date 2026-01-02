@@ -621,7 +621,7 @@ input[type="number"], input[type="text"], select{
   background: rgba(20,20,25,0.92);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 16px;
-  padding: 130px 26px;
+  padding: 125px 26px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -643,23 +643,23 @@ input[type="number"], input[type="text"], select{
   text-decoration: underline;
   font-weight: 800;
 }
-
 #cookieBanner .actions{
   display:flex;
-  gap:14px;
+  gap:18px;
   white-space:nowrap;
 }
 
 #cookieBanner button{
-  height:52px;
-  border-radius:12px;
-  padding:0 26px;
-  font-weight:800;
-  font-size:15px;
+  height:66px;
+  border-radius:18px;
+  padding:0 38px;
+  font-weight:900;
+  font-size:17px;
   cursor:pointer;
   border:none;
 }
 
+/* Akzeptieren */
 #cookieBanner button.accept{
   background: linear-gradient(135deg,#a855f7,#6366f1,#38bdf8);
   background-size:200% 200%;
@@ -667,11 +667,15 @@ input[type="number"], input[type="text"], select{
   animation:holoFlow 6s linear infinite;
 }
 
+/* Ablehnen – optisch GLEICHWERTIG */
 #cookieBanner button.reject{
-  background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.78);
-  border:1px solid rgba(255,255,255,0.18);
+  background: linear-gradient(135deg,#64748b,#475569,#334155);
+  background-size:200% 200%;
+  color:#fff;
+  animation:holoFlow 6s linear infinite;
 }
+
+
 
 @media(max-width:768px){
   #cookieBanner .row{flex-direction:column; padding:18px 14px;}
@@ -791,4 +795,5 @@ input[type="number"], input[type="text"], select{
     margin-top:12px;
   }
 }
+
 
