@@ -1,40 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
     <loc>https://spritkosten-check.de/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>1.00</priority>
   </url>
 
   <url>
     <loc>https://spritkosten-check.de/faq.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://spritkosten-check.de/ratgeber.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.95</priority>
   </url>
 
   <url>
-    <loc>https://spritkosten-check.de/taschenrechner.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://spritkosten-check.de/ratgeber/spritkosten-berechnen.html</loc>
+    <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://spritkosten-check.de/impressum.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://spritkosten-check.de/ratgeber/kosten-pro-km.html</loc>
+    <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://spritkosten-check.de/datenschutz.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://spritkosten-check.de/ratgeber/spritkosten-pro-100km.html</loc>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://spritkosten-check.de/ratgeber/fahrtkosten-teilen.html</loc>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://spritkosten-check.de/ratgeber/diesel-oder-benzin.html</loc>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://spritkosten-check.de/ratgeber/langstrecke-tipps.html</loc>
+    <priority>0.85</priority>
   </url>
 
 </urlset>
