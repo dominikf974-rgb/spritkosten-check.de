@@ -1,79 +1,244 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<title>Spritkosten berechnen – Formel, Beispiele & Rechner Erklärung</title>
-<meta name="description" content="Spritkosten berechnen leicht erklärt: Formel, Beispiele, Kosten pro 100 km, Kosten pro Person und typische Fehler. Kostenlos & ohne Anmeldung.">
+  <title>Spritkosten berechnen: Formel, Beispiele & Tipps (kostenlos)</title>
+  <meta name="description" content="Spritkosten berechnen leicht erklärt: Formel, Beispiele, Kosten pro 100 km und pro Person. Typische Fehler vermeiden – kostenlos & ohne Anmeldung." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://spritkosten-check.de/ratgeber/spritkosten-berechnen.html" />
 
-<link rel="canonical" href="https://spritkosten-check.de/ratgeber/spritkosten-berechnen.html">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="/favicon.ico">
 
-<link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css?v=2026-02" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Spritkosten berechnen: Formel, Beispiele & Tipps",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://spritkosten-check.de/ratgeber/spritkosten-berechnen.html"},
+    "author":{"@type":"Organization","name":"Spritkosten-Check"},
+    "publisher":{"@type":"Organization","name":"Spritkosten-Check"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Wie berechne ich Spritkosten?","acceptedAnswer":{"@type":"Answer","text":"Liter = Kilometer × Verbrauch ÷ 100. Kosten = Liter × Preis pro Liter."}},
+      {"@type":"Question","name":"Wie berechne ich Kosten pro Person?","acceptedAnswer":{"@type":"Answer","text":"Gesamte Spritkosten ÷ Personen = Kosten pro Person."}},
+      {"@type":"Question","name":"Was sind die häufigsten Fehler?","acceptedAnswer":{"@type":"Answer","text":"Zu niedrigen Verbrauch annehmen, Autobahn-Tempo unterschätzen, Tanken an Autobahnen, Maut/Vignette vergessen (wenn relevant)."}}
+    ]
+  }
+  </script>
+
+  <style>
+    .note{border:1px solid rgba(15,23,42,0.08);background:#fbfdff;border-radius:14px;padding:12px}
+    .toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .toc a{text-decoration:none}
+    .checklist{margin:0;padding-left:18px;line-height:1.85}
+    [hidden]{display:none!important;}
+  </style>
 </head>
-<body data-page="ratgeber">
 
-<div id="site-header"></div>
+<body data-page="ratgeber-article">
+  <div id="site-header"></div>
 
-<main class="page-container">
+  <main class="page-container" aria-label="Seiteninhalt">
 
-<section class="card">
-<h1>Spritkosten berechnen – So einfach geht es</h1>
-<p>
-Mit dieser Anleitung kannst du deine Spritkosten selbst berechnen – oder direkt mit unserem Rechner auf der Startseite.
-</p>
+    <section class="card intro-section">
+      <nav aria-label="Breadcrumb" class="small">
+        <a href="/ratgeber.html">Ratgeber</a> › <span>Spritkosten berechnen</span>
+      </nav>
 
-<h2>Die Grundformel</h2>
-<p><b>Liter = Kilometer × Verbrauch ÷ 100</b></p>
-<p><b>Kosten = Liter × Spritpreis</b></p>
+      <h1>Spritkosten berechnen – so einfach geht’s</h1>
+      <p>
+        Du willst schnell wissen, was eine Fahrt kostet? Hier bekommst du Formel + Beispiel und die wichtigsten Abkürzungen
+        (€/100 km, €/km, pro Person). Für die schnelle Rechnung:
+        <a href="/"><b>zum Spritkosten-Rechner</b></a>.
+      </p>
 
-<h2>Beispielrechnung</h2>
-<p>
-450 km · 7,0 L/100 km · 1,85 € → <b>58,28 € Spritkosten</b>
-</p>
+      <div class="toc">
+        <a class="btn secondary" href="#formel">Formel</a>
+        <a class="btn secondary" href="#beispiel">Beispiel</a>
+        <a class="btn secondary" href="#pro-person">Pro Person</a>
+        <a class="btn secondary" href="#100km">€ pro 100 km</a>
+        <a class="btn secondary" href="#fehler">Fehler</a>
+        <a class="btn secondary" href="#faq">FAQ</a>
+      </div>
 
-<h2>Kosten pro Person berechnen</h2>
-<p>
-Gesamtkosten ÷ Personen = Kosten pro Person
-</p>
+      <div class="note" style="margin-top:14px">
+        <b>Weiterklicken:</b>
+        <div class="toc" style="margin-top:10px">
+          <a class="btn secondary" href="/ratgeber/spritkosten-pro-100km.html">Spritkosten pro 100 km</a>
+          <a class="btn secondary" href="/ratgeber/kosten-pro-km.html">Kosten pro km</a>
+          <a class="btn secondary" href="/ratgeber/fahrtkosten-teilen.html">Fahrtkosten teilen</a>
+        </div>
+      </div>
+    </section>
 
-<h2>Kosten pro 100 km</h2>
-<p>
-Gesamtkosten ÷ Kilometer × 100
-</p>
+    <!-- Ad #1 -->
+    <div class="ad-block" aria-label="Werbung">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="7158625008"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    </div>
 
-<h2>Häufige Fehler</h2>
-<ul>
-<li>Zu niedrigen Verbrauch annehmen</li>
-<li>Maut & Vignetten vergessen</li>
-<li>Kosten nicht fair teilen</li>
-</ul>
+    <section id="formel" class="card">
+      <h2>Die Grundformel</h2>
+      <ul class="checklist">
+        <li><b>Liter</b> = Kilometer × Verbrauch ÷ 100</li>
+        <li><b>Kosten</b> = Liter × Preis pro Liter</li>
+      </ul>
+      <p class="small">
+        Tipp: Nutze deinen echten Langzeitverbrauch (nicht Prospektwerte). Auf Autobahn und Kurzstrecke weicht das oft stark ab.
+      </p>
+    </section>
 
-<div style="margin-top:20px;text-align:center">
-<a class="btn large" href="/">Jetzt Spritkosten berechnen</a>
-</div>
-</section>
+    <section id="beispiel" class="card">
+      <h2>Beispielrechnung</h2>
+      <p><b>450 km</b> · <b>7,0 L/100 km</b> · <b>1,85 €</b></p>
+      <ul class="checklist">
+        <li>Liter = 450 × 7,0 ÷ 100 = <b>31,5 L</b></li>
+        <li>Kosten = 31,5 × 1,85 = <b>58,28 €</b></li>
+      </ul>
+    </section>
 
-</main>
+    <!-- Ad #2 -->
+    <div class="ad-block" aria-label="Werbung">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="3355111369"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    </div>
 
-<div id="site-footer"></div>
+    <section id="pro-person" class="card">
+      <h2>Kosten pro Person berechnen</h2>
+      <p><b>Pro Person</b> = Gesamtkosten ÷ Personen</p>
+      <p class="small">
+        Für Fahrgemeinschaften (oder Roadtrips) ist das die schnellste faire Aufteilung.
+        Mehr Modelle (inkl. Fixkosten) findest du hier:
+        <a href="/ratgeber/fahrtkosten-teilen.html"><b>Fahrtkosten teilen</b></a>.
+      </p>
+    </section>
 
-<script src="/assets/js/active-nav.js"></script>
-<script src="/assets/js/cookies.js"></script>
+    <section id="100km" class="card">
+      <h2>Kosten pro 100 km (€/100 km)</h2>
+      <p><b>€ pro 100 km</b> = Gesamtkosten ÷ Kilometer × 100</p>
+      <p class="small">
+        Praktisch, um Fahrzeuge zu vergleichen. Ausführlich mit Formel & Beispielen:
+        <a href="/ratgeber/spritkosten-pro-100km.html"><b>Spritkosten pro 100 km</b></a>.
+      </p>
+    </section>
 
-<script>
-async function loadPart(id, url){
-  const el = document.getElementById(id);
-  if(!el) return;
-  const r = await fetch(url);
-  el.innerHTML = await r.text();
-}
+    <section id="fehler" class="card">
+      <h2>Häufige Fehler (und wie du sie vermeidest)</h2>
+      <ul class="checklist">
+        <li>Verbrauch zu niedrig ansetzen (Autobahn/Tempo/Kurzstrecke unterschätzt)</li>
+        <li>Spritpreis “schönrechnen” (besser: realer Durchschnitt)</li>
+        <li>Kosten unfair teilen (pro Person/Modell festlegen)</li>
+      </ul>
+    </section>
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadPart("site-header", "/practice/header.html");
-  loadPart("site-footer", "/practice/footer.html");
-});
-</script>
+    <section id="faq" class="card">
+      <h2>FAQ</h2>
+      <div class="note">
+        <p><b>Wie berechne ich Spritkosten?</b><br>Liter = km × Verbrauch ÷ 100. Kosten = Liter × Preis.</p>
+        <p><b>Wie berechne ich pro Person?</b><br>Gesamtkosten ÷ Personen.</p>
+        <p><b>Was ist genauer: Bordcomputer oder Tankmethode?</b><br>Tankmethode über mehrere Tankfüllungen ist meist genauer.</p>
+      </div>
 
+      <div style="margin-top:16px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <a class="btn large" href="/">Jetzt im Rechner berechnen</a>
+        <a class="btn secondary large" href="/ratgeber.html">Zur Ratgeber-Übersicht</a>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="/assets/js/active-nav.js" defer></script>
+
+  <script>
+    async function loadPart(id, url){
+      const el = document.getElementById(id);
+      if(!el) return false;
+      try{
+        const r = await fetch(url, { cache: 'no-cache' });
+        el.innerHTML = await r.text();
+        return true;
+      }catch(e){
+        console.warn('Konnte nicht laden:', url);
+        return false;
+      }
+    }
+
+    function initMobileNav(){
+      const header = document.querySelector('.site-header');
+      const btn = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('site-nav');
+      if(!header || !btn || !nav) return;
+
+      const close = () => {
+        header.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Menü öffnen');
+      };
+      const open = () => {
+        header.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Menü schließen');
+      };
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        header.classList.contains('is-open') ? close() : open();
+      });
+
+      document.addEventListener('click', (e) => {
+        if(!header.classList.contains('is-open')) return;
+        if(header.contains(e.target)) return;
+        close();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') close();
+      });
+
+      window.addEventListener('resize', () => {
+        if(window.innerWidth > 720) close();
+      });
+    }
+
+    function loadCookiesAfterFooter(){
+      const s = document.createElement('script');
+      s.src = '/assets/js/cookies.js';
+      s.defer = true;
+      document.body.appendChild(s);
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadPart('site-header', '/practice/header.html');
+      initMobileNav();
+
+      await loadPart('site-footer', '/practice/footer.html');
+      loadCookiesAfterFooter();
+    });
+  </script>
 </body>
 </html>
