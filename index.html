@@ -108,48 +108,47 @@
               </div>
             </div>
 
-            <div style="margin-top:12px">
-            <input id="place-from" type="text"
-  placeholder="z. B. Paris, Frankreich"
-  aria-label="Startort"
-  autocomplete="off"
-  autocapitalize="off"
-  autocorrect="off"
-  spellcheck="false" />
+        <div style="margin-top:12px">
+  <label for="place-from">Oder: Start (Ort, Land)</label>
+  <input id="place-from" type="text"
+    placeholder="z. B. Paris, Frankreich"
+    aria-label="Startort"
+    autocomplete="off"
+    autocapitalize="off"
+    autocorrect="off"
+    spellcheck="false" />
 
-<input id="place-to" type="text"
-  placeholder="z. B. Berlin, Deutschland"
-  aria-label="Zielort"
-  autocomplete="off"
-  autocapitalize="off"
-  autocorrect="off"
-  spellcheck="false" />
+  <label for="place-to" style="margin-top:10px">Ziel (Ort, Land)</label>
+  <input id="place-to" type="text"
+    placeholder="z. B. Berlin, Deutschland"
+    aria-label="Zielort"
+    autocomplete="off"
+    autocapitalize="off"
+    autocorrect="off"
+    spellcheck="false" />
 
-              <label for="place-to" style="margin-top:10px">Ziel (Ort, Land)</label>
-              <input id="place-to" type="text" placeholder="z. B. Berlin, Deutschland" aria-label="Zielort" />
-              <div class="small" style="margin-top:4px">
-              Beispiel: <b>Paris, Frankreich</b> → <b>Berlin, Deutschland</b>
-              </div>
+  <div class="small" style="margin-top:4px">
+    Beispiel: <b>Paris, Frankreich</b> → <b>Berlin, Deutschland</b>
+  </div>
 
-              <!-- ✅ Buttons: nebeneinander, zentriert -->
-              <div class="route-actions">
-                <button id="btn-geocode" class="btn secondary" type="button">Strecke berechnen</button>
-                <button id="btn-clearmap" class="btn secondary" type="button">Karte zurücksetzen</button>
-              </div>
+  <div class="route-actions">
+    <button id="btn-geocode" class="btn secondary" type="button">Strecke berechnen</button>
+    <button id="btn-clearmap" class="btn secondary" type="button">Karte zurücksetzen</button>
+  </div>
 
-              <div class="country-badge" id="country-badge"></div>
+  <div class="country-badge" id="country-badge"></div>
 
-              <div class="price-mode" id="price-mode">
-                <div class="small" style="margin-bottom:6px;">
-                  Startland und Zielland sind unterschiedlich. Welcher Spritpreis soll gelten?
-                </div>
-                <div class="row">
-                  <label class="pill"><input type="radio" name="priceMode" value="start"> Startland</label>
-                  <label class="pill"><input type="radio" name="priceMode" value="avg" checked> Mittelwert</label>
-                  <label class="pill"><input type="radio" name="priceMode" value="dest"> Zielland</label>
-                </div>
-              </div>
-            </div>
+  <div class="price-mode" id="price-mode">
+    <div class="small" style="margin-bottom:6px;">
+      Startland und Zielland sind unterschiedlich. Welcher Spritpreis soll gelten?
+    </div>
+    <div class="row">
+      <label class="pill"><input type="radio" name="priceMode" value="start"> Startland</label>
+      <label class="pill"><input type="radio" name="priceMode" value="avg" checked> Mittelwert</label>
+      <label class="pill"><input type="radio" name="priceMode" value="dest"> Zielland</label>
+    </div>
+  </div>
+</div>
 
             <label for="fuel-type" style="margin-top:12px">Kraftstoff</label>
             <select id="fuel-type" aria-label="Kraftstoff">
@@ -531,35 +530,33 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  async function applyDetectedPrices(latA=null, lonA=null, latB=null, lonB=null){
-    const isCross = (startCC && destCC && startCC !== destCC);
-    const mode = isCross ? getMode() : 'start';
+async function applyDetectedPrices(latA=null, lonA=null, latB=null, lonB=null){
+  const isCross = (startCC && destCC && startCC !== destCC);
+  const mode = isCross ? getMode() : 'start';
 
-    const startP = await pricesForCountryStatic(startCC, latA, lonA);
-    const destP  = await pricesForCountryStatic(destCC,  latB, lonB);
+  const startP = await pricesForCountryStatic(startCC, latA, lonA);
+  const destP  = await pricesForCountryStatic(destCC,  latB, lonB);
 
-    let chosen, note;
-    if(isCross){
-      if(mode === 'start'){ chosen = startP; note = `Startland (${startP.name})`; }
-      else if(mode === 'dest'){ chosen = destP; note = `Zielland (${destP.name})`; }
-      else { chosen = mixPrices(startP, destP); note = `Mittelwert (${startP.name} ↔ ${destP.name})`; }
-    }else{
-      chosen = startP;
-      note = startCC ? `Land: ${chosen.name}` : 'Land: —';
-    }
+  let chosen, note;
+  if(isCross){
+    if(mode === 'start'){ chosen = startP; note = `Startland (${startP.name})`; }
+    else if(mode === 'dest'){ chosen = destP; note = `Zielland (${destP.name})`; }
+    else { chosen = mixPrices(startP, destP); note = `Mittelwert (${startP.name} ↔ ${destP.name})`; }
+  }else{
+    chosen = startP;
+    note = startCC ? `Land: ${chosen.name}` : 'Land: —';
+  }
 
-    fuelPrices = { unleaded91: chosen.unleaded91, unleaded95: chosen.unleaded95, diesel: chosen.diesel };
-    renderAvgPrices();
-    
-if(!userEditedPrice){
-  priceEl.value = fuelPrices[fuelTypeEl.value] ?? '';
+  fuelPrices = { unleaded91: chosen.unleaded91, unleaded95: chosen.unleaded95, diesel: chosen.diesel };
+  renderAvgPrices();
 
-  priceInfoEl.textContent =
-    `${note}. Durchschnittliche Spritpreise als Orientierung. Du kannst den Preis jederzeit anpassen.`;
-
-  priceInfoEl.classList.remove('error');
+  if(!userEditedPrice){
+    priceEl.value = fuelPrices[fuelTypeEl.value] ?? '';
+    priceInfoEl.textContent =
+      `${note}. Durchschnittliche Spritpreise als Orientierung. Du kannst den Preis jederzeit anpassen.`;
+    priceInfoEl.classList.remove('error');
+  }
 }
-
 
   fuelTypeEl.addEventListener('change', () => {
     if(!userEditedPrice){
@@ -1256,6 +1253,7 @@ const tollPer100km = {
 
 </body>
 </html>
+
 
 
 
