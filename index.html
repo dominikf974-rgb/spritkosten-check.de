@@ -645,9 +645,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function getRouteOSRM(lat1, lon1, lat2, lon2){
-    const a = {lat:lat1, lon:lon1}, b = {lat:lat2, lon:lon2};
-    const ck = cacheKeyRoute(a,b);
-    if(routeCache.has(ck)) return routeCache.get(ck);
+ const url =
+  API_BASE + `/api/route?lat1=${encodeURIComponent(lat1)}&lon1=${encodeURIComponent(lon1)}` +
+  `&lat2=${encodeURIComponent(lat2)}&lon2=${encodeURIComponent(lon2)}` +
+  `&overview=full&geometries=geojson&steps=true`;
 
     const url =
       API_BASE + `/api/route?lat1=${encodeURIComponent(lat1)}&lon1=${encodeURIComponent(lon1)}` +
@@ -1216,6 +1217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
