@@ -62,8 +62,17 @@ Gesamtkosten ÷ Kilometer × 100
 <script src="/assets/js/cookies.js"></script>
 
 <script>
-fetch('/practice/header.html').then(r=>r.text()).then(t=>site-header.innerHTML=t)
-fetch('/practice/footer.html').then(r=>r.text()).then(t=>site-footer.innerHTML=t)
+async function loadPart(id, url){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const r = await fetch(url);
+  el.innerHTML = await r.text();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadPart("site-header", "/practice/header.html");
+  loadPart("site-footer", "/practice/footer.html");
+});
 </script>
 
 </body>
