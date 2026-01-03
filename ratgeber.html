@@ -143,6 +143,38 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+/* Desktop vs Mobile Anzeige für Beliebte Rechner */
+.popular-mobile { display:none; }
+
+@media (max-width: 720px){
+  .popular-desktop { display:none; }
+  .popular-mobile { display:block; }
+}
+
+/* Hamburger Menü – Button Look */
+.popular-menu ul{
+  list-style:none;
+  margin:10px 0 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:10px;
+}
+
+.popular-menu a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid rgba(15,23,42,0.10);
+  background:linear-gradient(180deg,#ffffff,#fbfdff);
+  font-weight:900;
+  color:var(--accent-2);
+  text-decoration:none;
+}
+
+[hidden]{ display:none !important; }
 
   </style>
 </head>
@@ -163,22 +195,41 @@
         Wenn du direkt rechnen willst: <a href="/" class="small"><b>zum Spritkosten-Rechner</b></a>.
       </p>
 
-      <!-- Mobile Hamburger – nur auf Handy sichtbar -->
-<div class="popular-mobile note">
-  <button class="popular-toggle btn secondary" type="button">
-    ☰ Beliebte Rechner & Ratgeber
-  </button>
+      <!-- Beliebte Rechner & Ratgeber (Desktop Buttons + Mobile Hamburger) -->
+<div class="popular-links" style="margin-top:14px">
 
-  <div id="popularMenu" hidden>
-    <ul class="checklist">
-      <li><a href="/ratgeber/spritkosten-berechnen.html">Spritkosten berechnen</a></li>
-      <li><a href="/ratgeber/kosten-pro-km.html">Kosten pro km berechnen</a></li>
-      <li><a href="/ratgeber/spritkosten-pro-100km.html">Spritkosten pro 100 km</a></li>
-      <li><a href="/ratgeber/fahrtkosten-teilen.html">Fahrtkosten teilen</a></li>
-      <li><a href="/ratgeber/diesel-oder-benzin.html">Diesel oder Benzin</a></li>
-      <li><a href="/ratgeber/langstrecke-tipps.html">Langstrecke Tipps</a></li>
-    </ul>
+  <!-- Desktop -->
+  <div class="popular-desktop note">
+    <b>Beliebte Rechner & Ratgeber:</b>
+    <div class="toc" style="margin-top:10px">
+      <a class="btn secondary" href="/ratgeber/spritkosten-berechnen.html">Spritkosten</a>
+      <a class="btn secondary" href="/ratgeber/kosten-pro-km.html">€/km</a>
+      <a class="btn secondary" href="/ratgeber/spritkosten-pro-100km.html">€/100km</a>
+      <a class="btn secondary" href="/ratgeber/fahrtkosten-teilen.html">Teilen</a>
+      <a class="btn secondary" href="/ratgeber/diesel-oder-benzin.html">Diesel vs Benzin</a>
+      <a class="btn secondary" href="/ratgeber/langstrecke-tipps.html">Langstrecke</a>
+    </div>
   </div>
+
+  <!-- Mobile -->
+  <div class="popular-mobile note">
+    <button class="popular-toggle btn secondary" type="button"
+      aria-expanded="false" aria-controls="popularMenu">
+      ☰ Beliebte Rechner & Ratgeber
+    </button>
+
+    <div id="popularMenu" class="popular-menu" hidden>
+      <ul class="checklist" style="margin-top:10px">
+        <li><a href="/ratgeber/spritkosten-berechnen.html">Spritkosten berechnen</a></li>
+        <li><a href="/ratgeber/kosten-pro-km.html">Kosten pro km berechnen</a></li>
+        <li><a href="/ratgeber/spritkosten-pro-100km.html">Spritkosten pro 100 km</a></li>
+        <li><a href="/ratgeber/fahrtkosten-teilen.html">Fahrtkosten teilen</a></li>
+        <li><a href="/ratgeber/diesel-oder-benzin.html">Diesel oder Benzin</a></li>
+        <li><a href="/ratgeber/langstrecke-tipps.html">Langstrecke Tipps</a></li>
+      </ul>
+    </div>
+  </div>
+
 </div>
 
       <div class="toc" aria-label="Inhaltsverzeichnis">
