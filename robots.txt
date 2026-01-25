@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
 
-# ads.txt soll erreichbar sein, aber nicht indexiert werden
-Disallow: /ads.txt
-
 Sitemap: https://spritkosten-check.de/sitemap.xml
